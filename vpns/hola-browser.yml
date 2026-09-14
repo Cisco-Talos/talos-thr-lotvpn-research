@@ -1,0 +1,241 @@
+Name: Hola Browser
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - hola-browser.exe
+        - Hola-Setup-x64-1.255.468.exe
+        - hola.exe
+        - hola_cr.exe
+        - hola_svc.exe
+  ApplicationInfo:
+    - Platform: Windows
+      AppName: Hola Browser
+      ExecutableName: hola_cr.exe
+      Version: 1.255.468
+      BuildVersion: 142.0.7444.135
+      Publisher: Hola VPN Ltd.
+      InstallLocation: C:\Program Files\Hola
+      AdditionalComponents:
+        - Chromium runtime 142.0.7444.135
+        - Hola VPN Service
+        - Brightdata Service (win_hola.browser.hola.org)
+  ServiceNames:
+    - Platform: Windows
+      Name:
+        - hola_svc
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - net_updater64.exe
+        - 7zr.exe
+        - test_wpf.exe
+        - rasdial.exe
+        - route.exe
+      Services:
+        - luminati_net_updater_win_hola_browser_hola_org
+      Attribution: >-
+        Require a Hola or Bright Data path, service registration,
+        product-specific argument, or direct Hola process ancestry.
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Hola\
+        - '%APPDATA%\Hola\chromium_profile\'
+        - '%PROGRAMDATA%\BrightData\*\'
+        - '%LOCALAPPDATA%\BrightData\*'
+        - '%LOCALAPPDATA%\Temp\Hola-Setup-x64-1.255.468.exe'
+        - '%LOCALAPPDATA%\Temp\chromium-142.0.7444.135.*.zip'
+        - '%LOCALAPPDATA%\Temp\hola_setup.log'
+        - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\Hola Browser.lnk'
+        - '%LOCALAPPDATA%\CrashDumps\hola-browser.exe.*.dmp'
+        - '%PROGRAMDATA%\Microsoft\Windows\WER\ReportArchive\AppCrash_hola-browser.exe_*\'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Hola\app\brd_config.json
+        - C:\Program Files\Hola\db\hola.conf
+        - C:\Program Files\Hola\db\hola.ndconf
+        - C:\Program Files\Hola\db\ui.conf
+        - C:\Program Files\Hola\db\svc.cid
+        - C:\Program Files\Hola\db\svc.ver
+        - C:\Windows\Temp\hola_vpn.pbk
+        - '%PROGRAMDATA%\BrightData\*\db\conf.json'
+        - '%APPDATA%\Hola\chromium_profile\Local State'
+        - '%APPDATA%\Hola\chromium_profile\Default\Preferences'
+        - '%APPDATA%\Hola\chromium_profile\Default\Secure Preferences'
+        - '%APPDATA%\Hola\chromium_profile\Default\History'
+        - '%APPDATA%\Hola\chromium_profile\Default\Network\Cookies'
+        - '%APPDATA%\Hola\chromium_profile\Default\Network\Network Persistent State'
+        - '%APPDATA%\Hola\chromium_profile\Default\Network\Reporting and NEL'
+        - '%APPDATA%\Hola\chromium_profile\Default\Network\TransportSecurity'
+        - '%APPDATA%\Hola\chromium_profile\Default\Login Data'
+        - '%APPDATA%\Hola\chromium_profile\Default\Web Data'
+  RegistryPersistence:
+    - HKLM\SOFTWARE\Hola
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\hola
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Hola Browser
+    - HKLM\SYSTEM\CurrentControlSet\Services\hola_svc
+    - HKLM\SYSTEM\CurrentControlSet\Services\luminati_net_updater_win_hola_browser_hola_org
+    - HKLM\SOFTWARE\WOW6432Node\Hola\Chromium\Extensions
+    - HKCU\Software\Hola\Chromium\Extensions
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Hola\log\install.log
+        - C:\Program Files\Hola\log\svc.log
+        - C:\Program Files\Hola\log\ui.log
+        - '%PROGRAMDATA%\BrightData\*\*.jslog'
+        - '%PROGRAMDATA%\BrightData\*\brd_sdk_service.log'
+        - '%PROGRAMDATA%\BrightData\*\net_install.log'
+        - '%PROGRAMDATA%\BrightData\*\net_updater.log'
+        - '%LOCALAPPDATA%\Temp\hola_setup.log'
+        - '%LOCALAPPDATA%\Temp\install.log'
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - --monitor <parent-pid>
+        - >-
+          --silent --agree --app browser --no-run-uis --no-rmt-conf
+          --no-updater --no-hola-cr
+        - >-
+          --silent --agree --app browser --no-run-uis --no-rmt-conf
+          --no-updater --no-svc --hola-cr-path
+          "%LOCALAPPDATA%\Temp\chromium-142.0.7444.135.*.zip"
+        - >-
+          --install win_hola.browser.hola.org --dlg-app-name "Hola Browser"
+          --set-uuid <host-specific-id>
+        - --updater win_hola.browser.hola.org
+        - --uuid
+        - --service
+        - --post-install-run --no-rmt-conf --app browser
+        - --install --silent
+        - >-
+          --no-default-browser-check --component-updater=fast-update
+          --start-maximized --user-data-dir="%APPDATA%\Hola\chromium_profile"
+        - >-
+          rasdial.exe hola_vpn_ca <redacted connection arguments>
+          /PHONEBOOK:C:\Windows\Temp\hola_vpn.pbk
+        - route.exe print -4 *
+        - --remove-hola --no-rmt-conf --app browser
+        - --uninstall win_hola.browser.hola.org
+        - cmd.exe /C "%LOCALAPPDATA%\Temp\hola_cleanup.bat"
+    - Platform: macOS
+      Args: []
+  CodeSigning:
+    - Platform: Windows
+      Publisher: HOLA VPN LTD
+    - Platform: Windows Bright Data components
+      Publisher: Bright Data Ltd
+  NetworkArtifacts:
+    Domains:
+      - hola.org
+      - client.hola.org
+      - perr.hola.org
+      - proxyjs.hola.org
+      - proxyjs.holax.io
+      - proxyjs.su89-cdn.net
+      - proxyjs.zspeed-cdn.com
+      - http-test1.hola.org
+      - vpn-endpoint.hola.org
+      - zagent2915.hola.org
+      - zagent2917.hola.org
+      - zagent2919.hola.org
+      - zagent2915.vpn.hola.org
+      - hola-rmt-update.b-cdn.net
+      - cdn-cloud.b-cdn.net
+      - holabrowser.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - HTTPS
+    - HTTP
+    - DNS
+    - QUIC
+    - Windows RAS with IKE/IPsec
+    - Localhost control traffic
+    - Bright Data peer/proxy service traffic
+  Ports:
+    - TCP 80
+    - TCP 443
+    - TCP 5228
+    - TCP 7010
+    - TCP 6880 (localhost)
+    - TCP 22222
+    - UDP 53
+    - UDP 443
+    - UDP 500
+    - UDP 4500
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Endpoint
+    Description: >-
+      Identify Hola Browser-attributed installation, authentication, Windows
+      RAS connection, and uninstall behavior. Bright Data and Windows utilities
+      require a Hola service, path, product argument, or direct process
+      relationship before they are treated as supporting evidence.
+    Indicators:
+      - >-
+        The bootstrapper directly launches the staged Hola Browser installer; its Chromium pass directly
+        launches 7zr.exe, and its post-install shortcuts lead Explorer to start hola.exe and hola_cr.exe with
+        Hola-specific arguments and the product profile
+      - Installation registers hola_svc, the Bright Data updater service, and HKLM Run persistence
+      - >-
+        Successful account creation updates the Hola Chromium profile; the immutable capture label says
+        connection although no tunnel was attempted in that phase
+      - >-
+        For a successful VPN connection, hola_svc.exe creates the temporary phonebook and launches rasdial.exe
+        for the hola_vpn_ca entry
+      - >-
+        Normal uninstall removes the application, profile, services, and persistence and automatically opens
+        the uninstall page as bounded contamination
+  - Type: Forensic
+    Description: >-
+      Use product configuration, authentication state, connection state, and
+      uninstall residuals. Hashes, generic execution caches, shortcuts, and
+      signing details already represented elsewhere are excluded.
+    Indicators:
+      - >-
+        The application tree, Hola Chromium profile, two service registrations, Run value, and uninstall
+        registration establish installed state
+      - >-
+        Successful authentication updates Chromium Local State, Preferences, History, Cookies, and related
+        network state plus Hola database files; credentials and tokens are excluded
+      - >-
+        The successful connection creates C:\Windows\Temp\hola_vpn.pbk and starts Windows RAS-related services
+        without adding a product network driver
+      - >-
+        Normal uninstall leaves the RAS phonebook, earlier Hola crash dumps and WER archives, a staged deletion
+        file, and BAM history while removing active Hola registrations
+      - >-
+        BAM, crash-dump, and WER artifacts are historical evidence only and do not imply that a Hola process or
+        service remains active
+  - Type: Network
+    Description: >-
+      Distinguish Hola product and tunnel behavior from generic connectivity
+      checks, browser background traffic, collection traffic, numeric endpoints,
+      and session-assigned interface or DNS addresses.
+    Indicators:
+      - >-
+        Hola components use hola.org, client.hola.org, perr.hola.org, proxyjs.hola.org, and Hola CDN names
+        over HTTP or HTTPS
+      - >-
+        Connection setup resolves zagent*.hola.org and zagent*.vpn.hola.org and uses Windows RAS with
+        IKE/IPsec over UDP 500 and 4500
+      - >-
+        Successful connection adds the temporary hola_vpn_ca interface, a default route, tunnel DNS, and an
+        endpoint-bypass route without adding a firewall rule
+      - >-
+        After the route change, direct RDP and SSH became unreachable while their services and listeners
+        remained active, supporting a network-path interruption rather than service shutdown
+      - Repeated localhost control traffic between Hola components is not treated as external tunnel traffic
+References:
+  Official:
+    - https://hola.org/
+  ThreatIntelligence: []
+  Research: []
+LastModified: 2026-07-27

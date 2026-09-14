@@ -1,0 +1,232 @@
+Name: Bitdefender VPN
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - bdvpnservice.exe
+        - bdvpnapp.exe
+        - bdvpnuiapp.exe
+        - bitdefender-vpn.exe
+        - bddeploy.exe
+        - bdredline.exe
+  ServiceNames:
+    - Platform: Windows
+      Name:
+        - bdredline_agent
+        - bdvpnservice
+        - bdvpn_callout
+        - WireGuardTunnel$bdvpnservice_*
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - VpnHostService.exe
+        - agent_launcher.exe
+        - installer.exe
+        - tapinstall.exe
+        - setuppackage.exe
+        - ProductAgentService.exe
+        - ProductAgentUI.exe
+        - DiscoverySrv.exe
+        - WatchDog.exe
+        - agentcontroller.exe
+      Services:
+        - ProductAgentService
+        - WireGuard
+      Attribution: >-
+        Require a Bitdefender path, signature, registration, product-specific
+        argument, or direct Bitdefender process ancestry.
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Bitdefender Agent\
+        - C:\Program Files\Bitdefender\Bitdefender VPN\
+        - '%PROGRAMDATA%\Bitdefender Agent\'
+        - '%LOCALAPPDATA%\Temp\RarSFX0\'
+        - '%WINDIR%\Temp\bd_*.tmp\'
+        - C:\Windows\System32\drivers\wireguard.sys
+        - C:\Windows\System32\DriverStore\FileRepository\wireguard.inf_amd64_*\
+        - '%PROGRAMDATA%\vpn.uninstall.*.bdinstall.v2.bin'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Bitdefender Agent\version.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\apps_data\com.bitdefender.vpn
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\settings\ProductAgent.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\settings\default_app_settings.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\settings\LoggerConfig.xml
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\default_app_settings.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\apps_install_fail_counters.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\modules_cache.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\reported_apps_state.json
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\telemetry_metadata
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\user_context
+        - C:\Program Files\Bitdefender Agent\27.1.1.*\storage\windows_users.json
+        - C:\Program Files\Bitdefender Agent\redline\bdredline.conf
+        - C:\Program Files\Bitdefender Agent\redline\bdnc.json
+        - C:\Program Files\Bitdefender\Bitdefender VPN\settings\bdvpn.xml
+        - C:\Program Files\Bitdefender\Bitdefender VPN\settings\bdvpn_statistics.db
+        - C:\Program Files\Bitdefender\Bitdefender VPN\settings\cloud\cloud_guardian_services.json
+        - C:\Program Files\Bitdefender\Bitdefender VPN\settings\wireguard\bdvpnservice_*.conf
+        - '%PROGRAMDATA%\Bitdefender\Bitdefender VPN'
+        - '%LOCALAPPDATA%\Bitdefender\Bitdefender VPN'
+    - Platform: macOS
+      Path:
+        - ~/Library/Application Support/Bitdefender/BitdefenderVPN
+  RegistryPersistence:
+    - HKLM\SYSTEM\CurrentControlSet\Services\ProductAgentService
+    - HKLM\SYSTEM\CurrentControlSet\Services\bdredline_agent
+    - HKLM\SYSTEM\CurrentControlSet\Services\bdvpnservice
+    - HKLM\SYSTEM\CurrentControlSet\Services\bdvpn_callout
+    - HKLM\SYSTEM\CurrentControlSet\Services\WireGuard
+    - HKLM\SYSTEM\CurrentControlSet\Services\WireGuardTunnel$bdvpnservice_*
+    - HKLM\SYSTEM\CurrentControlSet\Enum\SWD\WireGuard
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\BdVpnApp
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Bitdefender Agent
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Bitdefender VPN
+    - HKLM\SOFTWARE\Bitdefender VPN
+    - HKU\.DEFAULT\Software\Sub_ID_com.bitdefender.vpn
+    - HKLM\SYSTEM\CurrentControlSet\Services\WinSock2\Parameters\AppId_Catalog\0D61516E
+    - HKLM\SYSTEM\CurrentControlSet\Services\WinSock2\Parameters\AppId_Catalog\1E18CAF0
+    - HKLM\SYSTEM\CurrentControlSet\Services\WinSock2\Parameters\AppId_Catalog\39494D20
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Bitdefender\Bitdefender VPN\settings\wireguard\log.bin
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - '"service"'
+        - startup
+        - /source:web
+        - install
+        - enable
+        - 'start "<installer>"'
+        - repair
+        - firstrun
+        - user_changed
+        - get_module_status
+        - getip
+        - module_name=com.bitdefender.vpn module_state=install_success
+        - '/service "<wireguard-config>" <bdvpnservice-pid>'
+        - /uninstall
+        - uninstall
+        - stop
+        - logout
+        - stop bdvpnservice
+        - delete bdvpnservice
+        - stop bdvpn_callout
+        - delete bdvpn_callout
+        - uninstall_netfilter_wl
+        - uninstall_tap_wl
+        - 'remove "tapwlvpn"'
+        - RemoveDevice
+        - module_uninstalled=com.bitdefender.vpn
+    - Platform: macOS
+      Args: []
+  CodeSigning:
+    - Platform: Windows
+      Publisher: Bitdefender SRL
+    - Platform: Windows
+      Publisher: Microsoft Windows Hardware Compatibility Publisher (wireguard.sys)
+  NetworkArtifacts:
+    Domains:
+      - download.bitdefender.com
+      - upgrade.bitdefender.com
+      - nimbus.bitdefender.net
+      - us.nimbus.bitdefender.net
+      - elb-iow-gcp.nimbus.bitdefender.net
+      - elb-ore-gcp.nimbus.bitdefender.net
+      - central.bitdefender.com
+      - push.bitdefender.net
+      - api.wlvpn.com
+      - ipgeo.wlvpn.com
+      - ipgeo.ipvanish.com
+    UserAgent: []
+    CDN:
+      - Cloudflare
+      - Google Cloud
+NetworkBehavior:
+  Protocols:
+    - WireGuard
+    - HTTPS (installation, authentication, and control plane)
+  Ports:
+    - TCP 443
+    - TCP 80
+  TLSFingerprint: []
+  EncryptionStandards:
+    - ChaCha20-Poly1305 (WireGuard protocol; payload was not decrypted)
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Endpoint
+    Description: >-
+      Identify Bitdefender VPN uninstall behavior. Generic
+      names such as installer.exe, tapinstall.exe, ProductAgentService, and
+      WireGuard require a Bitdefender path, signature, registration, command
+      line, or direct process relationship for attribution.
+    Indicators:
+      - >-
+        The registered installer.exe /uninstall launches bdvpnapp.exe stop,
+        bdvpnservice.exe logout, and bdvpnservice.exe uninstall
+      - >-
+        installer.exe launches sc.exe to stop and delete bdvpnservice and
+        bdvpn_callout
+      - >-
+        installer.exe launches bdvpnservice.exe with uninstall_netfilter_wl and
+        uninstall_tap_wl; the latter directly launches tapinstall.exe remove
+        "tapwlvpn"
+      - >-
+        installer.exe launches rundll32.exe with subscriptional.dll RemoveDevice
+        and ProductAgentService.exe with
+        module_uninstalled=com.bitdefender.vpn
+      - >-
+        The pre/post state removes the Bitdefender VPN registration, BdVpnApp
+        startup value, bdvpnservice service, bdvpn_callout driver, and most VPN
+        files
+  - Type: Forensic
+    Description: >-
+      Use durable uninstall artifacts and directly attributable residuals to
+      corroborate Bitdefender VPN activity.
+    Indicators:
+      - >-
+        Before uninstall, the VPN registration, BdVpnApp startup value,
+        bdvpnservice service, and bdvpn_callout driver establish installed state
+      - >-
+        Five files remain in the VPN installer directory, and installer.exe
+        creates a retained %PROGRAMDATA%\vpn.uninstall.*.bdinstall.v2.bin marker
+      - >-
+        The separately registered Bitdefender Agent, ProductAgentService,
+        bdredline_agent, and Bitdefender Agent WatchDog_* task remain
+      - >-
+        The WireGuard service, driver package, and wireguard.sys remain, while no
+        Bitdefender or WireGuard tunnel adapter remains
+      - >-
+        BAM and Winsock AppId_Catalog entries retain paths for removed
+        Bitdefender VPN executables
+  - Type: Network
+    Description: >-
+      Record Bitdefender VPN network behavior. The ipgeo.ipvanish.com entry is
+      a DNS alias returned for the Bitdefender-queried ipgeo.wlvpn.com name,
+      not evidence of unrelated product telemetry. Ephemeral IP addresses are
+      excluded.
+    Indicators:
+      - >-
+        installer.exe and its subscriptional.dll RemoveDevice child resolve
+        nimbus.bitdefender.net and regional aliases and connect to their dynamic
+        Google Cloud endpoints over TCP 443
+      - >-
+        bdvpnapp.exe queries ipgeo.wlvpn.com; the DNS response includes the
+        ipgeo.ipvanish.com CNAME and Cloudflare edge addresses before the same
+        Bitdefender process connects over TCP 443
+      - >-
+        Bitdefender VPN creates a WireGuard tunnel adapter, routes, and DNS
+        servers; uninstall removes the VPN adapter state
+References:
+  Official:
+    - https://www.bitdefender.com/solutions/vpn.html
+    - https://www.bitdefender.com/consumer/support/answer/29234/
+    - https://www.wireguard.com/protocol/
+  Research:
+    - https://www.vpnmentor.com/reviews/bitdefender-vpn/
+    - https://www.techradar.com/reviews/bitdefender-premium-vpn
+LastModified: 2026-07-27

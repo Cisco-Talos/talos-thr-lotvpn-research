@@ -1,0 +1,286 @@
+Name: VyprVPN
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - VyprVPN.exe
+    - VyprVPNService.exe
+  - Platform: macOS
+    Name:
+    - VyprVPN
+    - vyprvpnservice
+    - com.goldenfrog.vyprvpn.mac.trptproxy
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - VyprVPN-6.0.4-Setup.exe
+    - InstallCertificates.exe
+    - devcon.exe
+    - uninstall.exe
+    - Un.exe
+    Drivers:
+    - tap0901
+    - tapvyprvpn
+    Attribution: >-
+      Require a VyprVPN path, Certida or Golden Frog signature, product-specific
+      argument, service or driver registration, or direct VyprVPN process ancestry;
+      these are setup, certificate, TAP, and uninstaller components.
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - VyprVPN
+    - VyprVPNPerAppCallouts
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files (x86)\VyprVPN\'
+    - '%PROGRAMDATA%\Certida LLC\VyprVPN\'
+    - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Certida LLC\VyprVPN\'
+    - '%WINDIR%\System32\drivers\VyprPerAppCalloutDriver.sys'
+    - '%WINDIR%\System32\drivers\tap0901.sys'
+    - '%WINDIR%\System32\drivers\tapvyprvpn.sys'
+    - '%WINDIR%\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\'
+    - '%WINDIR%\System32\DriverStore\FileRepository\oemwin2k.inf_amd64_*\'
+    - '%PROGRAMDATA%\Microsoft\Crypto\RSA\MachineKeys\<VyprVPN-certificate-key>'
+    - '%LOCALAPPDATA%\Temp\~nsu*.tmp\Un.exe'
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: VyprVPN
+    Publisher: Certida LLC
+    ExecutableName: VyprVPN.exe
+    Version: 6.0.4
+    InstallLocation: 'C:\Program Files (x86)\VyprVPN'
+    UninstallKey: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{526B3DDC-6891-4F43-8F64-8B83DC9E4848}
+    UninstallCommand: '"C:\Program Files (x86)\VyprVPN\uninstall.exe"'
+    AdditionalComponents:
+    - VyprVPNService.exe automatic LocalSystem service
+    - VyprVPNPerAppCallouts kernel driver
+    - TAP-Windows Adapter V9 and TAP-VyprVPN Adapter V9
+    - Bundled OpenVPN, WireGuard, Wintun, and Chameleon components
+    - Microsoft Visual C++ 2015-2019 Redistributable (x86) 14.28.29325.2
+  - Platform: macOS
+    AppName: VyprVPN.app
+    BundleIdentifier: com.goldenfrog.vyprvpn.mac
+    ExecutableName: VyprVPN
+    Version: 6.0.4.11438
+    BuildVersion: 11438
+    InstallLocation: /Applications/VyprVPN.app
+    SystemExtensions:
+    - Name: com.goldenfrog.vyprvpn.mac.trptproxy.systemextension
+      BundleIdentifier: com.goldenfrog.vyprvpn.mac.trptproxy
+      Version: 1.0.83
+      BuildVersion: 83
+      Type: NetworkExtension (Transparent Proxy)
+      Description: App-proxy network extension for Connection Per App feature
+      MachServiceName: 6F2BA92582.group.com.goldenfrog.vyprvpn.tptproxy
+    AdditionalComponents:
+    - vyprvpnservice (privileged helper in LaunchServices)
+    - WidgetExtension.appex (widget extension)
+    - com.goldenfrog.vyprvpn.mac.trptproxy (system extension)
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%APPDATA%\VyprVPN'
+    - '%LOCALAPPDATA%\Golden Frog\VyprVPN'
+    - '%LOCALAPPDATA%\Certida LLC\VyprVPN\'
+    - '%LOCALAPPDATA%\Certida_LLC\VyprVPN.exe_Url_*\6.0.4.0\user.config'
+    - '%WINDIR%\SysWOW64\config\systemprofile\AppData\Local\Certida_LLC\VyprVPNService.exe_Url_*\6.0.4.0\user.config'
+    - '%PROGRAMDATA%\Certida LLC\VyprVPN\'
+    - 'C:\Program Files (x86)\VyprVPN\Config\'
+  - Platform: macOS
+    Path:
+    - ~/Library/Preferences/com.goldenfrog.vyprvpn.mac.plist
+    - ~/Library/Group Containers/6F2BA92582.group.com.goldenfrog.vyprvpn.desktop
+    - ~/Library/Containers/com.goldenfrog.vyprvpn.mac.widget
+  RegistryPersistence:
+  - HKLM\SOFTWARE\Certida LLC\VyprVPN
+  - HKCU\Software\Certida LLC\VyprVPN
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{526B3DDC-6891-4F43-8F64-8B83DC9E4848}
+  - HKLM\SYSTEM\CurrentControlSet\Services\VyprVPN
+  - HKLM\SYSTEM\CurrentControlSet\Services\VyprVPNPerAppCallouts
+  - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+  - HKLM\SYSTEM\CurrentControlSet\Services\tapvyprvpn
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\VyprVPN
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\VyprVPNService_RASAPI32
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\VyprVPNService_RASMANCS
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\VyprVPN_RASAPI32
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\VyprVPN_RASMANCS
+  - HKLM\SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}\Descriptions\TAP-VyprVPN Adapter V9
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\*\VyprVPN-6.0.4-Setup.exe
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files (x86)\VyprVPN\VyprVPN.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\*\VyprVPN-6.0.4-Setup.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files (x86)\VyprVPN\VyprVPN.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files (x86)\VyprVPN\uninstall.exe
+  - HKCU\Software\Microsoft\Windows\CurrentVersion\Search\JumplistData\*\VyprVPN\VyprVPN.exe
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files (x86)\VyprVPN\install.log'
+    - '%PROGRAMDATA%\Certida LLC\VyprVPN\Logs\VyprVPNService.log'
+    - '%PROGRAMDATA%\Certida LLC\VyprVPN\Logs\VyprVPNConnection.log'
+    - '%PROGRAMDATA%\Certida LLC\VyprVPN\CrashData\VyprVPNService-*.log'
+    - '%LOCALAPPDATA%\Certida LLC\VyprVPN\Logs\VyprVPN.log'
+  CodeSigning:
+  - Platform: Windows
+    Publisher: Certida LLC
+    Status: Valid installer, VyprVPN.exe, VyprVPNService.exe, InstallCertificates.exe, ServiceManager.exe, VyprVPNWireGuardService.exe, and VyprPerAppCalloutDriver.sys signatures
+  - Platform: Windows
+    Publisher: Golden Frog, GmbH
+    Status: Valid TAP-VyprVPN tapvyprvpn.sys and tapvyprvpn.cat signatures
+  - Platform: Windows
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+    Status: Valid TAP-Windows tap0901.sys and tap0901.cat signatures and VyprPerAppCalloutDriver.cat signature
+  - Platform: Windows
+    Publisher: OpenVPN Technologies, Inc.
+    Status: Valid bundled OpenVPN executable and library signatures
+  - Platform: Windows
+    Publisher: WireGuard LLC
+    Status: Valid bundled wireguard.dll and wintun.dll signatures
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"VyprVPN-6.0.4-Setup.exe"'
+    - '"C:\Program Files (x86)\VyprVPN\VyprVPN.exe"'
+    - '%LOCALAPPDATA%\Temp\ns*.tmp /passive /norestart'
+    - 'VC_redist.x86.exe -q -burn.elevated <Burn pipe and handle arguments>'
+    - 'cmd.exe /c VyprCalloutDriverInstall.cmd'
+    - 'rundll32.exe syssetup,SetupInfObjectInstallAction DefaultInstall 128 %WINDIR%\System32\Drivers\VyprPerAppCalloutDriver.inf'
+    - 'sc.exe query VyprVPNPerAppCallouts'
+    - 'net.exe Start VyprVPNPerAppCallouts'
+    - '"<install-path>\OpenVPN\util\devcon.exe" hwids tap0901'
+    - '"<install-path>\OpenVPN\util\devcon.exe" update "<install-path>\OpenVPN\driver\OemVista.inf" tap0901'
+    - '"<install-path>\OpenVPN\util\devcon.exe" disable tap0901'
+    - '"<install-path>\OpenVPN\util\devcon.exe" hwids tapvyprvpn'
+    - '"<install-path>\OpenVPN\util\devcon.exe" install "<install-path>\OpenVPN\driver\OemWin2k.inf" tapvyprvpn'
+    - '"<install-path>\OpenVPN\util\devcon.exe" disable tapvyprvpn'
+    - '"<install-path>\InstallCertificates.exe" "<install-path>\Config\Certs\GoldenFrog-Inc.cer" "<install-path>\Config\Certs\goldenfrog-client.p12"'
+    - '"C:\Program Files (x86)\VyprVPN\uninstall.exe"'
+    - '"%LOCALAPPDATA%\Temp\~nsu*.tmp\Un.exe" _?=C:\Program Files (x86)\VyprVPN\'
+    - 'taskkill.exe /f /t /fi "IMAGENAME eq vyprvpn.exe"'
+    - 'taskkill.exe /f /t /IM vyprvpnservice.exe'
+    - '"<install-path>\OpenVPN\util\devcon.exe" remove "<install-path>\OpenVPN\driver\OemVista.inf" tap0901'
+    - 'sc.exe stop tap0901'
+    - 'sc.exe delete tap0901'
+    - '"<install-path>\OpenVPN\util\devcon.exe" remove "<install-path>\OpenVPN\driver\OemWin2k.inf" tapvyprvpn'
+    - 'sc.exe stop tapvyprvpn'
+    - 'sc.exe delete tapvyprvpn'
+    - 'cmd.exe /c "<install-path>\CalloutDriver\VyprCalloutDriverInstall.cmd" -r'
+    - 'rundll32.exe SETUPAPI.DLL,InstallHinfSection DefaultUninstall 128 %WINDIR%\System32\Drivers\VyprPerAppCalloutDriver.inf'
+  NetworkArtifacts:
+    Domains:
+    - vyprvpn.com
+    - downloads.vyprvpn.com
+    - api.vyprvpn.com
+    - account.vyprvpn.com
+    - api.goldenfrog.com
+    - api.ord.goldenfrog.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - Chameleon (proprietary obfuscation)
+  - OpenVPN
+  - WireGuard
+  - IKEv2
+  Ports:
+  - TCP 443
+  - TCP 80
+  - UDP 1194
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+ThreatActors: []
+UseCases: []
+Detection:
+- Type: Endpoint
+  Description: Detect the observed VyprVPN 6.0.4 Windows installation and persistent service or driver activity
+  Indicators:
+  - Explorer launched the Certida-signed VyprVPN-6.0.4-Setup.exe at high integrity from the staged installer directory
+  - The installer ran the Microsoft Visual C++ x86 prerequisite with passive, no-restart behavior
+  - The installer invoked VyprCalloutDriverInstall.cmd, rundll32.exe, sc.exe, and net.exe to install and start the manual VyprVPNPerAppCallouts kernel driver
+  - The bundled devcon.exe installed generated OEM packages for TAP-Windows Adapter V9 and TAP-VyprVPN Adapter V9, then disabled both adapters
+  - The automatic LocalSystem VyprVPN service started VyprVPNService.exe in session 0 and remained running after installation
+  - InstallCertificates.exe consumed the bundled Golden Frog certificate and PKCS#12 files and created a machine RSA key file under %PROGRAMDATA%\Microsoft\Crypto\RSA\MachineKeys\
+- Type: Forensic
+  Description: Detect artifacts created by VyprVPN 6.0.4 installation on Windows 11
+  Indicators:
+  - C:\Program Files (x86)\VyprVPN\ and %PROGRAMDATA%\Certida LLC\VyprVPN\ contained installed binaries, configuration, flags, logs, and crash data
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{526B3DDC-6891-4F43-8F64-8B83DC9E4848} registered Certida LLC as publisher and uninstall.exe as the uninstaller
+  - VyprVPN, VyprVPNPerAppCallouts, tap0901, and tapvyprvpn service keys plus three installed driver files persisted after installation
+  - Two TAP adapters and their generated Driver Store packages were present; no route, DNS-server, or firewall-rule differences were observed
+  - Four all-users Start Menu shortcuts were created under %PROGRAMDATA%\Microsoft\Windows\Start Menu\Certida LLC\VyprVPN\; no desktop shortcut was present in the post-install snapshot
+  - The installed VyprVPN.exe GUI was not launched, and no authentication, server selection, or VPN tunnel establishment occurred
+- Type: Network
+  Description: Bound the network activity observed during the installation-only phase
+  Indicators:
+  - VyprVPN-6.0.4-Setup.exe resolved downloads.vyprvpn.com and made installer HTTPS and certificate-infrastructure requests
+  - VyprVPNService.exe resolved product API, download, telemetry, and certificate-status domains after the service started
+  - VyprVPNService.exe made TCP 443 API and service connections plus TCP 80 certificate-status traffic
+  - This was service bootstrap, API, update, telemetry, and certificate-validation traffic; no VPN tunnel traffic or network-configuration change was observed
+- Type: Endpoint
+  Description: Detect the observed VyprVPN 6.0.4 first launch on Windows 11
+  Indicators:
+  - Explorer started the Certida-signed VyprVPN.exe GUI at high integrity in the interactive user session while the automatic LocalSystem VyprVPNService.exe remained in session 0
+  - VyprVPN.exe created its per-user log and .NET user configuration, initialized an installation marker, and created VyprVPN_RASAPI32 and VyprVPN_RASMANCS tracing keys
+  - The GUI remained open after launch; no authentication, account creation, server selection, or VPN connection was attempted
+- Type: Forensic
+  Description: Detect artifacts created during the observed VyprVPN 6.0.4 first launch
+  Indicators:
+  - VyprVPN.exe created %LOCALAPPDATA%\Certida LLC\VyprVPN\Logs\VyprVPN.log and %LOCALAPPDATA%\Certida_LLC\VyprVPN.exe_Url_*\6.0.4.0\user.config
+  - First launch produced product-specific execution-history records for the installed GUI executable
+  - VyprVPNService.exe continued updating its ProgramData log and system-profile .NET user configuration during the launch window
+  - No service, driver, adapter, route, DNS-server, firewall-rule, scheduled-task, startup-command, or installed-application additions were observed
+- Type: Network
+  Description: Bound the network activity observed during the first-launch phase
+  Indicators:
+  - VyprVPN.exe made certificate-validation and telemetry connections during first launch
+  - VyprVPNService.exe resolved api.vyprvpn.com through api.goldenfrog.com and made TCP 443 service connections
+  - This activity was API bootstrap, telemetry, and certificate validation from an unauthenticated GUI launch; no VPN tunnel or network-configuration change was observed
+- Type: Endpoint
+  Description: Detect the observed VyprVPN 6.0.4 synthetic login attempt on Windows 11
+  Indicators:
+  - The control that appeared to allow an unauthenticated VPN connection instead presented a paywalled login form; the operator submitted exactly one synthetic login attempt
+  - VyprVPN.exe remained in the interactive session while the automatic LocalSystem VyprVPNService.exe handled service-side activity; no new VyprVPN process was launched
+  - The raw run metadata retained its original connection label, but no VPN connection, server selection, or tunnel establishment was attempted or observed
+- Type: Forensic
+  Description: Detect state touched during the observed VyprVPN 6.0.4 synthetic login attempt
+  Indicators:
+  - VyprVPN.exe appended to %LOCALAPPDATA%\Certida LLC\VyprVPN\Logs\VyprVPN.log while VyprVPNService.exe updated its ProgramData service and connection logs
+  - VyprVPNService.exe rewrote its existing system-profile .NET user.config through temporary .newcfg and .tmp files
+  - No product-attributed registry persistence or new service, driver, adapter, route, DNS-server, firewall-rule, scheduled-task, startup-command, or installed-application state was observed
+- Type: Network
+  Description: Bound the network activity observed during the synthetic login attempt
+  Indicators:
+  - VyprVPNService.exe resolved api.vyprvpn.com through api.goldenfrog.com and connected over TCP 443
+  - VyprVPN.exe resolved account.vyprvpn.com and connected over TCP 443
+  - This was authentication and API control-plane traffic from one synthetic login attempt; the capture does not establish successful authentication or VPN tunnel traffic
+- Type: Endpoint
+  Description: Detect the observed VyprVPN 6.0.4 normal uninstall on Windows 11
+  Indicators:
+  - The operator disabled the wizard option to retain VyprVPN user settings before completing the registered uninstall.exe workflow
+  - uninstall.exe copied itself to %LOCALAPPDATA%\Temp\~nsu*.tmp\Un.exe, which used taskkill.exe to terminate the GUI and service processes
+  - The temporary uninstaller used devcon.exe plus sc.exe stop and delete commands for tap0901 and tapvyprvpn, and invoked VyprCalloutDriverInstall.cmd with -r to remove the per-app callout driver
+  - The uninstaller removed the VyprVPN application registration, automatic service, three driver-service registrations, two TAP adapters, program files, ProgramData content, user settings, and Start Menu shortcuts without requesting a reboot
+- Type: Forensic
+  Description: Detect residual state after the observed VyprVPN 6.0.4 normal uninstall
+  Indicators:
+  - C:\Program Files (x86)\VyprVPN\install.log and the temporary %LOCALAPPDATA%\Temp\~nsu*.tmp\Un.exe remained after the uninstaller exited
+  - The generated TAP-Windows and TAP-VyprVPN Driver Store packages remained with tap0901.sys and tapvyprvpn.sys under %WINDIR%\System32\drivers\, although their adapters and driver-service registrations were removed
+  - The machine RSA key file created by InstallCertificates.exe remained under %PROGRAMDATA%\Microsoft\Crypto\RSA\MachineKeys\
+  - The bundled Microsoft Visual C++ 2015-2019 Redistributable (x86) 14.28.29325.2 and its minimum/additional runtimes and package caches remained installed
+  - The VyprVPN Event Log provider key and product execution-history records remained after uninstall and should be treated as cleanup targets
+  - No VyprVPN process, service, driver service, adapter, installed-application entry, scheduled task, startup command, route, DNS-server, or firewall-rule state remained in the post-uninstall snapshots
+- Type: Network
+  Description: Bound the network activity observed during the uninstall phase
+  Indicators:
+  - No product-attributed network activity was observed during the normal uninstall
+References:
+  Official:
+  - https://www.vyprvpn.com/
+  - https://support.vyprvpn.com/
+  ThreatIntelligence:
+  - https://www.leviathansecurity.com/blog/third-party-audit-vyprvpn
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/vyprvpn-review/
+  - https://restoreprivacy.com/vpn/reviews/vyprvpn/
+LastModified: '2026-09-01'

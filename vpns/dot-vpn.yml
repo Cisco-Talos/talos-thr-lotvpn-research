@@ -1,0 +1,28 @@
+Name: Dot Vpn
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - dotvpn.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.dotvpn.com/
+  ThreatIntelligence:
+  - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/dot-vpn-review/
+LastModified: '2026-07-16'

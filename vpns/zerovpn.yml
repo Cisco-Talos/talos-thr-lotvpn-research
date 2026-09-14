@@ -1,0 +1,27 @@
+Name: Zerovpn
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains: []
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://zerovpn.com/
+  ThreatIntelligence:
+  - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+  - https://vpnpro.com/vpn-reviews/zero-vpn-review/
+LastModified: '2026-07-16'

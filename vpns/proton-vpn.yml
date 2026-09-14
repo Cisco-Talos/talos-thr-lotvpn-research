@@ -1,0 +1,612 @@
+Name: Proton Vpn
+VendorInfo:
+  Company: ProtonVPN AG
+  Website: https://protonvpn.com/
+  Jurisdiction: Switzerland
+  BusinessModel: Freemium/Paid
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - ProtonVPN.Client.exe
+    - ProtonVPN.Launcher.exe
+    - ProtonVPN.WireGuardService.exe
+    - ProtonVPN.RestoreInternet.exe
+    - ProtonVPNService.exe
+  - Platform: macOS
+    Name:
+    - ProtonVPN
+    - ch.protonvpn.mac.WireGuard-Extension
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - ProtonVPN Service
+    - ProtonVPN WireGuard
+    - ProtonVPNCallout
+  - Platform: macOS
+    Name:
+    - No persistent launch agents/daemons detected (runs on-demand)
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - openvpn.exe
+    - msedgewebview2.exe
+    - tapinstall.exe
+    Drivers:
+    - wireguard.sys
+    - tapprotonvpn.sys
+    Attribution: >-
+      Require the Proton VPN installation path, product-specific configuration,
+      or direct Proton VPN process ancestry. OpenVPN, WebView2, TAP, and WireGuard
+      components are shared or third-party dependencies and are not standalone
+      Proton VPN identifiers.
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: Proton VPN
+    ExecutableName: ProtonVPN.Client.exe
+    Version: 4.4.1 (installer metadata 4.3.14-0cdcbc89; updated during installation)
+    Publisher: Proton AG
+    InstallLocation: C:\Program Files\Proton\VPN\
+    InstallerType: Inno Setup bootstrapper with service-driven in-place update
+    UninstallCommand: '"C:\Program Files\Proton\VPN\unins000.exe"'
+    QuietUninstallCommand: '"C:\Program Files\Proton\VPN\unins000.exe" /SILENT'
+    AdditionalComponents:
+    - ProtonVPN Service manual-start LocalSystem service
+    - ProtonVPNCallout manual-start kernel driver
+    - Proton Drive 3.0.3 and Proton Mail 1.13.3 companion installations (retained
+      after Proton VPN removal)
+    - Proton Pass 1.38.1 MSIX download retained after Proton VPN removal (registration
+      not confirmed)
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - C:\Program Files\Proton\VPN\
+    - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Proton\
+    - '%LOCALAPPDATA%\Proton\Proton VPN\'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\WebView2\EBWebView\'
+    - '%LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\Proton.VPN\'
+    - C:\Program Files\ProtonVPN\
+    - '%LOCALAPPDATA%\ProtonVPN\'
+    - '%APPDATA%\ProtonVPN\'
+  - Platform: macOS
+    Path:
+    - /Applications/ProtonVPN.app
+    - ~/Library/Containers/ch.protonvpn.mac/
+    - ~/Library/Containers/ch.protonvpn.mac/Data/
+    - ~/Library/Containers/ch.protonvpn.mac/Data/Library/Caches/ch.protonvpn.mac/
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\ProtonVPN\*\user.config'
+    - '%USERPROFILE%\AppData\Local\ProtonVPN'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\GlobalSettings.json'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\UnauthenticatedStatisticalEvents.bin'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\Announcements.<account-key>.bin'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\LocationNames.<account-key>.bin'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\Profiles.<account-key>.bin'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\Servers.<account-key>.bin'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\UserSettings.<account-key>.json'
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Storage\AuthenticatedStatisticalEvents.<account-key>.bin'
+    - C:\Program Files\Proton\VPN\v*\ServiceData\ServiceSettings.json
+    - C:\Program Files\Proton\VPN\v*\ServiceData\WireGuardServerRoutes.json
+    - C:\Program Files\Proton\VPN\v*\ServiceData\WireGuard\ProtonVPN.conf
+  - Platform: macOS
+    Path:
+    - ~/Library/Containers/ch.protonvpn.mac
+    - ~/Library/Containers/ch.protonvpn.mac/Data/Library/Preferences/ch.protonvpn.mac.plist
+    - ~/Library/Group Containers/J6S6Q257EK.group.ch.protonvpn.mac
+  - Platform: Linux
+    Path:
+    - ~/.config/protonvpn/protonvpn.cfg
+    - ~/.config/Proton/VPN
+    - /etc/openvpn/*.ovpn
+  RegistryPersistence:
+  - HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\Proton VPN
+  - HKCU\Software\Classes\AppUserModelId\Proton.VPN
+  - HKCU\Software\Classes\proton-vpn
+  - HKCU\Software\Classes\protonvpn
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Proton VPN_is1
+  - HKLM\SOFTWARE\Proton AG\Proton VPN
+  - HKLM\SYSTEM\CurrentControlSet\Services\ProtonVPN Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\ProtonVPN WireGuard
+  - HKLM\SYSTEM\CurrentControlSet\Services\ProtonVPNCallout
+  - HKLM\SYSTEM\CurrentControlSet\Enum\SWD\WireGuard\{<interface-guid>}
+  - HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DnsPolicyConfig\{<policy-guid>}
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\ProtonVPN
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\ProtonVPNService
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - C:\Program Files\Proton\VPN\Install.log.txt
+    - C:\Program Files\Proton\VPN\v*\ServiceData\Logs\service-logs.txt
+    - C:\Program Files\Proton\VPN\v*\ServiceData\WireGuard\log.bin
+    - '%LOCALAPPDATA%\Proton\Proton VPN\Logs\client-logs.txt'
+  - Platform: macOS
+    Path:
+    - ~/Library/Containers/ch.protonvpn.mac/Data/Library/Logs/
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"C:\vpn-installers\proton-vpn.exe"'
+    - ProtonInstaller.exe /Mail /Drive /Pass /CreateDesktopShortcut
+    - ProtonVPN.Launcher.exe -MailInstalled -DriveInstalled -PassInstalled -Language
+      en-US -CleanInstall
+    - ProtonVPN.Client.exe -MailInstalled -DriveInstalled -PassInstalled -Language
+      en-US -CleanInstall
+    - ProtonVPN_v4.4.1_x64.exe /VERYSILENT /SUPPRESSMSGBOXES
+    - Proton Drive Setup 3.0.3.exe Source=vpn /quiet NoAppDataCleanup=1 NoAutoLaunch=1
+    - ProtonMail-desktop.exe --source=vpn --silent=1 --auto-launch=0
+    - '"C:\Program Files\Proton\VPN\unins000.exe"'
+    - '"C:\Program Files\Proton\VPN\unins000.exe" /SILENT'
+    - ProtonVPN.Client.exe -DoUninstallActions
+    - taskkill.exe /f /im ProtonVPN.Client.exe
+    - taskkill.exe /f /im ProtonVPN.exe
+    - tapinstall.exe drivernodes tapprotonvpn
+    - '"<path><version>\<path>" "tcp"'
+    - '"<path><version>\<path>" "tls"'
+    - '"<path><version>\<path>" "udp"'
+    - '----ms-protocol:ms-encodedlaunch:App?ContractId=Windows.StartupTask&TaskId=Proton%20VPN'
+    - --config "<config-file>" --service "<service>" <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --management-query-passwords-proxy --msg-channel <channel>
+    - --config "<path>"
+    - --config "<path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> <value>-list>
+    - --config "<path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords --push-peer-info --setenv <env> <value>
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path> aws vpn" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> <value>-list> --setenv <env> <value> --dev-node {<uuid>}
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path> vpn" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> <value>-list> --setenv <env> <value> --dev-node {<uuid>}
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>"
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" -
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> --setenv <env> <value> --dev-node {<uuid>} --setenv <env>
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> <value>-list> --dev-node {<uuid>}
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> <value>-list> --setenv <env> <value> --dev-node {<uuid>}
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords-
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords-p
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords-pa
+    - --config "<path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords-pas
+    - --config "<path><version>\<path>" --suppress-timestamps --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --remote <mgmt-addr> tcp --nobind --setenv peer_
+    - --config "<path><version>\<path>" --suppress-timestamps --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --remote <mgmt-addr> tcp --nobind --setenv peer_dn
+    - --config "<path><version>\<path>" --suppress-timestamps --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --remote <mgmt-addr> tcp --nobind --setenv peer_dns_name "node-ca-<num>.protonvpn.net" --tls-export-cert "<path><version>\<path>" --tls-verify "<path><version>\ProtonVPN.TlsVerify.exe" --dev-node "{<uuid>}" --windows-driver wintun
+    - --config "<path><version>\<path>" --suppress-timestamps --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --remote <mgmt-addr> udp --local <version> --lport <num> --setenv peer_dns_name "node-ca-<num>.protonvpn.net" --tls-export-cert "<path><version>\<path>" --tls-verify "<path><version>\ProtonVPN.TlsVerify.exe" --dev-node "{<uuid>}" --windows-driver wintun
+    - --config "<path>\<uuid>.diff" --management-hold --management-query-passwords --suppress-timestamps --connect-retry-max <num> --management <mgmt-addr> --register-dns --dev-node "OpenVPN Data Channel Off
+    - --config <file>
+    - --config <path> --setenv <env> <value> --management <mgmt-addr> --setenv <env> <value>-<version>" --push-peer-info --log <path>
+    - --config <path> --setenv <env> <value> --setenv <env> <value>-<version>" --push-peer-info --log <path>
+    - --config <path> --verb <num> --dev-node "Pritunl <num>" --script-security <num> --auth-user-pass <path>
+    - --log "<path> (<num>).log" --config "<config-file>" --setenv <env> <value> GUI <version>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log "<path> <num>.log" --config "firewall2-UDP4-<num>-chase-config <file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log "<path> firewall_client.log" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log "<path>" --config "<config-file>" --setenv <env>
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords-
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords-p
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords-pa
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords-pas
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords-pass
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <num>.
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <num>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <version>
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <version>" --setenv <env> <value>
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <version>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <version>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log "<path>" --config "<config-file>" --setenv <env> <value> GUI <version>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords-p
+    - --log "<path>-Scale VPN.log" --config "<config-file>" --setenv <env> <value> GUI <version>" --setenv <env> <value> --service <file> <num> --auth-retry interact --management <mgmt-addr> stdin --management-query-passwords --management-hold --pull-filter ignore route-method --msg-channel <channel>
+    - --log-append "<path>" --connect-timeout <num> --connect-retry-max <num> --config "<path>" --compat-mode <version> --auth-nocache --tls-cert-profile insecure --service <file> <num> -
+    - --log-append "<path>" --connect-timeout <num> --connect-retry-max <num> --config "<path>" --compat-mode <version> --auth-nocache --tls-cert-profile insecure --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --msg-channel <channel>
+    - --log-append "<path>" --connect-timeout <num> --connect-retry-max <num> --config "<path>" --compat-mode <version> --tls-cert-profile insecure --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --msg-channel <channel>
+    - --log-append "<path>" --connect-timeout <num> --connect-retry-max <num> --config "<path>" --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords
+    - --log-append "<path>" --connect-timeout <num> --connect-retry-max <num> --config "<path>" --service <file> <num> --management <mgmt-addr> stdin --management-query-passwords --management-hold --msg-channel <channel>
+    - -Language en-US -CleanInstall
+    - <path><path>" --script-security <num> --management <mgmt-addr> "<path>" --management-query-passwords --management-hold --connect-retry <num> <num> --connect-timeout <num> --disable-dco --push-peer-info --setenv <env> <value> --setenv <env> <value> --setenv <env> <value>-list> --setenv <env> <value> --dev-node {<uuid>}
+    - <path><version>\<path>" "udp"
+  - Platform: macOS
+    Args:
+    - /Applications/ProtonVPN.app/Contents/MacOS/ProtonVPN
+  BrowserExtensions: []
+  CodeSigning:
+  - Platform: Windows installer and installed Proton VPN executables
+    Publisher: Proton AG
+  - Platform: Windows ProtonVPN.CalloutDriver.sys
+    Publisher: Proton AG
+  - Platform: Windows wireguard.sys
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+  - Platform: Windows tapprotonvpn.sys payload
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+  - Platform: Windows tapinstall.exe payload
+    Publisher: Not signed
+  - Platform: macOS
+    Publisher: Developer ID Application ProtonVPN AG (J6S6Q257EK)
+    TeamID: J6S6Q257EK
+    BundleID: ch.protonvpn.mac
+    CertificateAuthority: Developer ID Certification Authority -> Apple Root CA
+  NetworkArtifacts:
+    Domains:
+    - protonvpn.com
+    - proton.me
+    - vpn.protondownload.com
+    - api.protonvpn.ch
+    - account.proton.me
+    - account.protonmail.com
+    - account.protonvpn.com
+    - node-ca-*.protonvpn.net (server nodes)
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - WireGuard (observed during a successful Windows connection)
+  - OpenVPN
+  - IKEv2
+  - HTTPS (Windows installation, update, automatic-client-launch, authenticated-login,
+    and connection control-plane traffic)
+  - DNS (Windows installation, automatic-client-launch, authenticated-login, and
+    tunneled connection traffic)
+  - NTP (automatic-client-launch time check)
+  Ports:
+  - UDP 51820 (WireGuard)
+  - UDP 1194 (OpenVPN)
+  - TCP 443 (OpenVPN; also observed for Windows installation, update, startup, and
+    authenticated-login HTTPS without a VPN tunnel)
+  - UDP 53 (Windows installation, automatic-client-launch, and authenticated-login
+    DNS)
+  - UDP 123 (automatic-client-launch NTP)
+  TunnelInterfaces:
+  - ProtonVPN (Windows WireGuard Tunnel)
+  - utun0, utun1, utun2, utun3 (macOS)
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+  - ChaCha20
+  NetworkExtensions:
+  - packet-tunnel-provider-systemextension (macOS)
+ThreatActors: []
+UseCases: []
+ThirdPartyIntegrations:
+  CrashReporting:
+  - Sentry Framework (SentryPrivate.bundle)
+  AutoUpdates:
+  - Sparkle Framework
+  - ProtonVPNService (Windows service-driven silent update)
+  CryptoLibrary:
+  - OpenSSL Framework (custom build)
+  UIFrameworks:
+  - ProtonCore UIFoundations
+  - ProtonCore Services
+  - ProtonCore Login
+  FeatureFlags:
+  - LocalFeatureFlags
+  ThemeSupport:
+  - Theme_Theme.bundle (custom theming)
+  BugReporting:
+  - BugReport_BugReport.bundle
+ApplicationVersion:
+  WindowsLatestObserved: 4.4.1 (installer metadata 4.3.14-0cdcbc89)
+  macOSLatestObserved: 4.2.2 (Build 2404111053)
+  MinimumOSVersion: macOS 11.0
+  Architecture: Universal Binary (x86_64 + ARM64)
+  URLSchemes:
+  - protonvpn
+  AssociatedDomains:
+  - webcredentials:account.proton.me
+  - webcredentials:account.protonmail.com
+  - webcredentials:account.protonvpn.com
+  Entitlements:
+  - com.apple.developer.networking.networkextension (packet-tunnel-provider-systemextension)
+  - com.apple.developer.networking.vpn.api (allow-vpn)
+  - com.apple.developer.system-extension.install
+  - com.apple.developer.associated-domains
+  - com.apple.developer.maps
+  - com.apple.security.app-sandbox (ENABLED - unlike most VPNs)
+  - com.apple.security.application-groups (J6S6Q257EK.group.ch.protonvpn.mac)
+  - com.apple.security.files.user-selected.read-only
+  - com.apple.security.network.client
+  PluginsExtensions:
+  - None detected (no Finder extensions or system plugins)
+  Localization: null
+  SupportedLanguages:
+  - English (en)
+  - German (de)
+  - Greek (el)
+  - Japanese (ja)
+  - Persian (fa)
+  - Ukrainian (uk)
+  - Norwegian (nb)
+  - Spanish (es)
+  - Spanish-Latin America (es-419)
+  - Italian (it)
+  - Slovak (sk)
+  - Belarusian (be)
+  - Swedish (sv)
+  - Czech (cs)
+  - Korean (ko)
+  - Hungarian (hu)
+  - Chinese-Traditional (zh-Hant)
+  - French (fr)
+  - Polish (pl)
+  - Portuguese-Brazil (pt-BR)
+  - Russian (ru)
+  - Dutch (nl)
+  - Turkish (tr)
+Detection:
+- Type: Endpoint
+  Description: Detect ProtonVPN installation, execution, and network tunnel creation
+  Indicators:
+  - Process execution /Applications/ProtonVPN.app/Contents/MacOS/ProtonVPN
+  - Network extension installation with bundle ID ch.protonvpn.mac
+  - Creation of utun interfaces (utun0-utun3) associated with ProtonVPN process
+  - Sandboxed container at ~/Library/Containers/ch.protonvpn.mac/
+  - Code signature verification - Team ID J6S6Q257EK, Bundle ID ch.protonvpn.mac
+  - App sandbox enabled (security hardening indicator)
+- Type: Network
+  Description: Network-based detection of ProtonVPN connections
+  Indicators:
+  - TCP connections to port 443 to ProtonVPN server infrastructure
+  - DNS queries for protonvpn.com, api.protonvpn.ch, account.proton.me
+  - DNS queries for node-ca-*.protonvpn.net (server node pattern)
+  - UDP traffic to port 51820 (WireGuard)
+  - OpenVPN connections to UDP 1194 or TCP 443
+  - Traffic through utun interfaces on macOS
+  - Connection patterns to Swiss-based IP ranges (ProtonVPN servers)
+- Type: Forensic
+  Description: File system and configuration artifacts from ProtonVPN installation
+  Indicators:
+  - Application bundle at /Applications/ProtonVPN.app (58MB executable, universal binary)
+  - Sandboxed container at ~/Library/Containers/ch.protonvpn.mac/
+  - Cache database at ~/Library/Containers/ch.protonvpn.mac/Data/Library/Caches/ch.protonvpn.mac/Cache.db
+  - OpenSSL framework in application bundle (custom crypto implementation)
+  - Sparkle framework for auto-updates
+  - Sentry framework for crash reporting
+  - Client.plist configuration in Resources
+  - ProtonCore frameworks (Services, Login, UIFoundations)
+  - Theme and localization bundles (20+ languages)
+- Type: Forensic
+  Description: >-
+    Detect the Windows installation of Proton VPN 4.4.1. The signed Windows
+    bootstrapper installed and automatically launched the client and
+    service, after which the service silently installed version 4.4.1. The
+    untouched automatic launch is bounded installation contamination, not a
+    controlled first-launch, login, or VPN-connection experiment.
+  Indicators:
+  - >-
+    The Explorer-launched bootstrapper created C:\Program Files\Proton\VPN\
+    with v4.3.14 and v4.4.1 application trees
+  - >-
+    ProtonVPN.Launcher.exe started ProtonVPN.Client.exe with
+    -MailInstalled -DriveInstalled -PassInstalled -Language en-US -CleanInstall
+  - >-
+    ProtonVPNService.exe launched the signed cached updater
+    ProtonVPN_v4.4.1_x64.exe /VERYSILENT /SUPPRESSMSGBOXES; the post-state
+    registered Proton VPN 4.4.1 while the already-running client and service
+    retained their v4.3.14 image paths
+  - >-
+    The Proton-signed 4.4.1 client and service binaries were present after the
+    service-driven update, while already-running processes retained earlier
+    image paths
+  - >-
+    ProtonVPN Service was newly registered as a running manual-start
+    LocalSystem service with its ImagePath updated to the v4.4.1 service binary
+  - >-
+    ProtonVPNCallout was newly registered as a stopped manual-start kernel
+    driver backed by the Proton-signed ProtonVPN.CalloutDriver.sys
+  - >-
+    ProtonVPN.Client.exe added the per-user Proton VPN Run value, registered the
+    protonvpn URL protocol, and created GlobalSettings.json, client-logs.txt,
+    and UnauthenticatedStatisticalEvents.bin beneath %LOCALAPPDATA%\Proton\Proton VPN\
+  - >-
+    The machine uninstall entry registered unins000.exe and unins000.exe /SILENT
+    for normal and quiet removal
+  - >-
+    ProtonInstaller.exe ran with /Mail /Drive /Pass /CreateDesktopShortcut;
+    Proton Drive 3.0.3 and Proton Mail 1.13.3 were installed, while a Proton Pass
+    MSIX was downloaded but its post-state registration was not confirmed
+  - >-
+    No network adapter, route, DNS-server setting, firewall rule, or scheduled
+    task was added; no OpenVPN or WireGuard tunnel helper executed
+  - >-
+    Installation completed without a collector error, reboot request, or
+    restart. The operator did not interact with the auto-opened client, log in,
+    create an account, select a server, or attempt a VPN connection
+  - >-
+    Protected OpenVPN BAM history and an older OpenVPN DCO driver-store package
+    predated this run and are excluded from Proton VPN attribution
+- Type: Network
+  Description: >-
+    Windows installation network activity consisted of installer bootstrap,
+    service-driven update, certificate-status, and bounded automatic-client-launch
+    traffic. No VPN tunnel was attempted, so the capture-specific addresses are
+    not promoted as stable Proton VPN server indicators.
+  Indicators:
+  - >-
+    Companion-product bootstrap activity resolved Proton-owned control-plane
+    infrastructure over TCP 443
+  - >-
+    ProtonVPNService.exe resolved protonvpn.com and vpn.protondownload.com and
+    connected over TCP 443 while retrieving and applying the 4.4.1 update
+  - >-
+    The automatically launched ProtonVPN.Client.exe made HTTPS connections to
+    Proton control-plane infrastructure and DNS requests to the host resolver
+    without operator interaction
+  - >-
+    Certificate-status lookups were observed during installation but are not
+    Proton-owned network indicators
+  - >-
+    No OpenVPN, WireGuard, IKEv2, provider-server selection, authentication, or
+    established VPN-tunnel traffic was exercised in this installation capture
+- Type: Forensic
+  Description: >-
+    Detect a successful Windows Proton VPN login performed by the already-running
+    v4.3.14 client on an installation registered as version 4.4.1. This was a
+    controlled subsequent-account login on an installation with earlier deleted
+    login activity, so it does not establish pristine first-login initialization.
+  Indicators:
+  - >-
+    ProtonVPN.Client.exe spawned six Microsoft Edge WebView2 150.0.4078.65
+    msedgewebview2.exe processes for the embedded login and interactive
+    human-verification flow; the subprocesses exited after authentication
+  - >-
+    ProtonVPN.Client.exe directly modified
+    %LOCALAPPDATA%\Proton\Proton VPN\Storage\GlobalSettings.json and created
+    LocationNames.<account-key>.bin, Profiles.<account-key>.bin,
+    Servers.<account-key>.bin, and UserSettings.<account-key>.json beneath the
+    Storage directory
+  - >-
+    The post-login state also added Announcements.<account-key>.bin. All five
+    account-keyed names used the same 40-character hexadecimal suffix; the
+    suffix and all account data are deliberately redacted
+  - >-
+    msedgewebview2.exe wrote the existing embedded-browser profile beneath
+    %LOCALAPPDATA%\Proton\Proton VPN\WebView2\EBWebView\. Individual browser
+    state is sensitive and is intentionally excluded from repository output
+  - >-
+    ProtonVPN.Client.exe appended %LOCALAPPDATA%\Proton\Proton VPN\Logs\client-logs.txt,
+    while ProtonVPNService.exe appended the running v4.3.14 service-logs.txt
+  - >-
+    The run ended with the client authenticated and did not create or modify a
+    Proton service, driver, scheduled task, startup command, network adapter,
+    route, DNS-server setting, or firewall rule
+  - >-
+    No OpenVPN or WireGuard tunnel helper executed and no VPN connection was
+    attempted or established. Generic WebView2 changes may reflect reuse of the
+    browser profile from the earlier abandoned login run
+- Type: Network
+  Description: >-
+    The controlled Windows login produced authentication control-plane traffic
+    only. Capture-specific destinations are not promoted as stable provider or
+    VPN-server indicators.
+  Indicators:
+  - >-
+    ProtonVPN.Client.exe made six successful HTTPS connections and one DNS
+    request; its WebView2 child tree made six successful HTTPS connections and
+    nine DNS requests during the authenticated login window
+  - >-
+    Login traffic used TCP 443 and the configured DNS resolver without an
+    OpenVPN, WireGuard, IKEv2, selected-server, route, adapter, or established
+    tunnel transition
+- Type: Forensic
+  Description: >-
+    Detect a successful Windows Proton VPN WireGuard connection initiated from
+    the already-authenticated v4.3.14 client on an installation registered as
+    version 4.4.1. The raw post-state represents the active connection; the
+    operator disconnected only after capture finalization and local evidence
+    preservation.
+  Indicators:
+  - >-
+    ProtonVPNService.exe created ServiceSettings.json,
+    WireGuardServerRoutes.json, WireGuard\ProtonVPN.conf, and WireGuard\log.bin
+    beneath C:\Program Files\Proton\VPN\v4.3.14\ServiceData\. The tunnel
+    configuration can contain sensitive key material and should be protected.
+  - >-
+    A connection-created manual LocalSystem service named ProtonVPN WireGuard
+    started ProtonVPN.WireGuardService.exe with the generated ProtonVPN.conf and
+    the udp argument.
+  - >-
+    The connection loaded Proton-signed ProtonVPN.CalloutDriver.sys and
+    Microsoft Windows Hardware Compatibility Publisher-signed wireguard.sys.
+  - >-
+    Windows added an active adapter named ProtonVPN with description WireGuard
+    Tunnel, WireGuard LLC driver 0.10.0.0, and a run-specific SWD\WireGuard
+    device instance.
+  - >-
+    The active tunnel installed a default IPv4 route through the ProtonVPN
+    adapter, retained a host route to the selected exit server over Ethernet,
+    and assigned the tunnel DNS server.
+  - >-
+    ProtonVPNService.exe created a run-specific NRPT key beneath
+    HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DnsPolicyConfig
+    with display name Proton VPN and the comment Force all DNS requests via Proton
+    VPN.
+  - >-
+    ProtonVPN.Client.exe modified GlobalSettings.json and the account-keyed
+    UserSettings file and created an account-keyed
+    AuthenticatedStatisticalEvents binary. Account-derived filename suffixes and
+    stored content are deliberately redacted.
+  - >-
+    No installed-application, scheduled-task, startup-command, or firewall-rule
+    change was observed. RDP remained connected, and the operator generated no
+    deliberate browsing traffic during the bounded active-tunnel capture.
+- Type: Network
+  Description: >-
+    The controlled Windows connection established a WireGuard tunnel. The
+    selected exit-server address and reverse-DNS identity are deliberately
+    omitted because they are capture-specific and potentially sensitive.
+  Indicators:
+  - >-
+    Before tunnel establishment, ProtonVPNService.exe tested the selected server
+    over TCP 443 and several candidate UDP ports, including 500, 1194, 4500,
+    and 51820.
+  - >-
+    ProtonVPN.WireGuardService.exe then exchanged sustained UDP 51820 traffic
+    with the selected server; Procmon recorded 788 successful sends and 918
+    successful receives during the bounded capture.
+  - >-
+    After the adapter became active, ProtonVPN.Client.exe used the tunnel DNS
+    service and made HTTPS traffic through the tunnel address. The post-state
+    retained the active default route and DNS assignment because disconnect was
+    intentionally outside this capture.
+- Type: Forensic
+  Description: >-
+    Detect normal interactive removal of Proton VPN 4.4.1 from Windows. The
+    operator disconnected the VPN before launching the registered Inno Setup
+    uninstaller, and the completed removal required no reboot.
+  Indicators:
+  - >-
+    Explorer launched C:\Program Files\Proton\VPN\unins000.exe, which staged
+    %TEMP%\is-*-uninstall.tmp\_unins.tmp and ran it with a second-phase reference
+    to the registered uninstaller
+  - >-
+    The uninstaller used taskkill.exe /f /im ProtonVPN.Client.exe and taskkill.exe
+    /f /im ProtonVPN.exe, ran tapinstall.exe drivernodes tapprotonvpn, and launched
+    ProtonVPN.RestoreInternet.exe
+  - >-
+    ProtonVPN.Client.exe -DoUninstallActions deleted the Proton VPN Run value,
+    the proton-vpn and protonvpn URL-protocol registrations, and the
+    AppUserModelId\Proton.VPN registration
+  - >-
+    The post-state removed the Proton VPN 4.4.1 uninstall registration, the
+    ProtonVPN Service and ProtonVPN WireGuard services, the ProtonVPNCallout
+    driver service, both ProtonVPN event-log source keys, and the
+    HKLM\SOFTWARE\Proton AG\Proton VPN product key
+  - >-
+    Snapshot comparison recorded 2,366 files removed beneath
+    C:\Program Files\Proton\VPN\, 208 files removed beneath
+    %LOCALAPPDATA%\Proton\Proton VPN\, and removal of the Proton VPN Start Menu
+    shortcut. The post-state contained no file under either VPN application tree.
+  - >-
+    No network adapter, route, DNS-server, firewall-rule, scheduled-task, or PnP
+    driver-package change occurred during removal. The disconnected VPN state
+    produced no related network event.
+  - >-
+    VPN-specific residuals included the staged _unins.tmp and _unins-done.tmp
+    files, %LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\Proton.VPN\Icon.png,
+    BAM execution history, Windows application-inventory records, and Prefetch
+    writes for ProtonVPN.Client.exe and ProtonVPN.RestoreInternet.exe
+  - >-
+    Proton Drive 3.0.3 and Proton Mail 1.13.3 remained independently registered
+    with their own files, startup state, Start Menu entries, and desktop
+    shortcuts. They were installed as companion products by the Proton VPN
+    bootstrapper and were not removed or exercised by the VPN uninstaller.
+  - >-
+    The downloaded Proton Pass 1.38.1 MSIX and cached Proton Drive and Proton Mail
+    installers also remained, but Proton Pass registration was still not
+    confirmed
+  - >-
+    The generic WireGuard kernel service, oem15.inf PnP package, wireguard.sys,
+    and wireguard.inf_amd64_bd22474b85ad1b6f driver-store directory remained
+    after Proton VPN removal. They were absent from the clean pre-Nord baseline,
+    first appeared during NordVPN install run 20260721T170049Z, survived the
+    NordVPN uninstall, and were already present before Proton VPN installation.
+    Proton reused this driver for its WireGuard adapter but did not create the
+    package; the NordVPN residual was subsequently removed during separate host
+    cleanup, not by the Proton VPN uninstaller.
+References:
+  Official:
+  - https://protonvpn.com/
+  - https://protonvpn.com/support/
+  ThreatIntelligence:
+  - https://www.securityweek.com/protonvpn-audited-mozilla-publishes-audit-results/
+  Research:
+  - https://protonvpn.com/blog/open-source/
+  - https://www.privacyguides.org/en/vpn/#proton-vpn
+KnownVulnerabilities: []
+LastModified: '2026-09-01'

@@ -1,0 +1,51 @@
+Name: Ivacy Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - ivacy.exe
+  - Platform: macOS
+    Name:
+    - com.ivacy
+    - com.ivacy:openvpn
+    - ivacy
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%APPDATA%\Ivacy'
+    - '%LOCALAPPDATA%\Ivacy\*.ovpn'
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - --minimize
+  - Platform: macOS
+    Args: []
+  NetworkArtifacts:
+    Domains:
+    - ivacy.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - OpenVPN
+  - IKEv2
+  - L2TP/IPsec
+  Ports:
+  - TCP 443
+  - UDP 1194
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.ivacy.com/
+  - https://support.ivacy.com/
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/ivacy-vpn-review/
+  - https://www.techradar.com/reviews/ivacy-vpn
+LastModified: '2026-07-16'

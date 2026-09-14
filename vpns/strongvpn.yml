@@ -1,0 +1,327 @@
+Name: StrongVPN
+VendorInfo:
+  Company: Strong Technology, LLC
+  Website: https://strongvpn.com/
+  BusinessModel: Paid
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - StrongVPN.exe
+    - Platform: macOS
+      Name:
+        - com.strongvpn
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - VpnHostService.exe
+        - openvpn.exe
+        - DrvInst.exe
+      Drivers:
+        - wintun.sys
+      Attribution: >-
+        Require a StrongVPN installation path, product-specific configuration,
+        driver registration, or direct StrongVPN process ancestry; these bundled
+        tunnel and driver-management components are not standalone identifiers.
+  ApplicationInfo:
+    - Platform: Windows
+      AppName: StrongVPN
+      ExecutableName: StrongVPN.exe
+      Version: 2.6.7.0
+      Publisher: Strong Technology, LLC
+      InstallLocation: C:\Program Files\StrongVPN\
+      InstallerType: WiX Burn bootstrapper with embedded Windows Installer package
+      ProductCode: '{60FE876A-D80A-4BD4-AB8A-6BADF92E8F3B}'
+      BundleCode: '{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}'
+      UninstallCommand: '"C:\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe" /uninstall'
+      QuietUninstallCommand: >-
+        "C:\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe" /uninstall /quiet
+      AdditionalComponents:
+        - Bundled OpenVPN client, OpenSSL, and TAP-Windows driver payloads
+        - Bundled WireGuard VpnHostService.exe and x86/x64 wireguard.dll payloads
+        - Wintun 0.8.0.0 driver package published as oem9.inf on the tested host
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\StrongVPN\
+        - C:\Program Files\StrongVPN\OpenVPN\
+        - C:\Program Files\StrongVPN\WireGuard\
+        - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\StrongVPN\
+        - C:\Windows\System32\DriverStore\FileRepository\wintun.inf_amd64_*\
+        - C:\Windows\Prefetch\STRONGVPN.EXE-*.pf
+        - '%LOCALAPPDATA%\StrongVPN\'
+        - '%LOCALAPPDATA%\Temp\StrongVPN_*.log'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\StrongVPN\StrongVPN.exe.config
+        - C:\Program Files\StrongVPN\OpenVPN\strongvpn.crt
+        - C:\Program Files\StrongVPN\OpenVPN\static.key
+        - '%LOCALAPPDATA%\StrongVPN\user_2.6.7.0.config'
+        - '%APPDATA%\StrongVPN'
+        - '%LOCALAPPDATA%\StrongVPN\*.ovpn'
+    - Platform: macOS
+      Path:
+        - ~/Library/Application Support/com.strongvpn.StrongVPN2-Client
+  RegistryPersistence:
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{60FE876A-D80A-4BD4-AB8A-6BADF92E8F3B}
+    - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}
+    - HKCR\Installer\Dependencies\{60FE876A-D80A-4BD4-AB8A-6BADF92E8F3B}
+    - HKCR\Installer\Dependencies\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}
+    - >-
+      HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Windows\Temp\{*}\.cr\strongvpn.exe
+    - >-
+      HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files\StrongVPN\StrongVPN.exe
+    - >-
+      HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe
+    - >-
+      HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility
+      Assistant\Store\C:\vpn-installers\strongvpn.exe
+    - >-
+      HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility
+      Assistant\Store\C:\Program Files\StrongVPN\StrongVPN.exe
+    - >-
+      HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility
+      Assistant\Store\C:\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe
+    - >-
+      HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache\C:\ProgramData\Package
+      Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe.*
+    - HKCU\Software\Strong Technology, LLC\StrongVPN\AutoUpdate
+    - HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\StrongVPN_RASAPI32
+    - HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\StrongVPN_RASMANCS
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - '%LOCALAPPDATA%\Temp\StrongVPN_*.log'
+        - '%LOCALAPPDATA%\Temp\StrongVPN_*_MainPackage64.log'
+        - '%LOCALAPPDATA%\StrongVPN\Diagnostics\diagnostics.txt'
+        - '%LOCALAPPDATA%\StrongVPN\Diagnostics\Sentry\*\*'
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - '"C:\vpn-installers\strongvpn.exe"'
+        - >-
+          strongvpn.exe -burn.clean.room="C:\vpn-installers\strongvpn.exe"
+          -burn.filehandle.attached=<handle> -burn.filehandle.self=<handle>
+        - StrongVPN.exe -q -burn.elevated BurnPipe.<guid> <guid> <pid>
+        - 'DrvInst.exe "4" "1" "<temp>\wintun.inf" ...'
+        - >-
+          DrvInst.exe "5" "2"
+          "C:\Windows\System32\DriverStore\FileRepository\wintun.inf_amd64_*\wintun.inf" ...
+        - 'MsiExec.exe /X{60FE876A-D80A-4BD4-AB8A-6BADF92E8F3B}'
+        - '"C:\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe" /uninstall'
+        - >-
+          StrongVPN.exe -burn.clean.room="C:\ProgramData\Package
+          Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe"
+          -burn.filehandle.attached=<handle> -burn.filehandle.self=<handle> /uninstall
+        - '"C:\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe" /uninstall /quiet'
+  BrowserExtensions: []
+  CodeSigning:
+    - Platform: Windows installer, installed StrongVPN.exe, and VpnHostService.exe
+      Publisher: Strong Technology LLC
+    - Platform: Windows Wintun driver package
+      Publisher: Microsoft Windows Hardware Compatibility Publisher
+    - Platform: Windows TAP installation utilities
+      Publisher: OpenVPN Technologies, Inc.
+    - Platform: Windows bundled openvpn.exe, openssl.exe, and TAP driver binaries
+      Publisher: Not signed in the collected Authenticode inventory
+  NetworkArtifacts:
+    Domains:
+      - strongvpn.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - WireGuard
+    - OpenVPN
+    - IKEv2
+    - L2TP/IPsec
+    - DNS (first-launch and synthetic login-attempt endpoint lookups)
+    - HTTPS (first-launch and synthetic login-attempt application traffic)
+    - HTTP (certificate-status traffic)
+  Ports:
+    - UDP 51820 (WireGuard)
+    - TCP 443
+    - TCP 80 (certificate-status traffic)
+  TLSFingerprint: []
+  EncryptionStandards:
+    - AES-256
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Forensic
+    Description: >-
+      Detect the normal interactive installation of StrongVPN 2.6.7.0 on Windows 11. The signed WiX Burn bootstrapper
+      installed the signed client under Program Files, registered both bundle and MSI uninstall entries, cached the
+      installers, staged OpenVPN and WireGuard components, and published a Wintun package to the Driver Store. The
+      operator selected Close at completion, so the installed client was not launched.
+    Indicators:
+      - >-
+        Strong Technology LLC-signed strongvpn.exe installer launched from Explorer
+      - >-
+        Explorer launched C:\vpn-installers\strongvpn.exe; the WiX Burn child used -burn.clean.room and an elevated
+        StrongVPN.exe child coordinated the embedded MSI installation
+      - >-
+        MsiInstaller event IDs 11707 and 1033 recorded successful StrongVPN 2.6.7.0 installation by Strong Technology,
+        LLC
+      - >-
+        Installed C:\Program Files\StrongVPN\StrongVPN.exe was signed by Strong Technology LLC
+      - >-
+        The bundle and MSI registrations used {c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81} and
+        {60FE876A-D80A-4BD4-AB8A-6BADF92E8F3B}; the normal registered removal path invokes the cached bundle with
+        /uninstall
+      - >-
+        The installer cached its bundle and MSI under the package and Windows Installer caches
+      - >-
+        The installed application tree included bundled OpenVPN and TAP-Windows payloads plus WireGuard
+        VpnHostService.exe and wireguard.dll payloads; these files were staged but not executed during installation
+      - >-
+        DeviceInstall launched DrvInst.exe against a temporary wintun.inf and added WireGuard LLC Wintun 0.8.0.0 as
+        oem9.inf; the Microsoft-signed wintun.sys was present in the installed driver package
+      - >-
+        No StrongVPN service, active driver service, network adapter, route, DNS-server setting, firewall rule,
+        scheduled task, Run-key startup command, or persistent StrongVPN process was added in the installation
+        post-state
+      - >-
+        Installation completed without an error or reboot request; no login, server selection, or VPN connection was
+        attempted
+  - Type: Network
+    Description: >-
+      No network activity was attributed to the StrongVPN bootstrapper, its MSI process tree, or an installed
+      StrongVPN component during this installation-only capture. The pre-existing protocol and port entries therefore
+      were not validated by this phase.
+    Indicators:
+      - No StrongVPN-related Sysmon or Procmon network event was observed
+      - The installed client was not launched, so no authentication, update, server-list, or tunnel traffic was tested
+  - Type: Forensic
+    Description: >-
+      Detect the controlled first launch of StrongVPN 2.6.7.0 on Windows 11. Explorer started the installed client
+      without arguments; the client created per-user configuration and diagnostics state, initialized auto-update and
+      Windows RAS tracing registry keys, and remained running at an untouched login prompt. No credentials were entered,
+      no authentication was attempted, and no VPN connection was initiated.
+    Indicators:
+      - >-
+        Explorer launched C:\Program Files\StrongVPN\StrongVPN.exe without arguments as PID 8872 in the interactive
+        user session; the executable was signed by Strong Technology LLC
+      - >-
+        StrongVPN.exe created %LOCALAPPDATA%\StrongVPN\user_2.6.7.0.config and the
+        %LOCALAPPDATA%\StrongVPN\Diagnostics\ tree, including diagnostics.txt and Sentry installation, session, and
+        envelope artifacts
+      - >-
+        StrongVPN.exe created HKCU\Software\Strong Technology, LLC\StrongVPN\AutoUpdate and set CheckForUpdate,
+        DidRunOnce, LastCheckTime, LastProfileUpdate, and SkipThisVersion values
+      - >-
+        StrongVPN.exe created HKLM\SOFTWARE\WOW6432Node\Microsoft\Tracing\StrongVPN_RASAPI32 and StrongVPN_RASMANCS
+        tracing configurations with file and console tracing disabled and %windir%\tracing as the file directory
+      - Windows created C:\Windows\Prefetch\STRONGVPN.EXE-86AB86E5.pf during the controlled launch
+      - >-
+        No new service, driver, scheduled task, startup command, installed application, network adapter, route,
+        DNS-server setting, or firewall rule appeared during first launch
+      - >-
+        StrongVPN.exe remained running at the login prompt when capture stopped; VpnHostService.exe and openvpn.exe did
+        not execute, and no restart request or error was reported
+  - Type: Network
+    Description: >-
+      The unauthenticated StrongVPN GUI performed diagnostics, application, and certificate-status network activity over
+      TCP 80 and 443 during first launch. This traffic is not authentication or VPN tunnel traffic: the operator did not
+      enter credentials or initiate a connection, and Windows networking state did not change.
+    Indicators:
+      - >-
+        StrongVPN.exe queried sentry-relay.puregig.net and connected to capture-specific Cloudflare infrastructure
+        on TCP 443 while creating Sentry diagnostics artifacts
+      - >-
+        StrongVPN.exe queried static.colomovers.com and connected to its capture-specific destination on TCP 443
+      - >-
+        StrongVPN.exe queried certificate-status services and connected to capture-specific destinations on TCP 80
+      - Capture-specific destination addresses and ephemeral source ports are not treated as stable product indicators
+      - >-
+        No VPN helper or tunnel process was launched, and no adapter, route, DNS-server, or firewall-rule change
+        occurred
+  - Type: Forensic
+    Description: >-
+      Detect a single controlled synthetic login submission in StrongVPN 2.6.7.0 on Windows 11. The client was already
+      running at its unauthenticated login form when capture began. It remained the only StrongVPN process, updated its
+      diagnostics and Sentry artifacts, and did not start a VPN helper or alter persistent network state. The visible UI
+      response was not reported, so the capture establishes a submission and resulting activity but not authentication
+      success or failure.
+    Indicators:
+      - >-
+        The pre-existing C:\Program Files\StrongVPN\StrongVPN.exe process remained PID 8872 with no command-line change;
+        VpnHostService.exe and openvpn.exe did not execute
+      - >-
+        StrongVPN.exe wrote %LOCALAPPDATA%\StrongVPN\Diagnostics\diagnostics.txt and a Sentry envelope during the
+        bounded login-attempt window
+      - >-
+        No new service, driver, scheduled task, startup command, installed application, network adapter, route,
+        DNS-server setting, or firewall rule appeared
+      - >-
+        No account creation or VPN connection was authorized or observed, and the evidence does not establish whether
+        the synthetic credentials were accepted or rejected
+  - Type: Network
+    Description: >-
+      The synthetic login submission elicited StrongVPN application and certificate-status traffic over TCP 443 and 80.
+      The activity is attributable to the login-attempt phase, but encrypted payloads and the unreported UI response do
+      not establish the authentication result. No VPN tunnel traffic or network-state change was observed.
+    Indicators:
+      - >-
+        StrongVPN.exe queried v2.iscsihost.org, v2.colomovers.com, and v2.bringover.net immediately before connecting to
+        their capture-specific resolved addresses on TCP 443
+      - >-
+        StrongVPN.exe queried zerossl.ocsp.sectigo.com and ocsp.sectigo.com and connected to capture-specific Cloudflare
+        addresses on TCP 80 for certificate-status traffic
+      - >-
+        StrongVPN.exe later queried sentry-relay.puregig.net and c.pki.goog and connected on TCP 443 and TCP 80 while
+        updating diagnostics artifacts
+      - Capture-specific destination addresses and ephemeral source ports are not treated as stable product indicators
+      - >-
+        No VpnHostService.exe or openvpn.exe network activity, adapter change, route change, DNS-server change, or
+        firewall-rule change occurred
+  - Type: Forensic
+    Description: >-
+      Detect normal interactive uninstallation of StrongVPN 2.6.7.0 on Windows 11. The registered cached WiX Burn
+      bundle coordinated MSI removal, removed the installed client and its package registrations, deleted the
+      first-launch user configuration, and removed the StrongVPN-installed Wintun 0.8.0.0 driver package. The normal
+      uninstall left product logs and execution-history artifacts that require best-effort cleanup before another VPN
+      is tested.
+    Indicators:
+      - >-
+        Explorer launched the Strong Technology LLC-signed cached bundle from
+        C:\ProgramData\Package Cache\{c2d2c6cf-8cd4-4f0a-b823-1d08d5460a81}\StrongVPN.exe with /uninstall; its Burn
+        child used -burn.clean.room and an elevated BurnPipe command line
+      - >-
+        System-context msiexec.exe workers removed MSI product {60FE876A-D80A-4BD4-AB8A-6BADF92E8F3B}, while
+        DeviceInstall launched DrvInst.exe in removal mode against the staged Wintun INF
+      - >-
+        Both StrongVPN uninstall registrations, C:\Program Files\StrongVPN\, the two Package Cache entries, the
+        Windows Installer cache, the Start Menu and desktop shortcuts, and %LOCALAPPDATA%\StrongVPN\ were absent from
+        the post-uninstall snapshot
+      - >-
+        Wintun oem9.inf and its wintun.inf_amd64_def3401515466414 Driver Store directory were removed and no StrongVPN
+        service, system driver, network adapter, route, DNS-server setting, firewall rule, scheduled task, startup
+        command, installed application, or running product process remained
+      - >-
+        Four %LOCALAPPDATA%\Temp\StrongVPN_*.log files from installation and uninstallation and
+        C:\Windows\Temp\{F26EA0BB-F1F3-419B-91D1-466C9F951395}\.cr\strongvpn.exe remained after normal removal
+      - >-
+        StrongVPN execution history remained in BAM, AppCompat, MuiCache, and first-launch Prefetch state; the
+        first-launch-created StrongVPN_RASAPI32 and StrongVPN_RASMANCS tracing keys were not observed being deleted and
+        must be checked during cleanup
+      - >-
+        Uninstallation completed successfully without a reported restart request; no manual residual deletion occurred
+        during capture
+  - Type: Network
+    Description: >-
+      No network activity was attributed to the StrongVPN Burn bootstrapper, MSI workers, or driver-removal process
+      during normal uninstallation. The phase removed no active tunnel because authentication and connection had never
+      succeeded.
+    Indicators:
+      - No related Sysmon or Procmon network event was observed during the uninstall window
+      - No adapter, route, DNS-server, or firewall-rule change appeared in the uninstall state difference
+References:
+  Official:
+    - https://strongvpn.com/
+    - https://support.strongvpn.com/
+  Research:
+    - https://www.comparitech.com/blog/vpn-privacy/strongvpn-review/
+    - https://www.techradar.com/reviews/strongvpn
+LastModified: '2026-09-01'

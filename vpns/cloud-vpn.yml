@@ -1,0 +1,132 @@
+Name: Cloud Vpn
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - cloudvpn.exe
+        - cloud-vpn.exe
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - cloud-vpn.tmp
+        - tap-windows-9.9.2_3.exe
+        - devcon.exe
+        - unins000.exe
+        - _iu*.tmp
+      Drivers:
+        - tap0901
+      Attribution: >-
+        Require a CloudVPN or bundled TAP-Windows path, product-specific
+        command line, scheduled-task or driver registration, or direct CloudVPN
+        installer ancestry.
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files (x86)\CloudVPN\
+        - C:\Program Files\TAP-Windows\
+        - '%SYSTEMROOT%\System32\drivers\tap0901.sys'
+        - '%SYSTEMROOT%\System32\DriverStore\FileRepository\oemwin2k.inf_amd64_*\'
+        - '%SYSTEMROOT%\System32\Tasks\cloudvpn_*'
+        - '%TEMP%\is-*.tmp\cloud-vpn.tmp'
+        - '%TEMP%\_iu*.tmp'
+        - '%PUBLIC%\Desktop\CloudVPN.lnk'
+        - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\CloudVPN\'
+        - '%LOCALAPPDATA%\cloud_3_5\cloudvpn.exe_Url_*\1.6.0.0\'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files (x86)\CloudVPN\cloudvpn.exe.config
+        - C:\Program Files\TAP-Windows\driver\OemWin2k.inf
+        - '%LOCALAPPDATA%\cloud_3_5\cloudvpn.exe_Url_*\1.6.0.0\user.config'
+        - '%APPDATA%\Microsoft\Network\Connections\Pbk\rasphone.pbk'
+  RegistryPersistence:
+    - HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\CloudVPN
+    - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+    - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\CloudVPN_is1
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\TAP-Windows
+    - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\cloudvpn_*
+    - HKLM\SOFTWARE\Microsoft\Tracing\cloudvpn_RASAPI32
+    - HKLM\SOFTWARE\Microsoft\Tracing\cloudvpn_RASMANCS
+  LogFiles: []
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - 'cloud-vpn.tmp -> taskkill.exe /f /im "cloudvpn.exe"'
+        - 'tap-windows-9.9.2_3.exe -> devcon.exe hwids tap0901'
+        - 'tap-windows-9.9.2_3.exe -> devcon.exe install "<TAP-Windows path>\driver\OemWin2k.inf" tap0901'
+        - 'Scheduled task action: cloudvpn.exe wait'
+        - 'unins000.exe -> _iu*.tmp /SECONDPHASE="<CloudVPN path>\unins000.exe" /FIRSTPHASEWND=<window handle>'
+  CodeSigning:
+    - Platform: Windows
+      Publisher: OpenVPN Technologies, Inc.
+  NetworkArtifacts:
+    Domains:
+      - api.cloudvpn.pro
+      - www.cloudvpn.pro
+      - xp.cloudvpn.pro
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - OpenVPN
+  Ports:
+    - TCP 443
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Endpoint
+    Description: >-
+      Identify CloudVPN-attributed installation, automatic launch, activation,
+      and uninstall behavior. Generic setup, driver, and uninstall names require
+      a CloudVPN path, product-specific argument, or direct process relationship.
+    Indicators:
+      - cloud-vpn.exe launches its transient Inno Setup child, which starts the bundled TAP installer
+      - >-
+        The bundled TAP installer runs devcon.exe against its OemWin2k.inf to create the distinct tap0901
+        package and adapter
+      - Following automatic first launch, the CloudVPN Run value and three cloudvpn_* scheduled tasks appear
+      - A synthetic activation submission returns authGet error without starting OpenVPN or establishing a tunnel
+      - >-
+        unins000.exe launches the staged second-phase payload and removes the CloudVPN application while
+        leaving TAP components
+  - Type: Forensic
+    Description: >-
+      Use product persistence and uninstall residuals rather than hashes,
+      shortcut evidence, or host-assigned driver-package names.
+    Indicators:
+      - >-
+        CloudVPN and TAP-Windows uninstall registrations plus the CloudVPN Run value and scheduled tasks
+        establish installed state
+      - >-
+        Automatic first launch creates versioned per-user configuration beneath
+        %LOCALAPPDATA%\cloud_3_5
+      - >-
+        The unsuccessful activation creates cloudvpn_RASAPI32 and
+        cloudvpn_RASMANCS tracing defaults but no CloudVPN file mutation or
+        observed activation-code persistence
+      - Normal uninstall leaves the Run value and all cloudvpn_* tasks pointing to the removed executable
+      - >-
+        The TAP registration, driver package, adapter, per-user configuration, RAS state, and staged
+        second-phase uninstaller remain after uninstall
+  - Type: Network
+    Description: >-
+      Retain product domains and durable network-state transitions while
+      excluding capture-specific addresses and ephemeral loopback ports.
+    Indicators:
+      - >-
+        The activation attempt queries api.cloudvpn.pro, www.cloudvpn.pro, and xp.cloudvpn.pro and uses HTTPS
+        with the resolved API service
+      - The activation attempt does not authenticate and produces no OpenVPN process or tunnel traffic
+      - Installation creates a disconnected TAP adapter with automatic interface routes and DNS placeholders
+      - Activation adds no adapter, route, DNS-server, firewall, service, or driver change
+      - Normal uninstall leaves the disconnected TAP adapter and its automatic network state intact
+References:
+  Official:
+    - https://cloudvpn.app/
+  ThreatIntelligence:
+    - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+    - https://vpnpro.com/vpn-reviews/cloud-vpn-review/
+LastModified: 2026-07-27

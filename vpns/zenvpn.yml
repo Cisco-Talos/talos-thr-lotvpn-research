@@ -1,0 +1,29 @@
+Name: Zenvpn
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%APPDATA%\ZenVPN'
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - zenvpn.net
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.zenvpn.net/
+  Research:
+  - https://vpnpro.com/vpn-reviews/zenvpn-review/
+LastModified: '2026-07-16'

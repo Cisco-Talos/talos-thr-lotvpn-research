@@ -1,0 +1,40 @@
+Name: Betternet Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: macOS
+    Name:
+    - com.freevpnintouch
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\Betternet'
+    - '%APPDATA%\Betternet'
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - betternet.co
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases:
+- Title: Data leakage and tracking concerns
+  Description: Research by CSIRO found that Betternet and other free Android VPN apps leaked user data including DNS queries and had significant privacy issues. While not direct threat actor abuse, these vulnerabilities could be exploited.
+  Date: 2016-08-01
+  Source: https://www.csiro.au/en/news/All/Articles/2016/August/Most-Android-VPN-apps-are-leaky-and-many-log-data
+Detection: []
+References:
+  Official:
+  - https://www.betternet.co/
+  ThreatIntelligence:
+  - https://www.csiro.au/en/news/All/Articles/2016/August/Most-Android-VPN-apps-are-leaky-and-many-log-data
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/betternet-review/
+  - https://blog.malwarebytes.com/detections/pup-optional-betternet/
+LastModified: '2026-07-16'

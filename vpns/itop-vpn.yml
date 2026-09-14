@@ -1,0 +1,376 @@
+Name: iTop VPN
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - ugin.exe
+        - ullc.exe
+        - unpr.exe
+        - iTopVPN.exe
+        - iTopVPNMini.exe
+        - wstr.exe
+        - atud.exe
+        - aud.exe
+        - ScanGameInfo.exe
+        - icop64.exe
+  ServiceNames:
+    - Platform: Windows
+      Name:
+        - itvwd
+  ApplicationInfo:
+    - Platform: Windows
+      AppName: iTop VPN
+      ExecutableName: iTopVPN.exe
+      Version: 7.4.0.6857
+      Publisher: iTop Inc.
+      InstallLocation: C:\Program Files (x86)\iTop VPN
+      AdditionalComponents:
+        - iTop VPN Mini
+        - Automatic updater
+        - Browser native-messaging integration
+        - WinDivert-derived itvwd packet-filter driver
+        - Staged callback driver payload
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files (x86)\iTop VPN\
+        - C:\ProgramData\iTop VPN\
+        - C:\ProgramData\iTop\
+        - C:\ProgramData\{150F4013-6884-4350-8DDC-6BFCB4C5DC15}\
+        - '%LOCALAPPDATA%\Temp\is-*.tmp\'
+        - '%LOCALAPPDATA%\Temp\iu-*.tmp\'
+        - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\iTop VPN\'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files (x86)\iTop VPN\itop.json
+        - C:\Program Files (x86)\iTop VPN\itopfirefox.json
+        - C:\Program Files (x86)\iTop VPN\Database\*.itdt
+        - C:\Program Files (x86)\iTop VPN\Update\*.dat
+        - C:\ProgramData\iTop VPN\*.itdt
+        - C:\ProgramData\iTop VPN\ProductData\*
+        - C:\ProgramData\iTop\AC.ini
+        - C:\ProgramData\iTop\itoppromotion.ini
+        - C:\ProgramData\{150F4013-6884-4350-8DDC-6BFCB4C5DC15}\*
+        - '%PROGRAMDATA%\iTopVPN'
+        - '%LOCALAPPDATA%\iTop\iTopVPN'
+  RegistryPersistence:
+    - HKCR\iTopVPN
+    - HKCU\SOFTWARE\iTop VPN
+    - HKLM\SOFTWARE\WOW6432Node\iTop VPN
+    - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\iTop VPN_is1
+    - HKLM\SOFTWARE\WOW6432Node\Google\Chrome\NativeMessagingHosts\com.itop.itopvpnnative
+    - HKLM\SOFTWARE\WOW6432Node\Microsoft\Edge\NativeMessagingHosts\com.itop.itopvpnnative
+    - HKLM\SOFTWARE\WOW6432Node\Mozilla\NativeMessagingHosts\com.itop.itopvpnnative
+    - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\iTopVPN_Scheduler_<user>
+    - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\iTopVPN_Update_<user>
+    - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule\TaskCache\Tree\iTopVPN_SkipUAC_<user>
+    - HKLM\SYSTEM\CurrentControlSet\Services\itvwd
+    - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\WinDivert
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - C:\ProgramData\iTop VPN\Setup.log
+        - C:\ProgramData\iTop VPN\iTop_setup.log
+        - '%LOCALAPPDATA%\Temp\Setup Log *.txt'
+        - '%APPDATA%\iTop VPN\log\*.dat'
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - >-
+          itop-vpn.exe /sp- /verysilent /norestart /Installer /silenthide
+          /insthandle=<handle> /DIR="C:\Program Files (x86)\iTop VPN"
+          /quicklaunchicon
+        - >-
+          ugin.exe /init /ver 7.4.0.6857 /force /f /inspkg
+          "C:\vpn-installers\itop-vpn.exe" /PINTOTASKBAR
+          /insthandle <handle>
+        - ugin.exe /checkwelcome
+        - ugin.exe /setlan "English"
+        - unpr.exe /install itop7
+        - iTopVPN.exe /installinit
+        - iTopVPN.exe /install
+        - iTopVPN.exe /autostart
+        - iTopVPN.exe /SkipUac
+        - iTopVPNMini.exe /antrun /install /state 0
+        - atud.exe /auto
+        - aud.exe /itop /dayactive
+        - aud.exe /itop /dayuser
+        - wstr.exe
+        - ugin.exe /sockstchk
+        - ugin.exe /postbnst /self
+        - ScanGameInfo.exe /ScanGame
+        - icop64.exe Pin "C:\Program Files (x86)\iTop VPN\iTopVPN.exe"
+        - cmd.exe /c ipconfig /flushdns
+        - cmd.exe /c netsh interface ipv4 set interface "<interface>" mtu=1500
+        - cmd.exe /c sc stop windivert
+        - cmd.exe /c sc delete windivert
+        - cmd.exe /c sc stop itvwd
+        - cmd.exe /c sc delete itvwd
+        - sc.exe start MpsSvc
+        - unins000.exe
+        - >-
+          _unins.tmp /SECONDPHASE="C:\Program Files (x86)\iTop VPN\unins000.exe"
+          /FIRSTPHASEWND=<handle>
+        - >-
+          ugin.exe /uginUn "C:\Program Files (x86)\iTop VPN\unins000.exe"
+        - unins000.exe /SILENT /uginUn /un /unsOpt 1
+        - ugin.exe /setdir "%LOCALAPPDATA%\Temp\is-*.tmp"
+        - iTopVPN.exe /uninstall_schedule
+        - ugin.exe /kill /UNINSTALL
+        - >-
+          unpr.exe /UNINSTALL itop7
+          "C:\Program Files (x86)\iTop VPN\unins000.exe" /Silent
+        - ugin.exe /UninstallClean
+        - icop64.exe UnPin "C:\Program Files (x86)\iTop VPN\iTopVPN.exe"
+    - Platform: macOS
+      Args: []
+  CodeSigning:
+    - Platform: Windows installer
+      Publisher: Not signed
+    - Platform: Windows installed binaries
+      Publisher: Chengdu ShanHe Technology Co., Ltd.
+    - Platform: Windows installed binaries
+      Publisher: Chengdu ShanHe Information Technology Co., Ltd.
+    - Platform: Windows packet-filter and staged driver payloads
+      Publisher: Microsoft Windows Hardware Compatibility Publisher
+  NetworkArtifacts:
+    Domains:
+      - itopvpn.com
+      - goto.itopvpn.com
+      - api.itopvpn.com
+      - stats.itopvpn.com
+      - update.itopvpn.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - HTTPS
+    - HTTP
+    - DNS
+    - TCP server-availability probes
+    - TCP/UDP VPN relay traffic
+    - Local loopback relay
+  Ports:
+    - TCP 80
+    - TCP 443
+    - TCP 9876
+    - UDP 9876
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Forensic
+    Description: >-
+      Detect the Windows installation of iTop VPN 7.4.0.6857. The unsigned
+      installer deployed a signed 32-bit application, machine-wide data,
+      three user-scoped scheduled tasks, URL-protocol and browser
+      native-messaging registrations, and an Inno Setup uninstall entry. The
+      installer automatically launched iTop VPN and iTop VPN Mini; their visible
+      post-install windows are bounded installation contamination, not a controlled
+      first launch, login, or VPN connection.
+    Indicators:
+      - The installer was unsigned, while the installed iTop binaries had valid vendor signatures.
+      - >-
+        The Explorer-launched installer extracted an Inno Setup child, executed
+        a temporary setup coordinator, and reinvoked itself with /verysilent,
+        /norestart, /Installer, /silenthide, and the Program Files destination
+      - >-
+        The installed application and persistent data were created under
+        C:\Program Files (x86)\iTop VPN\ and C:\ProgramData\iTop VPN\
+      - >-
+        The iTopVPN_Scheduler_<user> logon task runs iTopVPN.exe /autostart at
+        highest privilege
+      - >-
+        The iTopVPN_Update_<user> logon task runs atud.exe /auto at highest
+        privilege
+      - >-
+        The iTopVPN_SkipUAC_<user> task runs iTopVPN.exe /SkipUac at highest
+        privilege and had no trigger in the captured post-state
+      - >-
+        ugin.exe registered the iTopVPN URL protocol, while iTopVPN.exe registered
+        com.itop.itopvpnnative native-messaging hosts for Chrome, Edge, and Firefox
+      - >-
+        The registered normal and quiet uninstall commands are unins000.exe and
+        unins000.exe /SILENT
+      - >-
+        iTopVPN.exe directly flushed the DNS cache, invoked netsh to set Ethernet
+        MTU 1500, and repeatedly invoked sc.exe start MpsSvc during automatic
+        post-install initialization
+      - >-
+        The package staged Microsoft-signed ITopVpnCallbackProcess.sys and itvwd64.sys driver payloads
+      - >-
+        No service, active driver, scheduled driver service, network adapter,
+        route, DNS-server setting, firewall rule, or Run-key startup value was
+        added during installation
+      - >-
+        The Smart Game Booster offer was declined. Bundled Action Center assets
+        and ScanGameInfo.exe /ScanGame activity do not establish installation of
+        that optional product
+      - >-
+        Installation completed without an error or reboot request; the operator
+        did not log in, select a server, or attempt a VPN connection
+  - Type: Network
+    Description: >-
+      Installer, updater, telemetry, configuration-download, and automatically
+      launched application traffic was observed. A short iTopVPN.exe burst to
+      many addresses on TCP 9876 is strongly attributed to automatic
+      server-availability checking in the untouched server-selection UI. It is not
+      evidence of a selected server or established tunnel.
+    Indicators:
+      - >-
+        The temporary setup coordinator queried update.itopvpn.com, update.iobit.com,
+        stats.itopvpn.com and used TCP 80 and 443
+      - >-
+        atud.exe queried update.itopvpn.com and connected over TCP 443
+      - >-
+        iTopVPN.exe queried api.itopvpn.com and stats.itopvpn.com and connected over TCP 443 during automatic launch
+      - >-
+        iTopVPN.exe generated 283 TCP 9876 connection events to 257 distinct
+        addresses between 15:30:21Z and 15:30:55Z without operator interaction
+      - >-
+        The automatic-launch window added no virtual adapter, route, DNS-server,
+        firewall-rule, or active driver state, and no VPN connection was attempted
+      - >-
+        Capture-specific addresses and ephemeral ports are not treated as stable
+        product indicators
+  - Type: Forensic
+    Description: >-
+      Detect activation of the iTop VPN Windows connection path. During the
+      controlled connection click, iTopVPN.exe launched its connection helper,
+      loaded a WinDivert-derived packet-filter driver, and began sustained relay
+      traffic. The immediate loss of the operator's established RDP and SSH
+      sessions, together with continuing iTop relay activity, is strong evidence
+      that the connection activated even though the resulting GUI state could not
+      be observed.
+    Indicators:
+      - >-
+        At 16:23:28Z iTopVPN.exe launched wstr.exe and a cmd.exe -> ipconfig.exe
+        chain that flushed the Windows DNS cache
+      - >-
+        The connection created and started the disabled-start kernel driver
+        service HKLM\SYSTEM\CurrentControlSet\Services\itvwd from
+        C:\Program Files (x86)\iTop VPN\itvwd64.sys
+      - >-
+        Sysmon recorded itvwd64.sys loading at 16:23:28Z with a valid Microsoft Windows Hardware Compatibility
+        Publisher signature
+      - >-
+        iTopVPN.exe created the
+        HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\WinDivert
+        registration, while the post-state retained the running itvwd driver
+      - >-
+        iTopVPN.exe wrote connection-state and telemetry artifacts including
+        NcCs2.itdt, NcSmartf.itdt, UnsbStat.dat, condt.itdt, NicpList.itdt,
+        iTopRtt.ept, StatCache3.db, and per-user log files
+      - >-
+        No virtual adapter, default-route, DNS-server, or firewall-rule change was
+        observed; the driver load and local relay activity strongly support packet
+        interception rather than an adapter-based tunnel
+      - >-
+        Established RDP and SSH sessions present before the click were absent from
+        the post-state while both listeners remained. AWS SSM stayed connected and
+        was used only for capture finalization
+      - >-
+        SSM Agent, PowerShell, sshd, Procmon, and snapshot activity was treated as
+        collector or orchestration contamination, not iTop behavior
+  - Type: Network
+    Description: >-
+      The controlled connection changed iTopVPN.exe activity from short
+      server-availability probes into sustained bidirectional TCP and UDP relay
+      traffic through a selected port-9876 endpoint and local loopback flows. The
+      endpoint addresses and ephemeral local ports are capture-specific and are
+      not promoted as stable product indicators.
+    Indicators:
+      - >-
+        After the click, iTopVPN.exe made 14 TCP connections to the selected
+        capture endpoint on port 9876 between 16:23:27Z and 16:24:20Z and exchanged
+        sustained bidirectional data
+      - >-
+        iTopVPN.exe sent 39 UDP datagrams to and received replies from the same
+        selected endpoint on port 9876 between 16:23:30Z and 16:24:20Z
+      - >-
+        The post-state showed iTopVPN.exe listening on an ephemeral loopback port,
+        with established loopback flows; Procmon recorded 13 TCP accepts and paired
+        UDP loopback forwarding during the connected interval
+      - >-
+        Connection setup included HTTPS sessions to an AWS Global Accelerator
+        hostname, a Cloudflare connectivity check, and iTop telemetry traffic
+      - >-
+        The existing Ethernet default route and DNS server were unchanged, and no
+        iTop virtual network adapter or firewall rule appeared
+      - >-
+        The established RDP and SSH control sessions disappeared immediately after
+        connection activation, while SSM HTTPS sessions remained available
+  - Type: Forensic
+    Description: >-
+      Detect normal uninstallation of iTop VPN 7.4.0.6857 and its immediate
+      residual state. The registered Inno Setup uninstaller removed the installed
+      application, executable tree, startup tasks, browser registrations, URL
+      protocol, and active packet-filter driver. Because the optional
+      configuration-file removal choice was left disabled, machine-wide iTop
+      configuration, telemetry, and uninstall-history artifacts remained.
+    Indicators:
+      - >-
+        The operator launched the registered
+        C:\Program Files (x86)\iTop VPN\unins000.exe command interactively; it
+        extracted %LOCALAPPDATA%\Temp\iu-*.tmp\_unins.tmp and delegated to
+        ugin.exe /uginUn
+      - >-
+        ugin.exe reinvoked unins000.exe with /SILENT /uginUn /un /unsOpt 1, and
+        the second-phase _unins.tmp process performed the main removal
+      - >-
+        iTopVPN.exe /uninstall_schedule removed the iTopVPN_Scheduler_<user>,
+        iTopVPN_Update_<user>, and iTopVPN_SkipUAC_<user> tasks and deleted the
+        Chrome, Edge, and Firefox native-messaging registrations
+      - >-
+        ugin.exe /UninstallClean deleted the HKCR\iTopVPN URL protocol and used
+        icop64.exe to unpin the application
+      - >-
+        ugin.exe /kill /UNINSTALL invoked sc.exe to stop and delete the WinDivert
+        and itvwd services; the post-state contained no itvwd service or running
+        iTop driver
+      - >-
+        The uninstall removed the iTop VPN application entry, 364 files from the
+        Program Files application tree, eight per-user iTop files, and three iTop
+        shortcuts
+      - >-
+        Twenty-eight machine-wide files remained under C:\ProgramData\iTop VPN\,
+        C:\ProgramData\iTop\, and
+        C:\ProgramData\{150F4013-6884-4350-8DDC-6BFCB4C5DC15}\, including setup
+        logs, configuration, connection-state, telemetry, and promotion data
+      - >-
+        The uninstaller retained
+        HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\WinDivert and
+        wrote UninstallDate and Version beneath HKLM\SOFTWARE\WOW6432Node\iTop VPN
+      - >-
+        The immediate post-state still contained the running second-phase
+        _unins.tmp and its temporary copy; these are bounded finalizer artifacts,
+        not asserted durable persistence
+      - >-
+        Uninstallation completed without an error or restart request. No manual
+        residual deletion was performed during the capture
+  - Type: Network
+    Description: >-
+      Network activity after removal was limited to the product-triggered iTop
+      uninstall webpage and ordinary browser activity. It is not evidence of
+      deliberate browsing or a VPN connection.
+    Indicators:
+      - >-
+        _unins.tmp directly launched Microsoft Edge with
+        https://goto.itopvpn.com/appgoto after uninstall completion; URL query
+        values are intentionally omitted
+      - >-
+        Edge session, cache, and WebCache changes in the post-state are attributed
+        to the automatically opened uninstall page, not to iTop persistence
+      - >-
+        No iTop VPN connection process, virtual adapter, route, DNS-server, or
+        firewall-rule change was present during uninstallation
+References:
+  Official:
+    - https://www.itopvpn.com/
+  ThreatIntelligence:
+    - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+    - https://vpnpro.com/vpn-reviews/itop-vpn-review/
+LastModified: '2026-09-01'

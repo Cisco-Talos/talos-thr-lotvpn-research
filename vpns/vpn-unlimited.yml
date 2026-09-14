@@ -1,0 +1,208 @@
+Name: Vpn Unlimited
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - vpn-unlimited.exe
+    - vpn-unlimited-daemon.exe
+    - vpnu-push.exe
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - vpn-unlimited.tmp
+    - tapctl.exe
+    - QtWebEngineProcess.exe
+    - rasdial.exe
+    - msedge.exe
+    - schtasks.exe
+    - pnputil.exe
+    - taskkill.exe
+    - unins000.exe
+    - _unins.tmp
+    Drivers:
+    - tap0901
+    Attribution: >-
+      Require a VPN Unlimited path, KeepSolid signature, product-specific
+      argument, service or driver registration, or direct VPN Unlimited process
+      ancestry; these are setup, WebView, RAS, TAP, and uninstaller components.
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - VPNUnlimitedService
+    - VPNUSplitTunnel
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files (x86)\VPN Unlimited\'
+    - '%WINDIR%\System32\drivers\tap0901.sys'
+    - '%WINDIR%\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\'
+    - '%PUBLIC%\Desktop\VPN Unlimited.lnk'
+    - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\VPN Unlimited\'
+    - '%APPDATA%\Microsoft\Windows\Start Menu\Programs\VPN Unlimited Notifier.lnk'
+    - '%LOCALAPPDATA%\Temp\is-*.tmp\vpn-unlimited.tmp'
+    - '%LOCALAPPDATA%\Temp\iu-*.tmp\_unins.tmp'
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\VPN Unlimited'
+    - '%APPDATA%\VPN Unlimited'
+    - '%LOCALAPPDATA%\KeepSolid Inc\VPN Unlimited\'
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/VPN Unlimited
+  RegistryPersistence:
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{DC24521E-872B-41AF-93EA-FE477902D6FB}}_is1
+  - HKLM\SYSTEM\CurrentControlSet\Services\VPNUnlimitedService
+  - HKLM\SYSTEM\CurrentControlSet\Services\VPNUSplitTunnel
+  - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\VPNUnlimitedAutoStart
+  - HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules\{AE9680C0-F435-4AC6-9060-9C1CBE674563}
+  - HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules\{89BD3563-347F-49EF-8C15-37C970985A3B}
+  - HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules\{992E0E97-2734-42A1-8516-80D3F9989B8C}
+  - HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules\{62BAA538-A8A8-4D4C-8ED0-96B32076B698}
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Users\*\AppData\Local\Temp\is-*.tmp\vpn-unlimited.tmp
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files (x86)\VPN Unlimited\vpn-unlimited.exe
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files (x86)\VPN Unlimited\unins000.exe
+  - HKCU\Software\KeepSolid Inc.\VPN Unlimited
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\*\vpn-unlimited.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files (x86)\VPN Unlimited\vpn-unlimited.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files (x86)\VPN Unlimited\unins000.exe
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files (x86)\VPN Unlimited\debug.log'
+  CodeSigning:
+  - Platform: Windows
+    Publisher: KeepSolid Inc.
+    Status: Valid installer, application, service, split-tunnel driver, and bundled tunnel-helper signatures
+  - Platform: Windows
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+    Status: Valid TAP-Windows tap0901.sys and tap0901.cat signatures
+  - Platform: Windows
+    Publisher: The Qt Company Oy
+    Status: Valid QtWebEngineProcess.exe signature
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"%LOCALAPPDATA%\Temp\is-*.tmp\vpn-unlimited.tmp" /SL5="<Inno Setup metadata>"'
+    - '"<install-path>\vpn-unlimited-daemon.exe" -install'
+    - '"<install-path>\vpn-unlimited-daemon.exe" -start'
+    - 'sc.exe create VPNUSplitTunnel type= kernel binPath= "<install-path>\VpnuDriver\VpnuDriver.sys"'
+    - 'pnputil.exe /add-driver "<install-path>\recovery\tap\x64\OemVista.inf" (generated OEM package)'
+    - '"<install-path>\recovery\tap\x64\tapctl.exe" create --name "VPN Unlimited TAP"'
+    - 'netsh.exe interface set interface name="Local Area Connection" newname="VPN Unlimited TAP"'
+    - 'netsh.exe advfirewall firewall add rule name="VPN Unlimited" dir=<in|out> action=allow program="<install-path>\vpn-unlimited.exe" enable=yes'
+    - 'netsh.exe advfirewall firewall add rule name="OpenVPN" dir=<in|out> action=allow program="<install-path>\openvpn.exe" enable=yes'
+    - '"<install-path>\vpnu-push.exe" --only-create-shortcut'
+    - 'VC_redist.x64.exe /install /quiet /norestart'
+    - 'msiexec.exe /uninstall "%LOCALAPPDATA%\Temp\is-*.tmp\TunSetupVPNU.msi" /quiet'
+    - rasdial
+    - '"<install-path>\QtWebEngineProcess.exe" --type=utility ... --application-name=VPN%20Unlimited ... /prefetch:8'
+    - '"<install-path>\QtWebEngineProcess.exe" --type=renderer ... /prefetch:1'
+    - '"<install-path>\unins000.exe"'
+    - '"%LOCALAPPDATA%\Temp\iu-*.tmp\_unins.tmp" /SECONDPHASE="<install-path>\unins000.exe" /FIRSTPHASEWND=<window-handle>'
+    - 'schtasks.exe /delete /tn "VpnuPush" /f'
+    - '"<install-path>\recovery\tap\x64\tapctl.exe" delete "VPN Unlimited TAP"'
+    - 'pnputil.exe /delete-driver "<install-path>\recovery\tap\x64\OemVista.inf" /force'
+    - '"<install-path>\vpn-unlimited-daemon.exe" -remove'
+    - 'taskkill.exe /IM WireVPNUImpl.exe /t /F'
+    - 'msedge.exe --single-argument https://www.vpnunlimitedapp.com/uninstall_win'
+  NetworkArtifacts:
+    Domains:
+    - keepsolid.com
+    - vpnunlimitedapp.com
+    - auth.simplexsolutionsinc.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - OpenVPN
+  - IKEv2
+  - KeepSolid Wise
+  Ports:
+  - TCP 443
+  - UDP 1194
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+ThreatActors: []
+UseCases: []
+Detection:
+- Type: Endpoint
+  Description: Detect the observed VPN Unlimited 9.5.1 Windows installation and persistent service or driver activity
+  Indicators:
+  - vpn-unlimited.exe extracting and launching vpn-unlimited.tmp from an Inno Setup is-*.tmp directory
+  - vpn-unlimited.tmp installing and starting vpn-unlimited-daemon.exe as the automatic LocalSystem VPNUnlimitedService
+  - vpn-unlimited.tmp invoking sc.exe to create the manual VPNUSplitTunnel kernel-driver service from VpnuDriver.sys
+  - pnputil.exe adding OemVista.inf as oem9.inf, followed by tapctl.exe creating and renaming the VPN Unlimited TAP adapter
+  - Creation of inbound and outbound Windows Firewall allow rules named VPN Unlimited and OpenVPN
+- Type: Forensic
+  Description: Detect artifacts created by VPN Unlimited 9.5.1 installation on Windows 11
+  Indicators:
+  - C:\Program Files (x86)\VPN Unlimited\ installation directory
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{DC24521E-872B-41AF-93EA-FE477902D6FB}}_is1 registration
+  - VPNUnlimitedService, VPNUSplitTunnel, and tap0901 service keys
+  - TAP-Windows OEM driver package oem#.inf version 9.27.0.0 and VPN Unlimited TAP network adapter
+  - Public-desktop and all-users Start Menu shortcuts plus the per-user VPN Unlimited Notifier shortcut
+  - The install capture did not include application launch, authentication, server selection, or VPN tunnel establishment
+- Type: Network
+  Description: Bound the network activity observed during the installation-only phase
+  Indicators:
+  - vpn-unlimited-daemon.exe made only local loopback TCP connections during installation
+  - No external product connection or VPN tunnel traffic was observed during installation
+- Type: Endpoint
+  Description: Detect the observed VPN Unlimited 9.5.1 first-launch process and configuration activity
+  Indicators:
+  - Explorer launched vpn-unlimited.exe at high integrity; it invoked rasdial.exe without arguments and then spawned QtWebEngineProcess.exe utility and renderer children
+  - vpn-unlimited.exe created HKCU\Software\KeepSolid Inc.\VPN Unlimited and set deviceid, last_values_version, and stopDnsLeak values
+  - vpn-unlimited.exe and QtWebEngineProcess.exe populated QML and QtWebEngine caches under %LOCALAPPDATA%\KeepSolid Inc\VPN Unlimited\
+- Type: Forensic
+  Description: Detect artifacts created by the observed VPN Unlimited 9.5.1 first launch on Windows 11
+  Indicators:
+  - '%LOCALAPPDATA%\KeepSolid Inc\VPN Unlimited\ contained QML cache files and QtWebEngine Default profile state'
+  - C:\Program Files (x86)\VPN Unlimited\debug.log was created
+- Type: Network
+  Description: Bound the network activity observed during the untouched first-launch phase
+  Indicators:
+  - vpn-unlimited.exe created only local loopback TCP connections and listeners for its embedded UI communication
+  - No external product network activity, authentication, server selection, or VPN tunnel establishment was observed during first launch
+- Type: Endpoint
+  Description: Detect the observed bounded VPN Unlimited 9.5.1 invalid-authentication attempt
+  Indicators:
+  - The already-running vpn-unlimited.exe submitted the single synthetic authentication attempt and the application displayed an authentication failure
+  - vpn-unlimited.exe read its bundled cacert.pem trust store and wrote one existing QtWebEngine GPU cache file during the attempt
+  - No credential, session-token, service, driver, adapter, route, DNS-server, or firewall persistence was attributed to the failed attempt
+- Type: Network
+  Description: Bound the network activity observed during the single unsuccessful synthetic authentication attempt
+  Indicators:
+  - vpn-unlimited.exe queried auth.simplexsolutionsinc.com and completed short TCP 443 exchanges during the one synthetic authentication attempt
+  - vpn-unlimited.exe also used local loopback TCP connections during request handling
+  - No successful authentication, account creation, server selection, VPN tunnel, or network-configuration change was observed
+- Type: Endpoint
+  Description: Detect the observed VPN Unlimited 9.5.1 normal-uninstall process tree on Windows 11
+  Indicators:
+  - Explorer launched the KeepSolid-signed unins000.exe, which staged and launched _unins.tmp from %LOCALAPPDATA%\Temp\iu-*.tmp
+  - _unins.tmp invoked schtasks.exe to delete VpnuPush, tapctl.exe to delete the VPN Unlimited TAP adapter, pnputil.exe to remove OemVista.inf, and vpn-unlimited-daemon.exe with -remove
+  - The service process invoked taskkill.exe for WireVPNUImpl.exe before VPNUnlimitedService stopped
+  - The uninstaller launched Microsoft Edge with https://www.vpnunlimitedapp.com/uninstall_win after product removal
+- Type: Forensic
+  Description: Distinguish artifacts removed and retained by the observed VPN Unlimited 9.5.1 normal uninstall
+  Indicators:
+  - The uninstall removed the VPN Unlimited application registration, VPNUnlimitedService, VPNUSplitTunnel and tap0901 driver inventory, VPN Unlimited TAP adapter, adapter routes and DNS state, the TAP package, tap0901.sys, installed binaries, and all-users Start Menu folder
+  - The post-uninstall snapshot retained C:\Program Files (x86)\VPN Unlimited\debug.log, %LOCALAPPDATA%\KeepSolid Inc\VPN Unlimited\, the is-*.tmp installer staging directory, and the per-user VPN Unlimited Notifier shortcut
+  - The VPNUnlimitedAutoStart RunOnce value and all four inbound and outbound VPN Unlimited and OpenVPN firewall allow rules remained and referenced deleted executables
+  - The tap0901 service key remained disabled with DriverDelete and DeleteFlag set, while the VPNUSplitTunnel service key remained and referenced its deleted VpnuDriver.sys image
+  - No restart was requested, but the remaining driver-service keys and stale persistence require a post-uninstall live audit and cleanup
+- Type: Network
+  Description: Bound the network activity observed during the normal-uninstall phase
+  Indicators:
+  - No Sysmon network event was attributed to the uninstaller process tree
+  - The uninstaller launched Edge for vpnunlimitedapp.com/uninstall_win; subsequent browser traffic is not evidence of VPN tunnel activity
+References:
+  Official:
+  - https://www.vpnunlimitedapp.com/
+  - https://www.keepsolid.com/vpn-unlimited
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/vpn-unlimited-review/
+  - https://www.techradar.com/reviews/vpn-unlimited
+LastModified: '2026-09-01'

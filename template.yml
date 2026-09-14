@@ -1,0 +1,145 @@
+Name: vpn-name
+VendorInfo:
+  Company: Company name
+  Website: https://example.com
+  Jurisdiction: Country/Region
+  BusinessModel: Free/Paid/Freemium
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - Standard process name associated with the tool
+    - Platform: macOS
+      Name:
+        - Standard process name associated with the tool
+    - Platform: Linux
+      Name:
+        - Standard process name associated with the tool
+    - Platform: iOS
+      Name:
+        - Bundle identifier (e.g., com.example.vpn)
+  ServiceNames:
+    - Platform: Windows
+      Name:
+        - Service name and display name
+    - Platform: macOS
+      Name:
+        - Launch daemon/agent names
+    - Platform: Linux
+      Name:
+        - systemd service names
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - Generic process name requiring product context
+      Services:
+        - Generic service name requiring product context
+      Drivers:
+        - Generic driver or driver-service name requiring product context
+      Files:
+        - Generic file name requiring product context
+      Attribution: >-
+        Require a product-specific path, signature, registration, argument, or
+        direct process relationship; never treat these names as standalone
+        product indicators.
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\VPN Name
+        - '%LOCALAPPDATA%\VPN Name'
+    - Platform: macOS
+      Path:
+        - /Applications/VPN Name.app
+        - ~/Library/Application Support/VPN Name
+    - Platform: Linux
+      Path:
+        - /opt/vpn-name
+        - ~/.config/vpn-name
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - Path(s) to configuration files
+    - Platform: macOS
+      Path:
+        - Path(s) to configuration files
+    - Platform: Linux
+      Path:
+        - Path(s) to configuration files
+  RegistryPersistence:
+    - HKLM\Software\Microsoft\Windows\CurrentVersion\Run
+    - HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - Path(s) to log files
+    - Platform: macOS
+      Path:
+        - Path(s) to log files
+    - Platform: Linux
+      Path:
+        - Path(s) to log files
+  BrowserExtensions:
+    - Browser: Chrome/Firefox/Edge
+      ExtensionID: Extension ID
+      Name: Extension name
+  CodeSigning:
+    - Platform: Windows
+      Publisher: Certificate publisher name
+      Thumbprint: Certificate thumbprint
+    - Platform: macOS
+      TeamID: Apple Developer Team ID
+      BundleID: Bundle identifier
+  CommandLineArgs:
+    - Command-line arguments commonly used
+  NetworkArtifacts:
+    Domains:
+      - Example domain used for updates or connections
+    UserAgent:
+      - Example user agent string
+    CDN:
+      - CDN providers used
+NetworkBehavior:
+  Protocols:
+    - Example protocol (e.g., OpenVPN, WireGuard, IKEv2, Lightway)
+  Ports:
+    - Example port usage (e.g., TCP 1194, UDP 51820)
+  TLSFingerprint:
+    - JA3 or other TLS fingerprint hash
+  EncryptionStandards:
+    - AES-256, ChaCha20, etc.
+ThreatActors:
+  - Name: Example APT group
+    Reference: Link to reporting
+UseCases:
+  - Title: Example use case
+    Description: A brief explanation of how the tool has been used by threat actors.
+    Date: YYYY-MM-DD
+    Source: Source of the information
+KnownVulnerabilities:
+  - CVE: CVE-YYYY-XXXXX
+    Severity: Critical/High/Medium/Low
+    Description: Brief description
+    Patched: Yes/No/Partial
+Detection:
+  - Type: Endpoint
+    Description: Stable product-attributed process, service, driver, persistence, or distinctive command behavior.
+    Indicators:
+      - Prefer no more than five non-duplicative, high-context indicators
+  - Type: Network
+    Description: Stable product traffic roles, durable network state, or product-owned domains and protocols.
+    Indicators:
+      - Exclude capture-specific IPs and generic Microsoft, certificate-validation, or connectivity domains
+  - Type: Forensic
+    Description: Durable product configuration, logs, registration, authentication state, or uninstall residuals.
+    Indicators:
+      - Exclude hashes, Prefetch, Jump Lists, universal execution artifacts, and facts duplicated above
+References:
+  Official:
+    - https://example.com/documentation
+  ThreatIntelligence:
+    - https://example.com/threat-report
+  Research:
+    - https://example.com/security-analysis
+  Sigma:
+    - https://github.com/SigmaHQ/sigma/...
+LastModified: YYYY-MM-DD

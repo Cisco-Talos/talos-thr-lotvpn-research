@@ -1,0 +1,178 @@
+Name: WireGuard
+VendorInfo:
+  Company: WireGuard LLC
+  Website: https://www.wireguard.com/
+  Jurisdiction: United States
+  BusinessModel: Free/Open Source
+  OpenSource: true
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - wireguard.exe
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - WireGuardManager
+    - WireGuard
+    - WireGuardTunnel$<tunnel-name>
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - msiexec.exe
+    - DrvInst.exe
+    Attribution: >-
+      Require a WireGuard MSI product code, WireGuard installation path, or
+      direct WireGuard process ancestry; these Windows components performed the
+      attributed MSI installation and driver-package removal.
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files\WireGuard\'
+    - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\WireGuard.lnk'
+    - '%WINDIR%\Installer\<WireGuard-cache>.msi'
+    - '%WINDIR%\Installer\{<WireGuard-product-code>}\wireguard.ico'
+    - '%WINDIR%\Prefetch\WIREGUARD.EXE-*.pf'
+    - '%WINDIR%\System32\drivers\wireguard.sys'
+    - '%WINDIR%\System32\DriverStore\FileRepository\wireguard.inf_amd64_*'
+    - '%APPDATA%\Microsoft\Windows\Recent\<imported-config>.conf.lnk'
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: WireGuard
+    Publisher: WireGuard LLC
+    ExecutableName: wireguard.exe
+    Version: 0.5.3
+    Architecture: amd64
+    InstallLocation: 'C:\Program Files\WireGuard'
+    UninstallKey: HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{2FDB79CE-5193-4A39-82BB-E00158CC1533}
+    UninstallCommand: MsiExec.exe /X{2FDB79CE-5193-4A39-82BB-E00158CC1533}
+    AdditionalComponents:
+    - wg.exe command-line utility
+    - WireGuardManager automatic LocalSystem service
+    - WireGuard 0.10.0.0 kernel network driver, installed as a generated OEM package during first tunnel activation
+    - Automatic LocalSystem service created for each active tunnel
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files\WireGuard\Data\Configurations\'
+    - 'C:\Program Files\WireGuard\Data\Configurations\<tunnel-name>.conf.dpapi'
+  RegistryPersistence:
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{2FDB79CE-5193-4A39-82BB-E00158CC1533}
+  - HKLM\SYSTEM\CurrentControlSet\Services\WireGuardManager
+  - HKLM\SYSTEM\CurrentControlSet\Services\WireGuard
+  - HKLM\SYSTEM\CurrentControlSet\Services\WireGuardTunnel$<tunnel-name>
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\WireGuard
+  - HKLM\SYSTEM\CurrentControlSet\Enum\SWD\WireGuard\{interface-guid}
+  - HKLM\SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}\{interface-guid}
+  - HKLM\DRIVERS\DriverDatabase\DriverPackages\wireguard.inf_amd64_*
+  - HKCR\Installer\Features\EC97BDF2391593A428BB0E1085CC5133
+  - HKCR\Installer\Products\EC97BDF2391593A428BB0E1085CC5133
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Installer\UserData\S-1-5-18\Products\EC97BDF2391593A428BB0E1085CC5133
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files\WireGuard\wireguard.exe
+  - HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\FeatureUsage\AppBadgeUpdated\{6D809377-6AF0-444B-8957-A3773F02200E}\WireGuard\wireguard.exe
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files\WireGuard\Data\log.bin'
+  BrowserExtensions: []
+  CodeSigning:
+  - Platform: Windows
+    Publisher: WireGuard LLC
+    Status: Valid installer, wireguard.exe, and wg.exe signatures
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - 'msiexec.exe /i "<staged-installer>\wireguard.msi"'
+    - '"C:\Program Files\WireGuard\wireguard.exe"'
+    - '"C:\Program Files\WireGuard\wireguard.exe" /installmanagerservice'
+    - '"C:\Program Files\WireGuard\wireguard.exe" /managerservice'
+    - '"C:\Program Files\WireGuard\wireguard.exe" /ui 848 776 904 916'
+    - '"C:\Program Files\WireGuard\wireguard.exe" /tunnelservice "C:\Program Files\WireGuard\Data\Configurations\<tunnel-name>.conf.dpapi"'
+    - wireguard /removedriver
+    - MsiExec.exe /X{2FDB79CE-5193-4A39-82BB-E00158CC1533}
+  NetworkArtifacts:
+    Domains:
+    - download.wireguard.com
+    - wireguard.com
+    - frisell.zx2c4.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - WireGuard
+  Ports:
+  - TCP 443
+  - TCP 80
+  - UDP 51820 (synthetic activation attempt)
+  TLSFingerprint: []
+  MercuryFamilyName: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+- Type: Endpoint
+  Description: Detect the observed WireGuard 0.5.3 Windows installation and automatic manager/UI startup
+  Indicators:
+  - Explorer launched msiexec.exe at high integrity to install the staged WireGuard MSI
+  - The SYSTEM-side MSI worker wrote wireguard.exe and wg.exe under C:\Program Files\WireGuard\
+  - The MSI custom action ran wireguard.exe followed by wireguard.exe /installmanagerservice
+  - The automatic LocalSystem WireGuardManager service started wireguard.exe /managerservice in session 0
+  - The manager service spawned wireguard.exe /ui 848 776 904 916 at high integrity in the interactive user session
+  - The GUI launch was automatic installation-phase contamination; no tunnel was imported, activated, or connected
+- Type: Forensic
+  Description: Detect artifacts created by the observed WireGuard 0.5.3 installation on Windows 11
+  Indicators:
+  - C:\Program Files\WireGuard\ contained the WireGuard LLC-signed wireguard.exe and wg.exe binaries
+  - C:\Program Files\WireGuard\Data\log.bin and the empty Data\Configurations\ directory were created by the running manager service
+  - HKLM\SYSTEM\CurrentControlSet\Services\WireGuardManager registered an automatic LocalSystem service using wireguard.exe /managerservice
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{2FDB79CE-5193-4A39-82BB-E00158CC1533} registered WireGuard LLC, version 0.5.3, and the MSI uninstall command
+  - The installer created an all-users Start Menu shortcut and cached the MSI and product icon under %WINDIR%\Installer\
+  - The wg.exe command-line utility was installed but was not executed during this phase
+  - The manager briefly created and then deleted a phantom ROOT\WINTUN\0000 device-enumeration key; no persistent driver, adapter, route, DNS-server, firewall-rule, scheduled-task, startup-command, or desktop-shortcut addition was observed
+- Type: Network
+  Description: Bound the network activity observed during the installation phase
+  Indicators:
+  - msiexec.exe performed certificate-status validation over TCP 80
+  - WireGuardManager resolved download.wireguard.com through wireguard.com and made TCP 443 update-check connections to the WireGuard service
+  - This was certificate-validation and manager update-check traffic; no WireGuard tunnel traffic or persistent network-configuration change was observed
+- Type: Forensic
+  Description: Detect the observed import and local activation of a synthetic WireGuard tunnel on Windows 11
+  Indicators:
+  - The existing high-integrity wireguard.exe UI read the selected plaintext .conf file, after which the LocalSystem WireGuard manager persisted the tunnel as C:\Program Files\WireGuard\Data\Configurations\<tunnel-name>.conf.dpapi; Windows also created a Recent-items shortcut for the selected source file
+  - Activation registered the automatic LocalSystem service WireGuardTunnel$<tunnel-name> with dependencies on Nsi and TcpIp and an image path using wireguard.exe /tunnelservice plus the DPAPI-protected configuration path
+  - The tunnel service started wireguard.exe as SYSTEM in session 0 while the existing WireGuardManager service and interactive UI remained running
+  - First activation installed the WireGuard LLC network driver as a generated OEM package, created the manual WireGuard kernel-driver service, and wrote wireguard.sys to System32\drivers and the Driver Store
+  - The observed wireguard.sys was version 0.10.0.0 and validly signed by Microsoft Windows Hardware Compatibility Publisher
+  - Windows created an up WireGuard Tunnel adapter, its SWD\WireGuard device and network-class registry state, and IPv4 routes for the synthetic interface address and AllowedIPs prefix
+  - No default route, configured DNS server, firewall rule, scheduled task, startup command, or installed-application change was added by tunnel import and activation
+- Type: Network
+  Description: Bound the handshake traffic from the synthetic WireGuard activation attempt without treating local Active status as a successful remote VPN connection
+  Indicators:
+  - The per-tunnel wireguard.exe service sent repeated UDP handshake datagrams to the synthetic endpoint on port 51820
+  - No corresponding UDP receive was recorded, and neither the operator observation nor the telemetry established a completed peer handshake or usable remote VPN connectivity
+  - The endpoint, interface address, and AllowedIPs prefix used documentation-reserved test networks generated for this experiment and are not WireGuard infrastructure indicators
+  - The GUI status Active represented successful local service, adapter, driver, and route activation only
+- Type: Endpoint
+  Description: Detect the observed normal WireGuard 0.5.3 MSI uninstall and driver-removal workflow
+  Indicators:
+  - The operator invoked MsiExec.exe /X{2FDB79CE-5193-4A39-82BB-E00158CC1533} through Win+R, after which Windows Installer started high-integrity and LocalSystem msiexec.exe workers
+  - The interactive wireguard.exe UI and LocalSystem WireGuardManager process exited before the MSI worker removed the application
+  - The LocalSystem MSI worker launched the WireGuard LLC-signed wireguard.exe with the command line wireguard /removedriver
+  - DrvInst.exe removed the generated WireGuard driver package, its Driver Store files, System32\drivers\wireguard.sys, and the WireGuard System event-log source
+  - Windows Installer events 11724 and 1034 recorded successful removal of WireGuard 0.5.3; no restart was requested
+  - No product-attributed DNS, TCP, UDP, or other network event occurred during the uninstall capture
+- Type: Forensic
+  Description: Distinguish artifacts removed by the observed normal uninstall from WireGuard-related residual history
+  Indicators:
+  - The uninstaller removed C:\Program Files\WireGuard\, including wireguard.exe, wg.exe, Data\log.bin, and the DPAPI-protected imported tunnel configuration
+  - The all-users Start Menu shortcut, cached MSI and icon, MSI product registration, WireGuardManager service, generated driver package, wireguard.sys, and Driver Store directory were removed
+  - The post-uninstall snapshot contained no WireGuard process, installed-application entry, manager service, enumerated WireGuard driver, PnP driver package, tunnel adapter, synthetic route, DNS-server change, or firewall-rule change
+  - HKLM\SYSTEM\CurrentControlSet\Services\WireGuard remained as a disabled pending-deletion driver key with Start 4, DriverDelete 1, DeleteFlag 1, and an empty Enum subkey
+  - WireGuard execution-history records, the imported-config Recent-items shortcut, and shell-history state remained after uninstall
+  - The plaintext Desktop tunnel configuration was created by the research operator before import and intentionally remained; it is not a WireGuard-created uninstall residual
+  - No product-created companion application was observed across installation, tunnel import and activation, or uninstall
+References:
+  Official:
+  - https://www.wireguard.com/
+  - https://git.zx2c4.com/wireguard-windows/
+LastModified: '2026-09-01'

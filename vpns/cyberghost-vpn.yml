@@ -1,0 +1,43 @@
+Name: Cyberghost Vpn
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\CyberGhost*'
+    - C:\Program Files\CyberGhost 8\config
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/CyberGhost
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - cyberghostvpn.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - WireGuard
+  - OpenVPN
+  - IKEv2
+  Ports:
+  - UDP 443
+  - TCP 443
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.cyberghostvpn.com/
+  - https://support.cyberghostvpn.com/
+  ThreatIntelligence:
+  - https://www.decipher.tools/en/cyberghost-vpn-is-is-it-safe/
+  Research:
+  - https://www.vpnmentor.com/reviews/cyberghost-vpn/
+  - https://restoreprivacy.com/vpn/reviews/cyberghost/
+LastModified: '2026-07-16'

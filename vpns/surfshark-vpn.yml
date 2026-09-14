@@ -1,0 +1,504 @@
+Name: Surfshark Vpn
+VendorInfo:
+  Company: SURFSHARK LTD
+  Website: https://surfshark.com/
+  Jurisdiction: Netherlands
+  BusinessModel: Freemium/Paid
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - Surfshark.Service.exe
+    - Surfshark.WireGuardService.exe
+    - Surfshark.exe
+  - Platform: macOS
+    Name:
+    - Surfshark
+    - com.surfshark.vpnclient.macos.direct.PacketTunnel-WireGuard
+    - Surfshark Finder Extension
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - Surfshark Service
+    - Surfshark WireGuard Service
+  - Platform: macOS
+    Name:
+    - No persistent launch agents/daemons detected (runs on-demand)
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - openvpn.exe
+    - tapctl.exe
+    Services:
+    - SharkDivert
+    - ovpn-dco
+    Drivers:
+    - sharkdivert.sys
+    - ovpn-dco.sys
+    Attribution: >-
+      Require a Surfshark installation path, product-specific argument,
+      registration, or direct Surfshark process ancestry; these shared VPN
+      utilities and drivers are not standalone Surfshark identifiers.
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: Surfshark
+    ExecutableName: Surfshark.exe
+    Version: 6.8.0999
+    Publisher: Surfshark B.V.
+    InstallLocation: C:\Program Files\Surfshark\
+    InstallerType: Advanced Installer EXE bootstrapper with embedded Windows Installer package
+    ProductCode: '{F7661E64-4DF4-43BE-86F3-49581580142C}'
+    UninstallCommand: msiexec.exe /i {F7661E64-4DF4-43BE-86F3-49581580142C} AI_UNINSTALLER_CTP=1
+    AdditionalComponents:
+    - OpenVPN utilities and OpenVPN DCO 2.5.6.0 driver package, published as oem9.inf on the tested host
+    - >-
+      WireGuard DLL and Surfshark.WireGuardService.exe payloads; the WireGuard service was not registered or started
+      during installation
+    - SharkDivert kernel driver used by the Surfshark bypasser component
+    - >-
+      Surfshark antivirus payloads and Avira-signed helper libraries; the installer removed any Surfshark Antivirus
+      service and did not leave one registered
+    - Per-user signed updater payload cached during the automatic first launch under %LOCALAPPDATA%\Surfshark\Updates\
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - C:\Program Files\Surfshark\
+    - C:\Program Files\Surfshark\Installers\Surfshark 6.8.0999\580142C\
+    - C:\Program Files\Common Files\ovpn-dco\Win11\
+    - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Surfshark\
+    - C:\Users\Public\Desktop\Surfshark.lnk
+    - C:\Windows\Installer\390226a.msi
+    - C:\Windows\System32\drivers\ovpn-dco.sys
+    - C:\Windows\System32\DriverStore\FileRepository\ovpn-dco.inf_amd64_*\
+    - C:\ProgramData\Microsoft\NetFramework\BreadcrumbStore\netcore,Surfshark*
+    - C:\Windows\Prefetch\SURFSHARK*.pf
+    - '%LOCALAPPDATA%\Surfshark\'
+    - '%PROGRAMDATA%\Surfshark\'
+    - '%APPDATA%\Surfshark\'
+  - Platform: macOS
+    Path:
+    - /Applications/Surfshark.app
+    - ~/Library/Group Containers/YHUG37CKN8.com.surfshark.vpn.direct/
+    - ~/Library/HTTPStorages/com.surfshark.vpnclient.macos.direct/
+    - ~/Library/Caches/com.surfshark.vpnclient.macos.direct/
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\Surfshark\*'
+    - '%APPDATA%\Surfshark'
+    - '%PROGRAMDATA%\Surfshark\settings.dat'
+    - '%PROGRAMDATA%\Surfshark\vpnServiceData.db*'
+    - '%PROGRAMDATA%\Surfshark\networkAdapterConfigurations.dat'
+    - '%PROGRAMDATA%\Surfshark\webContentBlocker.dat'
+    - '%APPDATA%\Surfshark\settings.dat'
+    - '%APPDATA%\Surfshark\data.dat'
+    - '%APPDATA%\Surfshark\general_locations.dat'
+    - '%APPDATA%\Surfshark\static_locations.dat'
+    - '%APPDATA%\Surfshark\obfuscated_locations.dat'
+    - '%APPDATA%\Surfshark\ProfileOptimization\Surfshark.profile'
+    - C:\Program Files\Surfshark\Configs\*.diff (ephemeral OpenVPN profile)
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/com.surfshark.vpnclient.macos.direct
+    - ~/Library/Preferences/com.surfshark.vpnclient.macos.direct.plist
+    - ~/Library/Group Containers/YHUG37CKN8.com.surfshark.vpn.direct
+  - Platform: Linux
+    Path:
+    - ~/.config/Surfshark
+  RegistryPersistence:
+  - HKCR\Surfshark
+  - HKLM\SOFTWARE\Surfshark\Surfshark
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Surfshark 6.8.0999
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{F7661E64-4DF4-43BE-86F3-49581580142C}
+  - HKLM\SYSTEM\CurrentControlSet\Services\SharkDivert
+  - HKLM\SYSTEM\CurrentControlSet\Services\ovpn-dco
+  - HKLM\SYSTEM\CurrentControlSet\Services\Surfshark Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\Surfshark WireGuard Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\Surfshark Service
+  - HKCU\Software\Microsoft\Windows\CurrentVersion\Run\Surfshark
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\vpn-installers\surfshark.exe
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files\Surfshark\Surfshark.exe
+  - >-
+    HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\vpn-installers\surfshark.exe
+  - >-
+    HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files\Surfshark\Surfshark.exe
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - '%PROGRAMDATA%\Surfshark\serviceLog.log'
+    - '%PROGRAMDATA%\Surfshark\openVpnLog.log'
+    - '%PROGRAMDATA%\Surfshark\settings-log.dat'
+    - '%PROGRAMDATA%\Surfshark\EventsCache\Sentry\*\*'
+    - '%APPDATA%\Surfshark\log.log'
+    - '%APPDATA%\Surfshark\settings-log.dat'
+    - '%LOCALAPPDATA%\Surfshark\EventsCache\Sentry\*\*'
+    - '%LOCALAPPDATA%\Temp\MSIDB2E.LOG'
+    - '%LOCALAPPDATA%\Temp\MSI67ad6.LOG'
+    - '%LOCALAPPDATA%\Temp\antivirusSetup.log'
+    - '%LOCALAPPDATA%\Temp\appSetup.log'
+    - '%LOCALAPPDATA%\Temp\vpnSetup.log'
+    - '%LOCALAPPDATA%\Temp\SurfsharkAntivirusUninstaller.log'
+    - C:\Windows\Temp\sharkdivert-*.nwl
+  - Platform: macOS
+    Path:
+    - ~/Library/Logs/Surfshark/ (if exists)
+  BrowserExtensions: []
+  CodeSigning:
+  - Platform: Windows installer and installed Surfshark executables
+    Publisher: Surfshark B.V.
+  - Platform: Windows OpenVPN executables and libraries
+    Publisher: OpenVPN Inc.
+  - Platform: Windows ovpn-dco and SharkDivert driver binaries
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+  - Platform: Windows WireGuard library
+    Publisher: WireGuard LLC
+  - Platform: Windows ACSSigned.exe and bundled endpoint-protection libraries
+    Publisher: Avira Operations GmbH
+  - Platform: macOS
+    Publisher: Developer ID Application SURFSHARK LTD (YHUG37CKN8)
+    TeamID: YHUG37CKN8
+    BundleID: com.surfshark.vpnclient.macos.direct
+    CertificateAuthority: Developer ID Certification Authority -> Apple Root CA
+    CDHash: ccc8a664016e2077735f6f98c99d4917913eb91e
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"C:\vpn-installers\surfshark.exe"'
+    - >-
+      surfshark.exe /i "C:\Program Files\Surfshark\Installers\Surfshark
+      6.8.0999\580142C\SurfsharkSetup.msi" AI_EUIMSI=1 APPDIR="C:\Program
+      Files\Surfshark" ADDLOCAL="MainFeature,AIOtherFiles,AI32BitFiles,OvpnDcomergemodule,AI64BitFiles"
+    - Surfshark.Antivirus.Setup.exe commands:"--uninstall-antivirus-service --stop-antivirus-service"
+    - Surfshark.Antivirus.Setup.exe --update-webcam-protection property:buildname-DefaultBuild
+    - Surfshark.Vpn.Setup.exe --install-vpn-service property:buildname-DefaultBuild
+    - Surfshark.Service.exe install
+    - -displayname "Surfshark Service" -servicename "Surfshark Service"
+    - Surfshark.Vpn.Setup.exe --install-openvpn property:buildname-DefaultBuild
+    - 'tapctl.exe create --hwid ovpn-dco --name "OpenVPN Data Channel Offload for Surfshark"'
+    - 'netsh interface set interface name="Local Area Connection" newname="OpenVPN Data Channel Offload for Surfshark"'
+    - Surfshark.Vpn.Setup.exe --install-bypasser property:buildname-DefaultBuild property:trigger_source-installer
+    - 'sc.exe create SharkDivert binPath= "C:\Program Files\Surfshark\Resources\x64\sharkdivert.sys" type=kernel'
+    - Surfshark.Setup.exe --register-deep-link-protocol
+    - '"C:\Program Files\Surfshark\Surfshark.exe"'
+    - >-
+      "C:\Program Files\Surfshark\Resources\x64\openvpn.exe" --config
+      "C:\Program Files\Surfshark\Configs\[capture-specific].diff" --management-hold --management-query-passwords
+      --suppress-timestamps --connect-retry-max 2 --management <loopback> [ephemeral-port] --register-dns --dev-node
+      "OpenVPN Data Channel Offload for Surfshark" --service [capture-specific-guid] 0
+    - 'netsh advfirewall firewall show rule "Surfshark Block All IPv6"'
+    - 'msiexec.exe /i {F7661E64-4DF4-43BE-86F3-49581580142C} AI_UNINSTALLER_CTP=1'
+    - Surfshark.Vpn.Setup.exe --stop-web-content-blocker property:buildname-DefaultBuild
+    - Surfshark.Vpn.Setup.exe --uninstall-vpn-services property:buildname-DefaultBuild
+    - Surfshark.Antivirus.Uninstaller.exe /epp
+    - Surfshark.Vpn.Setup.exe --uninstall-openvpn property:buildname-DefaultBuild
+    - 'tapctl.exe delete "OpenVPN Data Channel Offload for Surfshark"'
+    - Surfshark.Vpn.Setup.exe --uninstall-firewall property:buildname-DefaultBuild
+    - Surfshark.Vpn.Setup.exe --uninstall-bypasser property:buildname-DefaultBuild
+    - Surfshark.Setup.exe --unregister-deep-link-protocol
+    - Surfshark.Vpn.Setup.exe --remove-app-folder
+    - 'certutil.exe -delstore "Root" "Surfshark Root CA"'
+  - Platform: macOS
+    Args:
+    - /Applications/Surfshark.app/Contents/MacOS/Surfshark
+  NetworkArtifacts:
+    Domains:
+    - surfshark.com
+    - api.surfshark.com
+    - downloads.surfshark.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - WireGuard
+  - OpenVPN
+  - IKEv2
+  - DNS (installer, service, and automatic first-launch endpoint lookups)
+  - HTTPS (service, automatic first-launch, and failed synthetic-login traffic)
+  - TCP and UDP server reachability probes (automatic first launch; no tunnel established)
+  Ports:
+  - UDP 51820 (WireGuard)
+  - TCP 443 (OpenVPN, observed active connections)
+  - UDP 443 (observed active connections to a capture-specific CDN address)
+  - UDP 1194 (OpenVPN)
+  - TCP 1443 (automatic first-launch reachability probes and failed synthetic manual OpenVPN connection attempt)
+  - TCP 80 (certificate-status and server reachability traffic)
+  - Local TCP 34616 (Surfshark.exe to Surfshark.Service.exe loopback communication)
+  TunnelInterfaces:
+  - utun0, utun1, utun2, utun3 (macOS)
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256-GCM
+  - ChaCha20
+  NetworkExtensions:
+  - packet-tunnel-provider-systemextension (macOS)
+  - app-proxy-provider-systemextension (macOS)
+ThreatActors: []
+UseCases: []
+ThirdPartyIntegrations:
+  Firebase:
+    ProjectID: surfshark-31327
+    APIKey: AIzaSyACd7VHpROAGcwELx6KsfV2pOJhtevLTbI
+    GCMSenderID: '232271587'
+    StorageBucket: surfshark-31327.appspot.com
+    ClientID: 232271587-1bhmaoh46pta7sok03a1edvk0omsh2sr.apps.googleusercontent.com
+    AndroidClientID: 232271587-3d2lm4h8905idm69oaf1mb4dphoqf2pv.apps.googleusercontent.com
+    Features:
+    - GCM (Google Cloud Messaging)
+    - App Invite
+    - Analytics Disabled
+    - Ads Disabled
+  GoogleSignIn:
+    URLScheme: com.googleusercontent.apps.232271587-1bhmaoh46pta7sok03a1edvk0omsh2sr
+  CrashReporting:
+  - Sentry Framework
+  - Firebase Crashlytics
+  AutoUpdates:
+  - Sparkle Framework
+  DatabaseFramework:
+  - Realm Swift (RealmSwift.framework)
+  NetworkLibraries:
+  - Alamofire (HTTP networking)
+  Logging:
+  - CocoaLumberjack
+ApplicationVersion:
+  WindowsObserved: 6.8.0999
+  macOSLatestObserved: 4.27.0 (Build 4324)
+  MinimumOSVersion: macOS 12.0
+  Architecture: Universal Binary (x86_64 + ARM64)
+  URLSchemes:
+  - com.surfshark.vpnclient.macos.direct
+  - surfshark
+  - com.googleusercontent.apps.232271587-160tfa7bs78n8aasgibh9do1fhdcd3m5
+  - com.googleusercontent.apps.232271587-1bhmaoh46pta7sok03a1edvk0omsh2sr
+  AssociatedDomains:
+  - webcredentials:surfshark.com
+  - applinks:surfshark.page.link
+  - applinks:surfshark.com
+  - applinks:surfsharktest.com (developer mode)
+  - applinks:dev.surfsharktest.com (developer mode)
+  - activitycontinuation:surfshark.com
+  - activitycontinuation:surfsharktest.com
+  - applinks:surfshark.onelink.me
+  Entitlements:
+  - com.apple.developer.networking.networkextension (packet-tunnel-provider, app-proxy-provider)
+  - com.apple.developer.networking.vpn.api (allow-vpn)
+  - com.apple.developer.system-extension.install
+  - com.apple.developer.aps-environment (production)
+  - com.apple.security.application-groups (YHUG37CKN8.com.surfshark.vpn.direct)
+  - com.apple.developer.associated-domains
+  - App Sandbox Disabled
+  PluginsExtensions:
+  - Name: Surfshark Finder Extension.appex
+    Type: Finder Extension
+    BundleSize: ~16 MB
+    Purpose: Finder integration
+Localization:
+  SupportedLanguages:
+  - English (en)
+  - German (de)
+  - Spanish (es)
+  - French (fr)
+  - Italian (it)
+  - Japanese (ja)
+  - Korean (ko)
+  - Polish (pl)
+  - Portuguese-Brazil (pt-BR)
+  - Russian (ru)
+  - Ukrainian (uk)
+  - Chinese-Hong Kong (zh-HK)
+  - Chinese-Simplified (zh-Hans)
+  - Lithuanian (lt)
+Detection:
+- Type: Forensic
+  Description: >-
+    Detect the normal interactive installation of Surfshark 6.8.0999 on Windows 11. The signed Advanced Installer
+    bootstrapper installed its embedded MSI, registered a persistent service and per-user startup entry, installed
+    OpenVPN DCO and SharkDivert drivers, and automatically launched the client to an untouched login GUI. The automatic
+    launch also created user state and cached a signed updater payload; no authentication or VPN connection was
+    attempted.
+  Indicators:
+  - >-
+    Surfshark B.V.-signed C:\vpn-installers\surfshark.exe launched from Explorer and invoked the embedded
+    SurfsharkSetup.msi through the Advanced Installer /i workflow
+  - >-
+    MSI product {F7661E64-4DF4-43BE-86F3-49581580142C} registered Surfshark 6.8.0999 under both the named and
+    product-code uninstall keys and cached C:\Windows\Installer\390226a.msi
+  - >-
+    Installed C:\Program Files\Surfshark\Surfshark.exe and Surfshark.Service.exe were signed by Surfshark B.V.
+  - >-
+    Windows System event 7045 recorded the auto-start LocalSystem Surfshark Service, and Application event 48232 recorded
+    it starting; its failure-recovery command invokes Surfshark.Vpn.Setup.exe with --restore-network-adapters and
+    --start-vpn-service
+  - >-
+    The installer published OpenVPN Inc. ovpn-dco 2.5.6.0 as oem9.inf, created the disconnected OpenVPN Data Channel
+    Offload for Surfshark adapter, and registered the running demand-start ovpn-dco kernel driver
+  - >-
+    The running demand-start SharkDivert kernel driver referenced
+    C:\Program Files\Surfshark\Resources\x64\sharkdivert.sys; its Microsoft Windows Hardware Compatibility
+    The publisher-signed binary was present in the installed driver package
+  - >-
+    HKCU\Software\Microsoft\Windows\CurrentVersion\Run\Surfshark launched C:\Program Files\Surfshark\Surfshark.exe, and
+    the installer registered the Surfshark deep-link protocol plus public-desktop and Start Menu shortcuts
+  - >-
+    Persistent product state appeared under %PROGRAMDATA%\Surfshark\, %APPDATA%\Surfshark\, and
+    %LOCALAPPDATA%\Surfshark\, including service and application logs, settings, location data, Sentry events, and the
+    VPN service database
+  - >-
+    The automatic first launch left Surfshark.exe running at the login GUI and cached signed updater payload
+    %LOCALAPPDATA%\Surfshark\Updates\stable64\6.8.0.999\5aqkhr0r.exe; its nominal version matched the installed build,
+    so the update notification alone does not establish that the installer was outdated
+  - >-
+    Surfshark.WireGuardService.exe, wireguard.dll, and OpenVPN client payloads were staged but no WireGuard service or
+    tunnel process was registered or started; no authentication, server selection, VPN connection, or reboot occurred
+- Type: Network
+  Description: >-
+    The installer, persistent service, and automatically launched unauthenticated client generated certificate-status,
+    application, update, and server-reachability traffic. The traffic is bounded installation and automatic-first-launch
+    activity, not authentication or an established VPN tunnel; persistent network-state changes were limited to the new
+    disconnected OpenVPN DCO adapter and its default local/link routes.
+  Indicators:
+  - >-
+    The installer queried ocsp.globalsign.com and connected on TCP 80 for certificate-status checking; this domain is
+    not treated as Surfshark infrastructure
+  - >-
+    Surfshark.Service.exe queried go-apps-s.s0r4nd0m.com and connected on TCP 443, alongside certificate-status lookups
+    for ocsp.globalsign.com, ocsp.digicert.com, and secure.globalsign.com
+  - >-
+    Automatically launched Surfshark.exe queried go-apps-s.s0r4nd0m.com and communicated externally on TCP 80 and 443,
+    while local TCP 34616 carried loopback communication with Surfshark.Service.exe
+  - >-
+    The client issued server-reachability probes to transient AWS-hosted addresses over UDP 1194 and 51820 and TCP 80,
+    443, and 1443; capture-specific destination addresses and ephemeral source ports are not stable product indicators
+  - >-
+    oneocsp.microsoft.com, secure.globalsign.com, ocsp.digicert.com, and www.microsoft.com activity was
+    certificate-status or connectivity-check traffic and is not treated as Surfshark infrastructure
+  - >-
+    No login submission, authenticated session, VPN helper execution, tunnel establishment, tunnel route, VPN DNS-server
+    change, or firewall-rule change was observed
+- Type: Network
+  Description: >-
+    A single synthetic invalid-login submission in the already-running Windows client produced a short HTTPS and local
+    service-interprocess exchange before the GUI reported failure. This was an authentication failure path, not a
+    successful login or VPN connection; no persistent adapter, route, DNS-server, firewall, service, driver, or startup
+    change resulted.
+  Indicators:
+  - >-
+    Surfshark.exe contacted a capture-specific Cloudflare address on TCP 443 immediately after submission; prior
+    first-launch evidence associated the same Cloudflare address set with go-apps-s.s0r4nd0m.com, but the login capture
+    contained no new product DNS query and the numeric address is not a stable product indicator
+  - >-
+    Surfshark.exe exchanged data with Surfshark.Service.exe over the existing loopback TCP 34616 channel; the service
+    then contacted an external resolver and a capture-specific CDN address on TCP 443 during the same bounded failure sequence
+  - >-
+    Surfshark.exe wrote %APPDATA%\Surfshark\log.log and accessed existing %APPDATA%\Surfshark\settings.dat and data.dat;
+    no new product file, process, service, driver, scheduled task, installed application, or startup entry appeared
+  - >-
+    Surfshark.exe and Surfshark.Service.exe remained running, while the OpenVPN DCO adapter, routes, DNS servers, and
+    firewall rules were unchanged; no authenticated state or VPN tunnel was established
+- Type: Network
+  Description: >-
+    A single manual connection attempt with explicitly synthetic service credentials, hostname, and TCP port reached
+    the bundled OpenVPN execution path before the GUI reported VPN couldn't connect. The client did not authenticate or
+    establish a tunnel, and no persistent adapter, route, DNS-server, firewall, service, driver, or startup change
+    resulted.
+  Indicators:
+  - >-
+    Surfshark.Service.exe created the ephemeral C:\Program Files\Surfshark\Configs\*.diff profile and launched
+    OpenVPN 2.6.14 as LocalSystem with --management-hold, --management-query-passwords, --connect-retry-max 2,
+    --register-dns, --dev-node "OpenVPN Data Channel Offload for Surfshark", and --service arguments; openvpn.exe was
+    present in the bundled OpenVPN payload
+  - >-
+    The service controlled openvpn.exe over a capture-specific loopback management port, and openvpn.exe made two
+    retry sequences to a capture-specific AWS Global Accelerator reverse-resolved destination on TCP 1443 before
+    exiting approximately 44 seconds after launch; the destination resulted from the synthetic hostname and is not a
+    stable Surfshark indicator
+  - >-
+    Surfshark.exe and Surfshark.Service.exe also made HTTPS connections to an external resolver and capture-specific
+    Cloudflare and other numeric destinations around the attempt; because this capture contained no corresponding product
+    DNS query or TLS name, those destinations are not promoted as stable Surfshark indicators
+  - >-
+    Surfshark.Service.exe created %PROGRAMDATA%\Surfshark\openVpnLog.log, updated serviceLog.log and
+    vpnServiceData.db, then deleted the ephemeral *.diff profile after the failed attempt; Surfshark.exe updated
+    %APPDATA%\Surfshark\data.dat, log.log, and settings.dat
+  - >-
+    After the failure, Surfshark.Service.exe ran netsh only to query the existing "Surfshark Block All IPv6" rule; the
+    pre/post snapshots showed no adapter, route, DNS-server, firewall-rule, installed-application, service, driver,
+    scheduled-task, or startup change, and no VPN tunnel was established
+- Type: Forensic
+  Description: >-
+    A normal interactive uninstall of Surfshark 6.8.0999 removed the registered application, program payloads,
+    Surfshark Service, SharkDivert, and the OpenVPN DCO adapter and driver package. The completion page selected restart
+    by default; the operator disabled it so the capture preserved the pre-reboot residual state. A restart and
+    product-specific cleanup remained necessary before reusing the host for another product.
+  Indicators:
+  - >-
+    Explorer launched the registered command msiexec.exe /i {F7661E64-4DF4-43BE-86F3-49581580142C}
+    AI_UNINSTALLER_CTP=1; the operator selected Next, Remove, disabled the default restart option, and clicked Finish
+  - >-
+    MSI descendants ran Surfshark.Vpn.Setup.exe with --uninstall-vpn-services, --uninstall-openvpn,
+    --uninstall-firewall, --uninstall-bypasser, and --remove-app-folder; Surfshark.Setup.exe used
+    --unregister-deep-link-protocol, and Surfshark.Antivirus.Uninstaller.exe ran with /epp
+  - >-
+    The state comparison recorded 2,041 removed files, including 2,007 under C:\Program Files\Surfshark\, the MSI cache
+    C:\Windows\Installer\390226a.msi, OpenVPN DCO files under Program Files, System32\drivers, and DriverStore, and
+    product data under ProgramData plus the user's Local and Roaming AppData directories
+  - >-
+    Both Surfshark uninstall registrations and Surfshark Service disappeared; SharkDivert and ovpn-dco were absent from
+    the post-uninstall driver inventory, oem9.inf was absent from the post-uninstall PnP inventory, and the disconnected
+    OpenVPN Data Channel Offload for Surfshark adapter plus its five local routes and two DNS rows were removed
+  - >-
+    tapctl.exe deleted the OpenVPN Data Channel Offload for Surfshark adapter, sc.exe deleted Surfshark Service and
+    SharkDivert, and an MSI custom action invoked certutil.exe -delstore "Root" "Surfshark Root CA"
+  - >-
+    The pre-reboot snapshot retained the broken HKCU\Software\Microsoft\Windows\CurrentVersion\Run\Surfshark value
+    targeting the removed Surfshark.exe, HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\Surfshark Service,
+    and the pending HKLM\SYSTEM\CurrentControlSet\Services\ovpn-dco tree even though its device and files were gone
+  - >-
+    Residual files included NetFramework BreadcrumbStore entries named netcore,Surfshark*, installation logs
+    antivirusSetup.log, appSetup.log, vpnSetup.log, and MSIDB2E.LOG, uninstall logs MSI67ad6.LOG and
+    SurfsharkAntivirusUninstaller.log, plus C:\Windows\Temp\sharkdivert-2026-07-22.nwl
+  - >-
+    Previously observed Surfshark BAM and AppCompat execution-history values also remained cleanup targets; no Surfshark
+    process, installed application, service, network adapter, or PnP driver package remained in the pre-reboot snapshot
+- Type: Endpoint
+  Description: Detect Surfshark VPN installation, execution, and network tunnel creation
+  Indicators:
+  - Process execution /Applications/Surfshark.app/Contents/MacOS/Surfshark
+  - Network extension installation with bundle ID com.surfshark.vpnclient.macos.direct
+  - Creation of utun interfaces (utun0-utun3) associated with Surfshark process
+  - Group container creation at ~/Library/Group Containers/YHUG37CKN8.com.surfshark.vpn.direct/
+  - Realm database files (surfshark.app.realm, surfshark.antivirus.realm)
+  - Code signature verification - Team ID YHUG37CKN8, Bundle ID com.surfshark.vpnclient.macos.direct
+- Type: Network
+  Description: Network-based detection of Surfshark VPN connections
+  Indicators:
+  - UDP connections to port 443 (capture-specific CDN destination)
+  - DNS queries for surfshark.com, api.surfshark.com, surfshark.page.link
+  - UDP traffic to port 51820 (WireGuard)
+  - TCP traffic to port 443 with surfshark domains
+  - Active connections to Firebase infrastructure (surfshark-31327.appspot.com)
+  - Traffic through utun interfaces on macOS
+- Type: Forensic
+  Description: File system and configuration artifacts from Surfshark installation
+  Indicators:
+  - Application bundle at /Applications/Surfshark.app (87MB executable, universal binary)
+  - Database files in ~/Library/Group Containers/YHUG37CKN8.com.surfshark.vpn.direct/database/
+  - HTTP storage at ~/Library/HTTPStorages/com.surfshark.vpnclient.macos.direct/
+  - Cache directory ~/Library/Caches/com.surfshark.vpnclient.macos.direct/
+  - Firebase configuration file GoogleService-Info.plist with project ID surfshark-31327
+  - Sentry and Sparkle frameworks in application bundle
+  - Client certificates (client.p12, client-test.p12, cacert.crt) in Resources
+  - Finder Extension plugin presence
+References:
+  Official:
+  - https://surfshark.com/
+  - https://support.surfshark.com/
+  ThreatIntelligence:
+  - https://www.pcmag.com/news/surfshark-vpn-audit-finds-no-data-leaks
+  Research:
+  - https://surfshark.com/blog/surfshark-security-audit-2023
+  - https://www.tomsguide.com/reviews/surfshark-vpn
+KnownVulnerabilities: []
+LastModified: '2026-09-01'

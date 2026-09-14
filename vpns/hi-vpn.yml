@@ -1,0 +1,27 @@
+Name: Hi Vpn
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains: []
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://hi-vpn.com/
+  ThreatIntelligence:
+  - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+  - https://vpnpro.com/vpn-reviews/hi-vpn-review/
+LastModified: '2026-07-16'

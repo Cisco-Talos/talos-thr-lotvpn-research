@@ -1,0 +1,231 @@
+Name: Hola Vpn
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - hola.exe
+        - Hola-Setup-x64-1.255.468.exe
+        - hola_setup.exe
+        - hola_svc.exe
+    - Platform: macOS
+      Name:
+        - HolaVPN2E
+  ApplicationInfo:
+    - Platform: Windows
+      AppName: Hola VPN
+      ExecutableName: hola.exe
+      Version: 1.255.468
+      Publisher: Hola VPN Ltd.
+      InstallLocation: C:\Program Files\Hola
+      AdditionalComponents:
+        - Hola VPN Service
+        - Brightdata Service (win_hola.org)
+        - Hola VPN Split Tunnel Service
+    - Platform: macOS
+      AppName: HolaVPN2E.app
+      BundleIdentifier: org.hola.hola2e
+      ExecutableName: HolaVPN2E
+      Version: 3.8
+      BuildVersion: 1.252.853
+      InstallLocation: /Applications/HolaVPN2E.app
+  ServiceNames:
+    - Platform: Windows
+      Name:
+        - hola_svc
+        - hola_split_tunnel
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - net_updater64.exe
+        - test_wpf.exe
+        - rasdial.exe
+      Services:
+        - luminati_net_updater_win_hola_org
+      Attribution: >-
+        Require a Hola or Bright Data path, service registration,
+        product-specific argument, or direct Hola process ancestry.
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Hola\
+        - '%PROGRAMDATA%\BrightData\*\'
+        - '%LOCALAPPDATA%\Temp\Hola-Setup-x64-1.255.468.exe'
+        - '%LOCALAPPDATA%\Temp\hola_setup.log'
+        - '%LOCALAPPDATA%\Temp\hola_cleanup.bat'
+        - '%LOCALAPPDATA%\CrashDumps\hola.exe.*.dmp'
+        - '%PROGRAMDATA%\Microsoft\Windows\WER\ReportArchive\AppCrash_hola.exe_*\'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Hola\app\brd_config.json
+        - C:\Program Files\Hola\db\hola.conf
+        - C:\Program Files\Hola\db\hola.ndconf
+        - C:\Program Files\Hola\db\svc.cid
+        - C:\Program Files\Hola\db\svc.ver
+        - '%PROGRAMDATA%\BrightData\*\db\conf.json'
+        - '%LOCALAPPDATA%\hola'
+        - '%APPDATA%\hola'
+    - Platform: macOS
+      Path:
+        - ~/Library/Application Support/Hola2E
+        - ~/Library/Application Support/org.hola.hola2e
+  RegistryPersistence:
+    - HKLM\SOFTWARE\Hola
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\hola
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Hola
+    - HKLM\SYSTEM\CurrentControlSet\Services\hola_svc
+    - HKLM\SYSTEM\CurrentControlSet\Services\hola_split_tunnel
+    - HKLM\SYSTEM\CurrentControlSet\Services\luminati_net_updater_win_hola_org
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\Hola\log\install.log
+        - C:\Program Files\Hola\log\svc.log
+        - C:\Program Files\Hola\log\ui.log
+        - C:\Program Files\Hola\log\*_ui_crash.log
+        - C:\Program Files\Hola\log\*_ui_crash.set
+        - '%PROGRAMDATA%\BrightData\*\*.jslog'
+        - '%PROGRAMDATA%\BrightData\*\brd_sdk_service.log'
+        - '%PROGRAMDATA%\BrightData\*\net_install.log'
+        - '%PROGRAMDATA%\BrightData\*\net_updater.log'
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - --auto-start
+        - --install
+        - --install --remote --silent
+        - --monitor <parent-pid>
+        - >-
+          --silent --agree --force-appid win_hola.sdk.hola.org --app vpn
+          --no-run-uis --no-rmt-conf --no-updater --no-hola-cr
+        - --install win_hola.org --dlg-app-name HolaVPN --set-uuid <host-specific-id>
+        - --updater win_hola.org
+        - --uuid
+        - --service
+        - --remove-hola --no-rmt-conf --app vpn
+        - --uninstall win_hola.org
+        - cmd.exe /C "%LOCALAPPDATA%\Temp\hola_cleanup.bat"
+        - choice /c y /d y /n /t 1
+        - --single-argument https://hola.org/vpn_uninstall
+    - Platform: macOS
+      Args: []
+  CodeSigning:
+    - Platform: Windows
+      Publisher: HOLA VPN LTD
+    - Platform: Windows Bright Data components
+      Publisher: Bright Data Ltd
+  NetworkArtifacts:
+    Domains:
+      - hola.org
+      - client.hola.org
+      - perr.hola.org
+      - proxyjs.hola.org
+      - http-test1.hola.org
+      - hola-rmt-update.b-cdn.net
+      - cdn-cloud.b-cdn.net
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - Peer-to-peer proxy network
+  Ports:
+    - TCP 80
+    - TCP 443
+    - TCP 7010
+    - UDP 53
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors:
+  - Name: Various cybercriminals
+    Reference: https://www.csoonline.com/article/2976009/hola-vpn-users-expose-themselves-to-serious-risks.html
+UseCases:
+  - Title: Peer-to-peer exit node abuse
+    Description: Hola VPN uses a peer-to-peer model where users become exit nodes for
+      other users' traffic. This has been exploited by attackers who route malicious
+      traffic through unwitting Hola users, making victims appear as the source of attacks.
+    Date: 2015-05-28
+    Source: https://adios-hola.org/
+  - Title: Current peer-to-peer exit-node exposure
+    Description: Hola's current free desktop terms still describe routing requests through
+      other users and routing other users' traffic through the peer. Free users may therefore
+      serve as exit nodes for traffic from other users; Premium users can opt out of contributing
+      resources.
+    Date: 2026-04-14
+    Source: https://hola.org/legal/privacy
+  - Title: Recent Hola-related abuse reporting
+    Description: Darktrace reported Hola-related activity preceding suspicious executable
+      downloads in multiple customer environments in February and March 2026. This is reported
+      association rather than proof that Hola caused each incident.
+    Date: 2026-06-15
+    Source: https://www.darktrace.com/blog/hola-vpn-abuse-from-proxy-traffic-to-malware-and-cryptomining
+  - Title: Botnet-like infrastructure
+    Description: The Luminati service (operated by Hola's parent company) was discovered
+      selling access to Hola users as exit nodes, effectively turning the user base
+      into a botnet-like infrastructure for bandwidth resale.
+    Date: 2015-05-28
+    Source: https://blog.8086consultancy.com/hola-vpn/
+Detection:
+  - Type: Endpoint
+    Description: >-
+      Identify Hola VPN-attributed install and uninstall behavior. Bright Data,
+      Windows, and cleanup utilities are supporting evidence only when a Hola
+      service, path, argument, or direct process relationship supplies context.
+    Indicators:
+      - hola.exe stages the signed Hola installer with product-specific silent VPN arguments
+      - >-
+        The installer registers and starts hola_svc and the Bright Data updater service and registers the
+        stopped hola_split_tunnel driver
+      - HKLM Run persistence starts hola.exe with --auto-start
+      - >-
+        No authentication or VPN-tunnel process is attributed
+      - >-
+        Normal uninstall runs the Hola and Bright Data removal commands and removes the application, services,
+        driver registration, and startup value
+  - Type: Forensic
+    Description: >-
+      Use Hola-specific registration, configuration, logs, and bounded residuals
+      rather than hashes, generic execution caches, or signing details repeated
+      from dedicated fields.
+    Indicators:
+      - >-
+        HKLM\SOFTWARE\Hola, the product uninstall registration, service registrations, and Run value establish
+        installed state
+      - >-
+        Installation creates Hola configuration and log paths under the application directory and Bright Data
+        state and logs under ProgramData
+      - >-
+        Bright Data state is attributed only when a Hola-specific update or
+        service relationship is present
+      - >-
+        Normal uninstall leaves external crash dumps, WER reports, and the staged installer while removing
+        active Hola and Bright Data state
+      - >-
+        No product process, service, driver service, adapter, task, route, DNS change, or firewall change
+        remains active after uninstall
+  - Type: Network
+    Description: >-
+      Retain Hola-attributed domains and process roles while excluding generic
+      connectivity checks, numeric endpoints, and browser background traffic.
+    Indicators:
+      - >-
+        Hola installer and service processes query hola.org, client.hola.org, perr.hola.org, and the Hola
+        update CDN and connect over HTTP or HTTPS
+      - hola_svc.exe uses proxyjs.hola.org and http-test1.hola.org for product service activity
+      - The Bright Data updater uses cdn-cloud.b-cdn.net over HTTPS
+      - The automatic uninstall feedback page is bounded uninstall activity rather than VPN traffic
+      - >-
+        No authentication, virtual adapter, persistent route, DNS-server change, firewall rule, or VPN tunnel
+        is observed
+References:
+  Official:
+    - https://hola.org/
+    - https://hola.org/faq
+    - https://hola.org/legal/privacy
+  ThreatIntelligence:
+    - https://www.csoonline.com/article/2976009/hola-vpn-users-expose-themselves-to-serious-risks.html
+    - https://adios-hola.org/
+    - https://www.darktrace.com/blog/hola-vpn-abuse-from-proxy-traffic-to-malware-and-cryptomining
+  Research:
+    - https://www.researchgate.net/publication/320954717_A_glance_through_the_VPN_looking_glass_IPv6_leakage_and_DNS_hijacking_in_commercial_VPN_clients
+    - https://blog.8086consultancy.com/hola-vpn/
+LastModified: 2026-07-27

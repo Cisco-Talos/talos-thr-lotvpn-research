@@ -1,0 +1,286 @@
+Name: Expressvpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - ExpressVPN.AppService.exe
+    - ExpressVPN.SystemService.exe
+    - ExpressVPN.VpnService.exe
+    - ExpressVPN.exe
+    - ExpressVPN_12.104.0.128.exe
+    - ExpressVPN.Installer.exe
+    - ExpressVPNNotificationService.exe
+    - ExpressVPNUpdater.exe
+    - expressvpndriverinstaller.exe
+    - expressvpnd.exe
+    - lightway.exe
+  - Platform: macOS
+    Name:
+    - ExpressVPN
+    - expressvpnd
+    - lightway
+    - expressvpn-browser-helper
+    - expressvpn-network-diagnostics
+    - RelaunchHelper
+    - openvpn
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: ExpressVPN
+    ExecutableName: ExpressVPN.exe
+    Version: 12.104.0.128
+    Publisher: ExpressVPN
+    InstallLocation: C:\Program Files (x86)\ExpressVPN
+    AdditionalComponents:
+    - ExpressVPN App Service
+    - ExpressVPN System Service
+    - ExpressVPN VPN Service
+    - ExpressVPN Packet Filter
+    - ExpressVPN TAP Adapter
+    - ExpressVPN TUN Driver
+    - OpenVPN Data Channel Offload for ExpressVPN
+    - ExpressVPN split-tunnel driver
+  - Platform: macOS
+    AppName: ExpressVPN.app
+    BundleIdentifier: com.expressvpn.ExpressVPN
+    ExecutableName: ExpressVPN
+    Version: 11.46.0
+    BuildVersion: 78914
+    InstallLocation: /Applications/ExpressVPN.app
+    AdditionalComponents:
+    - expressvpnd (daemon)
+    - lightway (VPN protocol)
+    - openvpn (VPN protocol)
+    - expressvpn-browser-helper
+    - expressvpn-network-diagnostics
+    - ExpressVPN IKEv2.app (nested app)
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - ExpressVPN App Service
+    - ExpressVPN System Service
+    - ExpressVPN VPN Service
+    - expressvpnsplittunnel
+    - expressvpn-pkf
+    - expressvpntun
+    - expressvpn-ovpn-dco
+    - tapexpressvpn
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - tapinstall.exe
+    Attribution: >-
+      Require an ExpressVPN path, product-specific driver argument, or direct
+      ExpressVPN installer or service ancestry.
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - C:\Program Files (x86)\ExpressVPN\
+    - '%PROGRAMDATA%\ExpressVPN\'
+    - '%PROGRAMDATA%\Package Cache\{4524edb4-42af-4443-b1e1-5b609b5803e0}\'
+    - '%PROGRAMDATA%\Package Cache\{E5B9C3E5-889C-4F22-A959-F4B89C4D78B1}v12.104.0.128\'
+    - '%WINDIR%\Temp\{*}\.cr\expressvpn.exe'
+    - '%WINDIR%\Temp\{*}\.be\ExpressVPN_12.104.0.128.exe'
+    - '%SYSTEMROOT%\SysWOW64\config\systemprofile\AppData\Local\Temp\ExpressVPN\SetupTools\'
+    - '%SYSTEMROOT%\System32\drivers\expressvpn-pkf.sys'
+    - '%SYSTEMROOT%\System32\drivers\expressvpn-tun.sys'
+    - '%SYSTEMROOT%\System32\drivers\expressvpn-ovpn-dco.sys'
+    - '%SYSTEMROOT%\System32\drivers\tapexpressvpn.sys'
+    - '%SYSTEMROOT%\System32\DriverStore\FileRepository\expressvpn-pkf.inf_amd64_*\'
+    - '%SYSTEMROOT%\System32\DriverStore\FileRepository\expressvpn-tun.inf_amd64_*\'
+    - '%SYSTEMROOT%\System32\DriverStore\FileRepository\expressvpn-ovpn-dco.inf_amd64_*\'
+    - '%SYSTEMROOT%\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\'
+    - '%PUBLIC%\Desktop\ExpressVPN.lnk'
+    - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\ExpressVPN.lnk'
+    - '%LOCALAPPDATA%\ExpressVPN\ExpressVPN.exe_Url_*\12.104.0.128\'
+    - '%LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\C1A51EA5-665E-CAC3-4426-32D306A827AF\'
+    - '%LOCALAPPDATA%\Temp\DEL*.tmp'
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - C:\Program Files (x86)\ExpressVPN\services\ExpressVpn.AppService.settings.json
+    - C:\Program Files (x86)\ExpressVPN\services\ExpressVPN.BrowserHelper.settings.json
+    - C:\Program Files (x86)\ExpressVPN\services\ExpressVPN.Installer.settings.json
+    - C:\Program Files (x86)\ExpressVPN\services\ExpressVPN.SystemService.settings.json
+    - C:\Program Files (x86)\ExpressVPN\services\ExpressVPN.VpnService.settings.json
+    - '%PROGRAMDATA%\ExpressVPN\Config\data-key.bin'
+    - '%PROGRAMDATA%\ExpressVPN\Config\*.bin'
+    - '%PROGRAMDATA%\ExpressVPN\Config\RecentLocations'
+    - '%PROGRAMDATA%\ExpressVPN\Parameters\Parameters.json'
+    - '%PROGRAMDATA%\ExpressVPN\Ports\ExpressVPN.*Service.port.json'
+    - '%PROGRAMDATA%\ExpressVPN\Sentry\*\Sentry\*\'
+    - C:\Program Files (x86)\ExpressVPN\services\com.expressvpn.helper.json
+    - C:\Program Files (x86)\ExpressVPN\services\com.expressvpn.helper.firefox.json
+    - C:\Program Files (x86)\ExpressVPN\tap\driver\OemVista.inf
+    - C:\Program Files (x86)\ExpressVPN\wintun\driver\expressvpn-tun.inf
+    - C:\Program Files (x86)\ExpressVPN\dco\driver\win11\expressvpn-ovpn-dco.inf
+    - C:\Program Files (x86)\ExpressVPN\pkf\driver\expressvpn-pkf.inf
+    - '%LOCALAPPDATA%\ExpressVPN\ExpressVPN.exe_Url_*\12.104.0.128\user.config'
+    - '%LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\C1A51EA5-665E-CAC3-4426-32D306A827AF\Icon.png'
+    - '%LOCALAPPDATA%\ExpressVPN\*\settings.json'
+    - C:\Program Files (x86)\ExpressVPN\services\config
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/com.expressvpn.ExpressVPN
+    - ~/Library/Preferences/com.expressvpn.ExpressVPN.plist
+    - /Library/Application Support/com.expressvpn.ExpressVPN
+    - /Library/LaunchDaemons/com.expressvpn.expressvpnd.plist
+  - Platform: Linux
+    Path:
+    - /etc/expressvpn
+    - ~/.xvpn
+  RegistryPersistence:
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\ExpressVPNNotificationService
+  - HKLM\SYSTEM\CurrentControlSet\Services\ExpressVPN App Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\ExpressVPN System Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\ExpressVPN VPN Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\expressvpnsplittunnel
+  - HKLM\SYSTEM\CurrentControlSet\Services\expressvpn-pkf
+  - HKLM\SYSTEM\CurrentControlSet\Services\expressvpntun
+  - HKLM\SYSTEM\CurrentControlSet\Services\expressvpn-ovpn-dco
+  - HKLM\SYSTEM\CurrentControlSet\Services\tapexpressvpn
+  - HKCR\expressvpn
+  - HKLM\SOFTWARE\WOW6432Node\Google\Chrome\NativeMessagingHosts\com.expressvpn.helper
+  - HKLM\SOFTWARE\WOW6432Node\Mozilla\NativeMessagingHosts\com.expressvpn.helper
+  - HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\ExpressVPN.AppService.exe
+  - HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\ExpressVPN.SystemService.exe
+  - HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\ExpressVPN.VpnService.exe
+  - HKLM\SOFTWARE\ExpressVPN
+  - HKLM\SOFTWARE\WOW6432Node\ExpressVPN
+  - HKCU\SOFTWARE\ExpressVPN
+  - HKCU\SOFTWARE\Classes\AppUserModelId\{7C5A40EF-A0FB-4BFC-874A-C0F2E0B9FA8E}/ExpressVPN/expressvpn-ui/ExpressVPNNotificationService.exe
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{4524edb4-42af-4443-b1e1-5b609b5803e0}
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\{E5B9C3E5-889C-4F22-A959-F4B89C4D78B1}
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\Temp\ExpressVPN_*.log'
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - --use-dpapi --use-wintun -c "<path>"
+    - --workdir <path> --client-version <version> --client-build <version> --appupdate-channel
+      <channel> start
+    - --workdir <path> --client-version <version> --client-build <version> --verbose
+      start
+    - --workdir <path> --client-version <version> --client-build <version> start
+    - --workdir <path> --client-version <version> --generation128=<num> --generation256=<num>
+      --client-build <build> start
+    - <path><path><path> -server="<url>"
+    - <path><path><path> -server="<url>"<path>
+    - '-burn.clean.room="<installer>" -burn.filehandle.attached=<handle> -burn.filehandle.self=<handle>'
+    - '-q -burn.elevated BurnPipe.<guid> <guid> <pid>'
+    - /install /quiet /norestart
+    - /uninstall
+    - /uninstall /quiet
+    - --version
+    - disconnect
+    - 'install "<ExpressVPN path>\tap\driver\OemVista.inf" tapexpressvpn'
+    - 'install "<ExpressVPN path>\wintun\driver\expressvpn-tun.inf" expressvpntun'
+    - 'install "<ExpressVPN path>\dco\driver\win11\expressvpn-ovpn-dco.inf" expressvpn-ovpn-dco'
+    - remove
+    - 'install "<ExpressVPN path>\splittunnel\driver\expressvpnsplittunnel.sys"'
+    - '-v -l "<ExpressVPN path>\pkf\driver\expressvpn-pkf.inf" -c s -i "expressvpn-pkf"'
+    - 'interface ipv4 set subinterface "<ExpressVPN adapter>" mtu=1500'
+    - 'remove expressvpntun'
+    - 'remove tapexpressvpn'
+    - 'remove expressvpn-ovpn-dco'
+    - '-v -u "expressvpn-pkf"'
+  - Platform: macOS
+    Args:
+    - -c<path>
+  CodeSigning:
+  - Platform: Windows
+    Publisher: Expressco Services LLC
+  - Platform: Windows drivers
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+  NetworkArtifacts:
+    Domains:
+    - expressvpn.com
+    - api.expressvpn.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - Lightway (proprietary)
+  - OpenVPN
+  - IKEv2
+  - L2TP/IPsec
+  Ports:
+  - UDP 1194-1204 (OpenVPN)
+  - TCP 443
+  - TCP 80
+  - TCP 2020 (loopback GUI-to-service IPC)
+  - TCP 2021 (loopback service IPC)
+  - TCP 2022 (loopback service IPC)
+  - UDP 53 (DNS)
+  - UDP 500 (IKEv2)
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+  - wolfSSL (Lightway)
+ThreatActors: []
+UseCases: []
+Detection:
+- Type: Endpoint
+  Description: >-
+    Identify ExpressVPN-attributed installation, first launch, activation, and
+    uninstall relationships. Generic installers and Windows utilities require a
+    product path, product-specific driver or service argument, or direct
+    ExpressVPN process ancestry.
+  Indicators:
+  - >-
+    The WiX Burn bootstrapper starts ExpressVPN prerequisite and MSI chains; installation yields three
+    running automatic ExpressVPN services
+  - >-
+    Product driver installers create the ExpressVPN TAP, TUN, DCO, packet-filter, and split-tunnel components
+    using product-specific names and paths
+  - >-
+    Manual first launch starts ExpressVPN.exe and ExpressVPNNotificationService.exe, which connect to
+    ExpressVPN App Service over loopback IPC
+  - >-
+    During an unsuccessful activation attempt, ExpressVPN.exe exchanges loopback IPC while App Service performs
+    DNS and one external HTTPS connection; activation is rejected and no tunnel state appears
+  - Normal uninstall runs the cached bundle, updater, CLI disconnect, and product driver-removal chain
+- Type: Forensic
+  Description: >-
+    Use durable registrations, product state, and residual packages instead of
+    hashes, shortcuts, signatures duplicated from dedicated fields, or
+    host-assigned package names.
+  Indicators:
+  - >-
+    The three automatic services, ExpressVPN Run value, URL protocol, native-messaging hosts, and two
+    uninstall registrations establish installed state
+  - First launch creates versioned per-user configuration and notification registration
+  - >-
+    The unsuccessful activation updates RecentLocations, Parameters.json, binary configuration state, and
+    per-user configuration; sensitive configuration contents are excluded from the profile
+  - >-
+    Normal uninstall removes product registrations, services, driver services, adapters, application state,
+    and shortcuts
+  - >-
+    ExpressVPN driver binaries and DriverStore packages, the per-user toast icon, and temporary install/uninstall
+    logs remain after uninstall
+- Type: Network
+  Description: >-
+    Focus on ExpressVPN service relationships and network-stack transitions.
+    Generic prerequisite, certificate-validation, telemetry-platform, Windows
+    connectivity-check, resolver, and numeric endpoint observations are
+    intentionally excluded.
+  Indicators:
+  - Installation creates three disconnected ExpressVPN virtual adapters and an NDIS packet filter
+  - ExpressVPN App Service uses loopback IPC with the GUI, notification process, System Service, and VPN Service
+  - >-
+    During the unsuccessful activation attempt, App Service performs DNS and one external HTTPS connection while
+    the GUI process exchanges only loopback traffic
+  - No successful activation or VPN tunnel is observed
+  - Uninstall removes the three adapters and their local routes and DNS state without changing firewall rules
+References:
+  Official:
+  - https://www.expressvpn.com/
+  - https://www.expressvpn.com/support/
+  ThreatIntelligence:
+  - https://www.reuters.com/technology/expressvpn-distances-itself-executive-who-worked-project-raven-2021-09-21/
+  - https://therecord.media/expressvpn-removes-indian-servers-before-new-data-law
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/expressvpn-review/
+LastModified: 2026-07-27

@@ -1,0 +1,42 @@
+---
+name: YAML Lint
+
+on:
+  push:
+    branches: ['**']
+    paths:
+      - '**.yml'
+      - '**.yaml'
+      - '.yamllint'
+      - '.github/workflows/yamllint.yml'
+  pull_request:
+    paths:
+      - '**.yml'
+      - '**.yaml'
+
+jobs:
+  yamllint:
+    name: YAML Lint Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install yamllint
+        run: pip install yamllint==1.35.1
+
+      - name: Lint template
+        run: yamllint template.yml
+
+      - name: Lint VPN files
+        run: yamllint vpns/
+
+      - name: Summary
+        if: always()
+        run: echo "✅ YAML linting completed"

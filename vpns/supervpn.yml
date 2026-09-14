@@ -1,0 +1,31 @@
+Name: Supervpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: macOS
+    Name:
+    - ng.supervpnfree
+  ConfigFiles:
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains: []
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.superjrzhang.com/
+  ThreatIntelligence:
+  - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/supervpn-review/
+  - https://vpnpro.com/vpn-reviews/super-vpn-review/
+LastModified: '2026-07-16'

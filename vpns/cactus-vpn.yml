@@ -1,0 +1,170 @@
+Name: Cactus Vpn
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - cactusvpn.exe
+        - cactus-vpn.exe
+    - Platform: macOS
+      Name:
+        - cactusvpn.app
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - tapinstall.exe
+        - route.exe
+        - uninstall.exe
+        - un_*.exe
+      Drivers:
+        - tap0901
+      Attribution: >-
+        Require a CactusVPN path, product-specific command line, driver
+        registration, or direct CactusVPN process ancestry.
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\CactusVPN\
+        - '%LOCALAPPDATA%\CactusVPN\'
+        - '%LOCALAPPDATA%\Microsoft\AppCenter\*\'
+        - '%SYSTEMROOT%\System32\drivers\tap0901.sys'
+        - '%SYSTEMROOT%\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\'
+        - '%TEMP%\~nsu*.tmp\Un_*.exe'
+        - '%TEMP%\nss*.tmp\nsProcess.dll'
+        - '%USERPROFILE%\Desktop\CactusVPN.lnk'
+        - '%APPDATA%\Microsoft\Windows\Start Menu\Programs\CactusVPN\'
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\CactusVPN\CactusVPN.exe.config
+        - C:\Program Files\CactusVPN\Driver\OemVista.inf
+        - C:\Program Files\CactusVPN\Driver\version.txt
+        - C:\Program Files\CactusVPN\NicNativeSettings.xml
+        - C:\Program Files\CactusVPN\NotificationsHistory.xml
+        - C:\Program Files\CactusVPN\openvpn\config\obfs4.json
+        - '%LOCALAPPDATA%\CactusVPN\AppKillerList.txt'
+        - '%LOCALAPPDATA%\CactusVPN\CactusVPN.exe_Url_*\AppCenter.config'
+        - '%PROGRAMDATA%\Microsoft\Network\Connections\Pbk\rasphone.pbk'
+        - '%APPDATA%\CactusVPN'
+        - '%LOCALAPPDATA%\CactusVPN\*.ovpn'
+    - Platform: macOS
+      Path:
+        - ~/Library/Application Support/com.cactusllc.CactusVPN
+  RegistryPersistence:
+    - HKLM\SOFTWARE\CactusVPN
+    - HKLM\SOFTWARE\Microsoft\Tracing\CactusVPN_RASAPI32
+    - HKLM\SOFTWARE\Microsoft\Tracing\CactusVPN_RASMANCS
+    - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\CactusVPN
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\CactusVPN\Logs\6.9.1.51\Install_v6.9.1.51.log
+        - C:\Program Files\CactusVPN\Logs\6.9.1.51\*_General.log
+        - C:\Program Files\CactusVPN\Logs\6.9.1.51\*_Network.log
+        - C:\Program Files\CactusVPN\Logs\6.9.1.51\*_Update.log
+        - '%LOCALAPPDATA%\Microsoft\AppCenter\*\Logs.db'
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - 'cactus-vpn.exe -> tapinstall.exe remove TAP'
+        - 'cactus-vpn.exe -> tapinstall.exe remove TAPDEV'
+        - 'cactus-vpn.exe -> tapinstall.exe hwids tap0901'
+        - 'cactus-vpn.exe -> tapinstall.exe install "<CactusVPN path>\Driver\OemVista.inf" tap0901'
+        - 'Un_*.exe -> tapinstall.exe remove tap0901'
+        - 'Un_*.exe -> CactusVPN.exe WINMESS_CLOSEGUI'
+        - 'Un_*.exe -> schtasks.exe /Delete /TN "CactusVPN Run on Logon" /F'
+        - 'CactusVPN.exe -> route.exe add <resolved IP> mask 255.255.255.255 <default gateway>'
+        - 'CactusVPN.exe -> route.exe delete <resolved IP>'
+  CodeSigning:
+    - Platform: Windows
+      Publisher: CactusVPN inc.
+    - Platform: Windows TAP installer
+      Publisher: OpenVPN Technologies, Inc.
+    - Platform: Windows TAP driver
+      Publisher: Microsoft Windows Hardware Compatibility Publisher
+    - Platform: Windows WireGuard library
+      Publisher: WireGuard LLC
+  NetworkArtifacts:
+    Domains:
+      - cactusvpn.com
+      - api1.cactusdb.net
+      - update.cactusdb.net
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - OpenVPN
+    - WireGuard
+    - obfs4
+    - L2TP/IPsec
+    - SSTP
+    - SoftEther
+  Ports:
+    - TCP 80
+    - TCP 443
+    - UDP 1194
+  TLSFingerprint: []
+  EncryptionStandards:
+    - AES-256
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Endpoint
+    Description: >-
+      Identify CactusVPN-attributed install, launch, login, and uninstall
+      behavior. Supporting utilities and LOLBins are included only when direct
+      process ancestry or a product-specific path, service, or argument
+      establishes attribution; their generic execution is not an indicator.
+    Indicators:
+      - >-
+        cactus-vpn.exe launches tapinstall.exe against the bundled OemVista.inf to remove prior TAP devices
+        and install tap0901
+      - >-
+        CactusVPN.exe uses route.exe for transient host routes, which is meaningful only with CactusVPN
+        ancestry and related product traffic
+      - >-
+        The unsuccessful login leaves CactusVPN.exe running; closing the window retains it in the notification
+        area until explicit Exit
+      - Uninstall.exe launches the staged %TEMP%\~nsu*.tmp\Un_*.exe
+      - >-
+        The staged Un_*.exe invokes CactusVPN.exe WINMESS_CLOSEGUI and tapinstall.exe remove tap0901, then
+        runs schtasks.exe to attempt deletion of the CactusVPN Run on Logon task
+  - Type: Forensic
+    Description: >-
+      Use product configuration, logs, persistence, and uninstall residuals as
+      durable evidence. Generic execution caches, shortcuts, hashes, and signing
+      details already represented elsewhere are excluded from this strategy.
+    Indicators:
+      - Installation creates HKLM\SOFTWARE\CactusVPN, the tap0901 registration, and the product uninstall registration
+      - >-
+        First launch creates versioned General, Network, and Update logs plus CactusVPN and App Center
+        configuration state
+      - First launch creates the machine RAS phonebook and CactusVPN_RASAPI32 and CactusVPN_RASMANCS tracing keys
+      - >-
+        The unsuccessful login is recorded by changes to the active General and Network logs without a new
+        file or CactusVPN registry mutation
+      - >-
+        Normal uninstall removes the application and adapter but leaves the stopped tap0901 driver, its
+        package, per-user state, RAS phonebook, and staged uninstaller files
+  - Type: Network
+    Description: >-
+      Focus on product domains and phase-specific network changes. Microsoft,
+      certificate-validation, telemetry-platform, numeric endpoint, and generic
+      connectivity-check observations are excluded as non-product-specific or
+      unstable indicators.
+    Indicators:
+      - First launch resolves api1.cactusdb.net and update.cactusdb.net and connects over HTTPS and HTTP
+      - The unsuccessful login adds one CactusVPN.exe HTTPS connection but does not authenticate
+      - >-
+        Installation and first launch create no persistent route, DNS, or firewall change beyond the
+        disconnected TAP adapter state
+      - No OpenVPN, WireGuard, or obfs4 process executes and no VPN tunnel traffic is observed
+      - Normal uninstall removes the TAP adapter while leaving the stopped tap0901 driver installed
+References:
+  Official:
+    - https://www.cactusvpn.com/
+    - https://www.cactusvpn.com/support/
+  Research:
+    - https://www.vpnmentor.com/reviews/cactusvpn/
+    - https://www.techradar.com/reviews/cactusvpn
+LastModified: 2026-07-27

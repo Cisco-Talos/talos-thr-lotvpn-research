@@ -1,0 +1,523 @@
+Name: Tailscale Vpn
+VendorInfo:
+  Company: Tailscale Inc.
+  Website: https://tailscale.com/
+  Jurisdiction: United States
+  BusinessModel: Freemium/Paid
+  OpenSource: true
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - tailscale-ipn.exe
+    - tailscaled.exe
+  - Platform: macOS
+    Name:
+    - Tailscale
+  - Platform: Linux
+    Name:
+    - tailscaled
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - Tailscale
+  - Platform: macOS
+    Name:
+    - No persistent launch agents/daemons detected (runs on-demand)
+  - Platform: Linux
+    Name:
+    - tailscaled.service
+  SupportingComponents:
+  - Platform: Windows
+    Services:
+    - wintun
+    Drivers:
+    - wintun.sys
+    Attribution: >-
+      Require a Tailscale installation path, driver registration, or direct
+      Tailscale service ancestry; Wintun is a shared tunnel component and not
+      a standalone Tailscale identifier.
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: Tailscale
+    ExecutableName: tailscale-ipn.exe
+    Version: 1.62.1
+    Publisher: Tailscale Inc.
+    InstallLocation: C:\Program Files\Tailscale\
+    InstallerType: Windows Installer package
+    ProductCode: '{3E65DFC4-F43B-5FDB-BC13-8109F20A0F13}'
+    UninstallCommand: MsiExec.exe /X{3E65DFC4-F43B-5FDB-BC13-8109F20A0F13}
+    AdditionalComponents:
+    - Tailscale LocalSystem service with automatic startup and configured restart-on-failure actions
+    - Tailscale command-line client tailscale.exe; installed but not executed during this capture
+    - Wintun 0.14.0.0 network driver package, published as oem9.inf on the tested host
+    - Per-machine Start Menu and common Startup shortcuts for tailscale-ipn.exe
+    - >-
+      Windows tray UI; the Start Menu invocation handed off to the existing tray process and Log in opened the default
+      browser
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - C:\Program Files\Tailscale\
+    - C:\ProgramData\Tailscale\
+    - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Tailscale.lnk
+    - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup\Tailscale.lnk
+    - C:\Windows\Installer\{3E65DFC4-F43B-5FDB-BC13-8109F20A0F13}\
+    - C:\Windows\System32\drivers\wintun.sys
+    - C:\Windows\System32\DriverStore\FileRepository\wintun.inf_amd64_*\
+    - C:\Windows\Prefetch\TAILSCALE*.pf
+    - '%LOCALAPPDATA%\Tailscale\'
+  - Platform: macOS
+    Path:
+    - /Applications/Tailscale.app
+    - ~/Library/Containers/io.tailscale.ipn.macsys/
+    - ~/Library/Group Containers/W5364U7YZB.io.tailscale.ipn.macsys/
+    - /var/root/Library/Containers/io.tailscale.ipn.macsys/
+    - /var/root/Library/Group Containers/W5364U7YZB.io.tailscale.ipn.macsys/
+  - Platform: Linux
+    Path:
+    - /usr/sbin/tailscaled
+    - /usr/bin/tailscale
+    - /var/lib/tailscale/
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - C:\ProgramData\Tailscale\tailscaled.state
+    - C:\ProgramData\Tailscale\server-state.conf
+    - C:\ProgramData\Tailscale\derpmap.cached.json
+    - C:\ProgramData\Tailscale\tailscaled.log.conf
+    - '%LOCALAPPDATA%\Tailscale\gui.log.conf'
+  - Platform: macOS
+    Path:
+    - ~/Library/Group Containers/W5364U7YZB.io.tailscale.ipn.macsys
+    - ~/Library/Containers/io.tailscale.ipn.macsys
+  - Platform: Linux
+    Path:
+    - /var/lib/tailscale/tailscaled.state
+    - /etc/default/tailscaled
+  RegistryPersistence:
+  - HKCR\tailscale
+  - HKCU\Software\Tailscale IPN
+  - HKLM\SOFTWARE\Tailscale IPN
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{3E65DFC4-F43B-5FDB-BC13-8109F20A0F13}
+  - HKLM\SYSTEM\CurrentControlSet\Services\Tailscale
+  - HKLM\SYSTEM\CurrentControlSet\Services\wintun
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\wintun
+  - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\tailscale-ipn.exe
+  - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\tailscale.exe
+  - HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Image File Execution Options\tailscaled.exe
+  - HKCU\Software\Microsoft\Windows\CurrentVersion\RunNotification\StartupTNotiTailscale.lnk
+  - >-
+    HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program
+    Files\Tailscale\tailscale-ipn.exe
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program
+    Files\Tailscale\tailscale-ipn.exe
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Services\SharedAccess\Parameters\FirewallPolicy\FirewallRules\{<firewall-rule-guid>}
+  - HKCR\*\shell\tailscale
+  - HKCR\*\shell\tailscale\command
+  - HKLM\SOFTWARE\Tailscale IPN\NRPTRuleIDs
+  - HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DnsPolicyConfig\{<nrpt-rule-guid>}
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}\Descriptions\Tailscale Tunnel
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}\{<interface-guid>}\Connection
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\{<interface-guid>}
+  - >-
+    HKLM\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\Interfaces\{<interface-guid>}
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - C:\ProgramData\Tailscale\Logs\tailscale-service-*.txt
+    - C:\ProgramData\Tailscale\tailscaled.log1.txt
+    - C:\ProgramData\Tailscale\tailscaled.log2.txt
+    - '%LOCALAPPDATA%\Tailscale\gui.log1.txt'
+    - '%LOCALAPPDATA%\Tailscale\gui.log2.txt'
+  - Platform: macOS
+    Path:
+    - ~/Library/Containers/io.tailscale.ipn.macsys/Data/Library/Logs/
+  - Platform: Linux
+    Path:
+    - /var/log/tailscale/
+  BrowserExtensions: []
+  CodeSigning:
+  - Platform: Windows installer and installed Tailscale executables
+    Publisher: Tailscale Inc.
+  - Platform: Windows Wintun driver package and wintun.sys
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+  - Platform: Windows bundled wintun.dll
+    Publisher: WireGuard LLC
+  - Platform: macOS
+    Publisher: Developer ID Application Tailscale Inc. (W5364U7YZB)
+    TeamID: W5364U7YZB
+    BundleID: io.tailscale.ipn.macsys
+    CertificateAuthority: Developer ID Certification Authority -> Apple Root CA
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - 'MsiExec.exe /i "C:\vpn-installers\tailscale.msi"'
+    - '"C:\Program Files\Tailscale\tailscale-ipn.exe" /setprocessmitigations'
+    - '"C:\Program Files\Tailscale\tailscale-ipn.exe"'
+    - '"C:\Program Files\Tailscale\tailscale-ipn.exe" /url "%1" (registered protocol handler)'
+    - '"C:\Program Files\Tailscale\tailscaled.exe"'
+    - '"C:\Program Files\Tailscale\tailscaled.exe" /subproc <opaque-id>'
+    - >-
+      sc.exe failure Tailscale reset= 60 actions=
+      restart/1000/restart/2000/restart/4000/restart/9000/restart/16000/restart/25000/restart/36000/restart/49000/restart/64000
+    - >-
+      netsh.exe advfirewall firewall add rule name=Tailscale-Process dir=in action=allow edge=yes
+      "program=C:\Program Files\Tailscale\tailscaled.exe" protocol=udp profile=any enable=yes
+    - ipconfig /flushdns
+    - ipconfig /registerdns
+    - 'MsiExec.exe /X{3E65DFC4-F43B-5FDB-BC13-8109F20A0F13} (registered and executed through Windows Run)'
+    - '"C:\Program Files\Tailscale\tailscale-ipn.exe" /uninstallwintun'
+    - >-
+      "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --single-argument
+      https://login.tailscale.com/a/<opaque> (spawned by tailscale-ipn.exe; authentication path redacted)
+    - '"C:\Program Files\Tailscale\tailscale-ipn.exe" /push "%1" (file-shell handler registered after enrollment)'
+    - >-
+      netsh.exe advfirewall firewall add rule name=Tailscale-In dir=in action=allow
+      localip=<assigned-Tailscale-IPv4>/32 profile=private enable=yes
+    - >-
+      netsh.exe advfirewall firewall add rule name=Tailscale-In dir=in action=allow
+      localip=<assigned-Tailscale-IPv6>/128 profile=private enable=yes
+  - Platform: macOS
+    Args:
+    - /Applications/Tailscale.app/Contents/MacOS/Tailscale
+  NetworkArtifacts:
+    Domains:
+    - tailscale.com
+    - controlplane.tailscale.com
+    - login.tailscale.com (browser authentication and device-enrollment workflow)
+    - lb.fra.tailscale.com (regional web-login backend observed during successful authentication)
+    - derp*.tailscale.com (DERP-region STUN endpoints contacted after device enrollment)
+    - log.tailscale.io (automatic service and GUI telemetry)
+    - pkgs.tailscale.com (automatic GUI package/update check)
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - WireGuard
+  - DNS (automatic service and GUI endpoint lookups)
+  - HTTPS (automatic service telemetry, GUI package/update traffic, and browser authentication activity)
+  - HTTP (installer certificate-status traffic)
+  Ports:
+  - UDP 41641 (default STUN)
+  - UDP 3478 (STUN)
+  - UDP 1900 (local SSDP gateway discovery observed after connection)
+  - UDP 5351 (local NAT-PMP/PCP gateway discovery observed after connection)
+  - TCP 443 (observed automatic service and GUI traffic)
+  - TCP 80 (observed installer certificate-status traffic)
+  TunnelInterfaces:
+  - Tailscale (Windows Wintun adapter, interface description Tailscale Tunnel)
+  - utun0, utun1, utun2, utun3 (macOS)
+  TLSFingerprint: []
+  EncryptionStandards:
+  - ChaCha20-Poly1305
+  - Curve25519
+  NetworkExtensions:
+  - packet-tunnel-provider-systemextension (macOS)
+ThreatActors: []
+UseCases: []
+ThirdPartyIntegrations:
+  AutoUpdates:
+  - Sparkle Framework
+  AnalyticsFrameworks:
+  - None detected (no Firebase, Google Analytics, or telemetry frameworks)
+ApplicationVersion:
+  macOSLatestObserved: 1.62.1 (Build 101.62.1)
+  MinimumOSVersion: macOS 10.15
+  Architecture: Universal Binary (x86_64 + ARM64)
+  URLSchemes:
+  - tailscale
+  AssociatedDomains:
+  - applinks:tailscale.com
+  Entitlements:
+  - com.apple.developer.networking.networkextension (packet-tunnel-provider-systemextension)
+  - com.apple.developer.system-extension.install
+  - com.apple.developer.associated-domains
+  - com.apple.security.application-groups (W5364U7YZB.io.tailscale.ipn.macsys.AppGroup)
+  - com.apple.security.app-sandbox (ENABLED)
+  - com.apple.security.files.user-selected.read-only
+  - com.apple.security.network.client
+  - com.apple.security.network.server
+  - com.apple.security.files.bookmarks.app-scope
+  - com.apple.security.files.user-selected.read-write (~/.kube/ for Kubernetes integration)
+  - keychain-access-groups (W5364U7YZB.io.tailscale.ipn.macsys)
+  PluginsExtensions:
+  - Name: ShareExtension-macsys.appex
+    Type: Share Extension
+    BundleSize: ~1.5 MB
+    Purpose: Share functionality integration
+  SystemExtensions:
+  - Path: /Applications/Tailscale.app/Contents/Library/SystemExtensions/
+    Purpose: Network extension for VPN tunnel
+  LoginItems:
+  - Path: /Applications/Tailscale.app/Contents/Library/LoginItems/
+    Purpose: Launch at login functionality
+Localization:
+  SupportedLanguages:
+  - English (en)
+Detection:
+- Type: Forensic
+  Description: >-
+    Detect normal interactive installation of Tailscale 1.62.1 on Windows 11. The signed MSI installed the client,
+    registered an automatically started LocalSystem service and common Startup shortcut, provisioned a Wintun tunnel
+    adapter, and launched the tray GUI automatically. The automatic GUI displayed a transient authentication-required
+    notification; no authentication or VPN connection was attempted.
+  Indicators:
+  - >-
+    The Tailscale MSI package was launched by Explorer through msiexec.exe
+    /i
+  - >-
+    MsiInstaller event IDs 11707 and 1033 recorded successful Tailscale 1.62.1 installation by Tailscale Inc.; MSI
+    product {3E65DFC4-F43B-5FDB-BC13-8109F20A0F13} registered MsiExec.exe /X as its uninstall command
+  - >-
+    The installer created C:\Program Files\Tailscale\ with tailscale-ipn.exe, tailscale.exe, tailscaled.exe, and
+    wintun.dll; the three Tailscale executables were validly signed by Tailscale Inc.
+  - >-
+    Windows Installer cached the package under its product-code cache directory
+  - >-
+    Installed executables were signed by Tailscale Inc.
+  - >-
+    The automatic LocalSystem service Tailscale started C:\Program Files\Tailscale\tailscaled.exe and configured nine
+    restart-on-failure actions; tailscaled.exe also spawned a /subproc child
+  - >-
+    The installer created the common Startup shortcut C:\ProgramData\Microsoft\Windows\Start
+    Menu\Programs\Startup\Tailscale.lnk, a Start Menu shortcut, and the HKCR\tailscale URL protocol handler for
+    tailscale-ipn.exe /url "%1"
+  - >-
+    Tailscale installed WireGuard LLC Wintun 0.14.0.0 as oem9.inf with Microsoft-signed wintun.sys and created
+    the running wintun driver service
+  - >-
+    Installation provisioned an up Tailscale Tunnel adapter, capture-specific interface GUID
+    {<interface-guid>}, link-local IPv4/IPv6 addresses, three IPv4 link-local routes, and an inbound UDP allow rule
+    named Tailscale-Process for tailscaled.exe
+  - >-
+    tailscaled.exe created service logs and server-state.conf under C:\ProgramData\Tailscale\; the automatically
+    launched tailscale-ipn.exe created per-user GUI logs under %LOCALAPPDATA%\Tailscale\
+  - >-
+    No scheduled task was added, no authentication or VPN connection was attempted, and installation completed without
+    a reported error or reboot request
+- Type: Network
+  Description: >-
+    Tailscale service and tray GUI performed telemetry and package/update activity during the installation window.
+    This was automatic pre-authentication activity, not control-plane authentication, peer discovery, or VPN tunnel
+    traffic; capture-specific resolved addresses are not stable indicators.
+  Indicators:
+  - tailscaled.exe queried log.tailscale.io and connected to its capture-specific resolved AWS address on TCP 443
+  - >-
+    tailscale-ipn.exe queried log.tailscale.io and pkgs.tailscale.com, whose observed response included an Amazon
+    CloudFront hostname, and connected to capture-specific resolved addresses on TCP 443
+  - >-
+    msiexec.exe generated certificate-status traffic during installation; generic certificate infrastructure and
+    capture-specific addresses are omitted
+    checking; this was not Tailscale application infrastructure
+  - >-
+    No successful authentication, control-plane session, DERP relay, peer-to-peer WireGuard flow, or VPN connection was
+    observed
+- Type: Forensic
+  Description: >-
+    Detect the first operator interaction with Tailscale 1.62.1 on Windows 11. Tailscale's service and tray GUI had
+    already started automatically during installation. Starting Tailscale from the Start Menu produced no standalone
+    window; choosing Log in from the tray opened the default browser to Tailscale's web authentication page. The page
+    was left untouched, so this was not a credential submission, completed authentication, or tunnel attempt.
+  Indicators:
+  - >-
+    Explorer started "C:\Program Files\Tailscale\tailscale-ipn.exe"; the new process exited after approximately 0.24
+    seconds while the existing tray process continued running, consistent with a single-instance tray application
+  - >-
+    The existing tailscale-ipn.exe process spawned Microsoft Edge with --single-argument
+    https://login.tailscale.com/a/<opaque>; the per-session authentication path is redacted and should not be used as a
+    stable indicator
+  - >-
+    The tray menu exposed Log in, Update, Preferences, and About; Log in was selected once and no further browser
+    interaction occurred
+  - >-
+    tailscaled.exe updated C:\ProgramData\Tailscale\server-state.conf through a temporary-file rename and continued
+    writing service logs; tailscale-ipn.exe updated %LOCALAPPDATA%\Tailscale\gui.log1.txt and gui.log2.txt
+  - >-
+    Windows recorded tailscale-ipn.exe execution in the per-user Compatibility Assistant Store, BAM state, and
+    application-inventory records; the inventory metadata identified Tailscale Inc., version
+    1.62.1-t8ee5801a3-g76428ac0b, and a 64-bit PE
+  - >-
+    No new service, driver, adapter, route, DNS-server setting, firewall rule, scheduled task, startup entry, installed
+    application, or product-owned registry persistence appeared during this phase
+- Type: Network
+  Description: >-
+    The tray Log in action launched https://login.tailscale.com in Microsoft Edge. Browser network activity was
+    captured, but credentials were not entered and authentication did not complete; capture-specific browser
+    destinations were not retained as stable Tailscale indicators.
+  Indicators:
+  - tailscale-ipn.exe spawned the browser directly with a login.tailscale.com HTTPS URL
+  - >-
+    Microsoft Edge performed DNS and HTTP(S) activity after the page opened, but the capture also contained normal
+    browser background and page-subresource traffic that could not be attributed solely to Tailscale
+  - >-
+    No successful authentication, control-plane session, DERP relay, peer-to-peer WireGuard flow, or VPN connection was
+    observed
+- Type: Forensic
+  Description: >-
+    Detect successful browser-based authentication for Tailscale 1.62.1 on Windows 11. The operator completed an
+    authorized Microsoft sign-in in the already-open Edge session and reached Tailscale's Connect device confirmation.
+    Connect was not selected, so this phase did not enroll the device in a tailnet or attempt a VPN tunnel.
+  Indicators:
+  - >-
+    Microsoft Edge completed the external identity-provider workflow and displayed Tailscale's Connect device page;
+    account, device, and tailnet identifiers are intentionally redacted
+  - >-
+    Edge created renderer processes and directly modified its profile cache, History, Favicons, Cookies, Web Data,
+    Network Persistent State, and related journals during authentication; stored values may contain sensitive session
+    material and are not stable indicators
+  - >-
+    The existing tailscale-ipn.exe and tailscaled.exe processes remained running, but neither created a new process nor
+    performed a successful file or registry mutation attributable to device enrollment during this phase
+  - >-
+    No new or modified Tailscale adapter, route, DNS-server setting, firewall rule, service, driver, scheduled task,
+    startup entry, installed application, or product-owned registry persistence was observed
+- Type: Network
+  Description: >-
+    The successful login produced browser HTTPS activity to the Tailscale web-login backend and Microsoft-hosted
+    identity endpoints. This was web authentication traffic, not Tailscale control-plane device enrollment, DERP,
+    peer-to-peer WireGuard, or VPN tunnel traffic; capture-specific addresses are intentionally omitted.
+  Indicators:
+  - >-
+    Microsoft Edge exchanged HTTPS traffic with an already-established lb.fra.tailscale.com connection during the
+    authentication workflow
+  - >-
+    Edge opened additional TCP 443 connections to Microsoft-hosted identity infrastructure and exchanged HTTPS/QUIC
+    traffic through Akamai-hosted endpoints; the mixed browser traffic was not retained as a stable Tailscale address
+    indicator
+  - >-
+    No new Tailscale service or tray-process network connection, device enrollment, tailnet association, DERP relay,
+    peer-to-peer WireGuard flow, or VPN connection was observed
+- Type: Forensic
+  Description: >-
+    Detect successful enrollment and connection of Tailscale 1.62.1 on Windows 11. Selecting Connect on the web
+    confirmation enrolled the device in the authorized tailnet and changed the existing Wintun adapter from link-local
+    addressing to account-assigned overlay addressing. The tray reported connected. This was a Tailscale mesh-overlay
+    connection without an exit node, subnet route, or full-tunnel default-route change.
+  Indicators:
+  - >-
+    The existing tailscaled.exe service and /subproc child remained the product-owned processes; the service rewrote
+    C:\ProgramData\Tailscale\server-state.conf through temporary-file renames, created derpmap.cached.json, and
+    continued writing the service logs. State-file contents can include sensitive enrollment material and are not
+    reproduced.
+  - >-
+    The Tailscale adapter retained its existing interface identity but replaced three link-local IPv4 routes with
+    account-assigned IPv4 and IPv6 host routes and the MagicDNS resolver route; the assigned addresses and local interface
+    GUID are redacted.
+  - >-
+    tailscaled.exe created two enabled Private-profile inbound allow rules named Tailscale-In by spawning netsh.exe,
+    one scoped to the assigned IPv4 host route and one to the assigned IPv6 host route. Firewall-rule instance GUIDs
+    and assigned addresses are capture-specific and redacted.
+  - >-
+    tailscaled.exe created HKCR\*\shell\tailscale with the Send with Tailscale... label and a /push "%1" command for
+    tailscale-ipn.exe, creating a per-file shell action after enrollment.
+  - >-
+    tailscaled.exe stored NRPT rule identifiers under HKLM\SOFTWARE\Tailscale IPN and created capture-specific rules
+    below HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters\DnsPolicyConfig. The rules directed Tailscale
+    reverse zones and the redacted *.ts.net MagicDNS namespace to the MagicDNS resolver.
+  - >-
+    tailscaled.exe disabled dynamic DNS registration and multicast for the Tailscale IPv4/IPv6 interface, disabled
+    NetBIOS on that interface, set its redacted tailnet search suffix, and spawned ipconfig.exe /flushdns and
+    /registerdns during activation.
+  - >-
+    No service, driver, adapter, installed application, scheduled task, startup entry, or new driver package was added
+    during this connection phase; the existing Tailscale service, Wintun driver, and adapter were reused.
+- Type: Network
+  Description: >-
+    Successful enrollment initiated Tailscale control and NAT-discovery activity while preserving the host's normal
+    default route. This capture establishes an active Tailscale overlay but not a peer-to-peer payload flow,
+    DERP-relayed peer session, subnet route, exit node, or internet full tunnel.
+  Indicators:
+  - >-
+    tailscaled.exe used UDP 41641 locally and contacted DERP-region STUN endpoints, including derp*.tailscale.com, on
+    UDP 3478. It also performed local SSDP and NAT-PMP/PCP gateway discovery on UDP 1900 and 5351.
+  - >-
+    tailscaled.exe opened a TCP 443 connection to a capture-specific DERP-region endpoint and exchanged control traffic
+    over an already-established connection associated with lb.fra.tailscale.com; resolved addresses are intentionally
+    omitted because they are capture-specific.
+  - >-
+    The post-connection snapshot showed only the assigned IPv4/IPv6 host routes and the MagicDNS resolver route on the
+    Tailscale interface. No default route, global DNS-server replacement, or RDP interruption occurred.
+  - >-
+    No peer-to-peer WireGuard payload flow or DERP-relayed peer traffic was demonstrated because no second tailnet node
+    was selected or contacted during the bounded test.
+- Type: Forensic
+  Description: >-
+    Detect normal uninstallation of Tailscale 1.62.1 on Windows 11. The registered MSI command completed successfully,
+    removed the application and active networking components, and left product state, log, firewall, and pending driver
+    service artifacts that require separate cleanup. No reboot prompt was shown.
+  Indicators:
+  - >-
+    MsiInstaller event IDs 11724 and 1034 recorded successful removal of Tailscale 1.62.1 with status 0 for product
+    {3E65DFC4-F43B-5FDB-BC13-8109F20A0F13}
+  - >-
+    The Windows Installer service launched embedded msiexec.exe workers and the Tailscale Inc.-signed
+    "C:\Program Files\Tailscale\tailscale-ipn.exe" /uninstallwintun helper; the existing tailscaled.exe service removed
+    its Wintun device and spawned ipconfig.exe /registerdns
+  - >-
+    Normal uninstall removed the registered application, Tailscale service, Program Files binaries, Start Menu and
+    common Startup shortcuts, HKCR\tailscale protocol handler, HKCU and HKLM Tailscale IPN keys, cached MSI, and
+    product-code installer cache
+  - >-
+    The Tailscale Tunnel adapter, its link-local routes and DNS entries, oem9.inf Wintun package, wintun.sys, Driver
+    Store files, and active wintun driver inventory entry were absent in the post-uninstall snapshot
+  - >-
+    C:\ProgramData\Tailscale\ remained with server-state.conf, derpmap.cached.json, service configuration, and logs;
+    %LOCALAPPDATA%\Tailscale\ also retained GUI configuration and logs. State and log contents can contain sensitive
+    enrollment data and are not reproduced.
+  - >-
+    The enabled inbound Tailscale-Process firewall rule remained, pointing to the removed tailscaled.exe path. The
+    HKLM\SYSTEM\CurrentControlSet\Services\wintun key also remained disabled with DriverDelete and DeleteFlag set and no
+    enumerated device, consistent with pending cleanup after the driver package and adapter were removed.
+  - >-
+    A BAM execution record for tailscale-ipn.exe remained, and the uninstall helper updated the
+    TAILSCALE-IPN.EXE-*.pf Prefetch artifact; no product-owned network activity was observed during uninstall
+- Type: Endpoint
+  Description: Detect Tailscale installation, execution, and mesh network tunnel creation
+  Indicators:
+  - Process execution /Applications/Tailscale.app/Contents/MacOS/Tailscale
+  - Network extension installation with bundle ID io.tailscale.ipn.macsys
+  - Creation of utun interfaces associated with Tailscale process
+  - Sandboxed container at ~/Library/Containers/io.tailscale.ipn.macsys/
+  - Group container at ~/Library/Group Containers/W5364U7YZB.io.tailscale.ipn.macsys/
+  - Code signature verification - Team ID W5364U7YZB, Bundle ID io.tailscale.ipn.macsys
+  - App sandbox enabled (security hardening indicator)
+  - System extensions installed for network tunneling
+  - No privileged helper tool (unlike traditional VPNs)
+- Type: Network
+  Description: Network-based detection of Tailscale mesh networking connections
+  Indicators:
+  - UDP traffic to port 41641 (default STUN)
+  - UDP traffic to port 3478 (STUN)
+  - DNS queries for tailscale.com, controlplane.tailscale.com, login.tailscale.com
+  - WireGuard protocol indicators (ChaCha20-Poly1305, Curve25519)
+  - Traffic through utun interfaces on macOS
+  - Mesh network peer-to-peer connections (non-traditional VPN architecture)
+  - DERP relay server connections for NAT traversal
+- Type: Forensic
+  Description: File system and configuration artifacts from Tailscale installation
+  Indicators:
+  - Application bundle at /Applications/Tailscale.app (5.2MB executable - very lightweight)
+  - Sandboxed container at ~/Library/Containers/io.tailscale.ipn.macsys/
+  - Group container at ~/Library/Group Containers/W5364U7YZB.io.tailscale.ipn.macsys/
+  - State file at /var/lib/tailscale/tailscaled.state (Linux)
+  - Sparkle framework for auto-updates (no analytics frameworks)
+  - Share extension plugin for macOS integration
+  - System extensions directory with network tunneling components
+  - Open source codebase available at github.com/tailscale/tailscale
+  - Kubernetes integration indicated by ~/.kube/ directory access entitlement
+References:
+  Official:
+  - https://tailscale.com/
+  - https://tailscale.com/kb/
+  ThreatIntelligence:
+  - https://tailscale.com/blog/security-disclosure-2023-10
+  Research:
+  - https://tailscale.com/blog/how-tailscale-works/
+  - https://github.com/tailscale/tailscale
+LastModified: '2026-09-01'

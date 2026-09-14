@@ -1,0 +1,207 @@
+Name: Turbo Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - turbovpn.exe
+    - turbo_vpn-service.exe
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - turbovpn-setup.exe
+    - installtapx64.exe
+    - route.exe
+    - msedgewebview2.exe
+    - ssrxray.exe
+    - xray.exe
+    - tun2socks.exe
+    - uninst.exe
+    - TurboVPNUninst.exe
+    - Au_.exe
+    Drivers:
+    - tap0901
+    - PiaWFPCallout
+    Attribution: >-
+      Require a TurboVPN path, signer, product-specific argument, service
+      registration, or direct TurboVPN process ancestry; these are the setup,
+      WebView, tunnel-helper, route, and uninstaller components used by the product.
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - TurboVPNService
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files (x86)\TurboVPN\'
+    - '%WINDIR%\System32\drivers\tap0901.sys'
+    - '%WINDIR%\System32\drivers\PiaWFPCallout.sys'
+    - '%WINDIR%\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\'
+    - '%USERPROFILE%\Desktop\TurboVPN.lnk'
+    - '%APPDATA%\Microsoft\Windows\Start Menu\Programs\TurboVPN\TurboVPN.lnk'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\'
+    - '%LOCALAPPDATA%\Temp\TurboVPNUninst.exe'
+    - '%LOCALAPPDATA%\Temp\~nsu.tmp\Au_.exe'
+    - '%LOCALAPPDATA%\Temp\nsj*.tmp\'
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files (x86)\TurboVPN\service.cfg'
+    - 'C:\Program Files (x86)\TurboVPN\data\turbo.cfg'
+    - 'C:\Program Files (x86)\TurboVPN\data\remote_config.dat'
+    - 'C:\Program Files (x86)\TurboVPN\data\hosts_bk'
+    - 'C:\Program Files (x86)\TurboVPN\data\payurl.dat'
+    - 'C:\Program Files (x86)\TurboVPN\data\plans.dat'
+    - 'C:\Program Files (x86)\TurboVPN\data\proxyIp.dat'
+    - 'C:\Program Files (x86)\TurboVPN\data\sdata.dat'
+    - 'C:\Program Files (x86)\TurboVPN\data\uactive.dat'
+    - 'C:\Program Files (x86)\TurboVPN\data\ustatus.dat'
+    - 'C:\Program Files (x86)\TurboVPN\ssr.xray'
+    - 'C:\Program Files (x86)\TurboVPN\xray.json'
+    - 'C:\Program Files (x86)\TurboVPN\vscore.dat'
+    - 'C:\Program Files (x86)\TurboVPN\openvpn\client.ovpn.tmp'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Default\IndexedDB\https_turbovpn.com_0.indexeddb.leveldb\'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Default\Local Storage\leveldb\'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Default\History'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Default\Network\Cookies'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Default\Preferences'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Default\Vpn Tokens'
+    - '%USERPROFILE%\.TurboVPN\EBWebView\Local State'
+  RegistryPersistence:
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\TurboVPN
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TurboVPN
+  - HKLM\SOFTWARE\WOW6432Node\TurboVPN
+  - HKCU\Software\TurboVPN
+  - HKCU\Software\INNOVATIVE CONNECTING PTE. LIMITED\TurboVPN\WinSparkle
+  - HKCR\TurboVPN
+  - HKLM\SYSTEM\CurrentControlSet\Services\TurboVPNService
+  - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+  - HKLM\SYSTEM\CurrentControlSet\Services\PiaWFPCallout
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Users\*\AppData\Local\Temp\TurboVPNUninst.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files (x86)\TurboVPN\uninst.exe
+  - HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache\%LOCALAPPDATA%\Temp\TurboVPNUninst.exe.*
+  LogFiles: []
+  CodeSigning:
+  - Platform: Windows
+    Publisher: INNOVATIVE CONNECTING PTE. LIMITED
+    Status: Valid installer, application, service, and bundled component signatures
+  - Platform: Windows
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+    Status: Valid TAP-Windows tap0901.sys and tap0901.cat signatures
+  - Platform: Windows
+    Publisher: Private Internet Access, Inc.
+    Status: Valid PiaWFPCallout.sys signature
+  - Platform: Windows
+    Publisher: SHENZHEN LEEQIA TECHNOLOGY CO. LTD
+    Status: Valid signature on the uninstaller-extracted nsNiuniuSkin.dll component
+  - Platform: Windows
+    Publisher: Not signed
+    Status: Uninstaller-extracted nsj*.tmp\System.dll component
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"<install-path>\installtapx64.exe" "c" /S'
+    - '"<install-path>\installtapx64.exe" "<install-path>" -removeCalloutDriver "<install-path>" /S'
+    - '"<install-path>\installtapx64.exe" "<install-path>" -installCalloutDriver "<install-path>" /S'
+    - '"<install-path>\turbo_vpn-service.exe" install'
+    - '"<install-path>\TurboVPN.exe"'
+    - '%WINDIR%\System32\route.exe delete <remote-endpoint> mask 255.255.255.255 <gateway>'
+    - '"<install-path>\installtapx64.exe" -removeCalloutDriver "<install-path>" /S'
+    - 'msedgewebview2.exe --embedded-browser-webview=1 --webview-exe-name=TurboVPN.exe --webview-exe-version=3.5.1.0 --user-data-dir="%USERPROFILE%\.TurboVPN\EBWebView"'
+    - 'ssrxray.exe --xray-config xray.json --ssr-config ssr.xray --auth-type 8192'
+    - 'xray.exe run -config xray.json -format json'
+    - 'tun2socks.exe -tunAddr <tunnel-address> -tunGw <tunnel-gateway> -tunDns <configured-DNS> -proxyType socks -proxyServer <loopback>:21525 <tunnel-gateway>'
+    - '"<install-path>\uninst.exe"'
+    - '"%LOCALAPPDATA%\Temp\~nsu.tmp\Au_.exe" _?=<install-path>'
+    - '"%LOCALAPPDATA%\Temp\TurboVPNUninst.exe" _?=<install-path>'
+    - '"<install-path>\uninst.exe" /S'
+    - '"%LOCALAPPDATA%\Temp\~nsu.tmp\Au_.exe" /S _?=<install-path>'
+  NetworkArtifacts:
+    Domains:
+    - turbovpn.com (first-launch application and embedded UI)
+    - winturbo.turboitems.com (installation and uninstall telemetry)
+    - ubuntu.trovpn.com (first-launch DNS lookup)
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - DNS (first-launch lookups by TurboVPN.exe and its embedded WebView)
+  - HTTP and HTTPS (installation, first-launch, and uninstall configuration/telemetry)
+  - SOCKS on loopback between tun2socks.exe and xray.exe during the successful connection
+  - TCP tunnel transport by xray.exe; the exact application-layer tunnel protocol was not established
+  - IPv4 forwarding through the TAP-Windows adapter using tun2socks.exe
+  Ports:
+  - TCP 80 (installer and uninstaller telemetry plus first-launch certificate/configuration retrieval)
+  - TCP 443 (installer, first-launch application/UI, and uninstaller traffic)
+  - UDP 53 (embedded WebView DNS during first launch)
+  - UDP 443 (embedded WebView QUIC during first launch)
+  - TCP 443 (xray.exe to the selected Canadian free-server tunnel endpoint)
+  - TCP and UDP 21525 (local tun2socks-to-Xray proxy traffic)
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+- Type: Endpoint
+  Description: Detect the observed Turbo VPN Windows installation and persistent service or driver activity
+  Indicators:
+  - turbovpn-setup.exe spawning installtapx64.exe and turbo_vpn-service.exe
+  - TurboVPNService running as LocalSystem from C:\Program Files (x86)\TurboVPN\turbo_vpn-service.exe
+  - Creation and loading of tap0901 and PiaWFPCallout kernel-driver services
+  - Creation of a TAP-Windows Adapter V9 network interface
+- Type: Forensic
+  Description: Detect artifacts created by TurboVPN 3.5.1.0 installation on Windows 11
+  Indicators:
+  - C:\Program Files (x86)\TurboVPN\ installation directory
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\TurboVPN autostart value
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\TurboVPN registration
+  - TurboVPN URL protocol handler under HKCR\TurboVPN
+  - TAP-Windows OEM driver package oem#.inf, version 9.24.2.601
+  - First launch creates %USERPROFILE%\.TurboVPN\EBWebView and product-scoped WebView2 data
+  - First launch creates HKCU\Software\INNOVATIVE CONNECTING PTE. LIMITED\TurboVPN\WinSparkle\CheckForUpdates
+- Type: Endpoint
+  Description: Detect the observed TurboVPN 3.5.1.0 first-launch process and driver-cleanup sequence
+  Indicators:
+  - Explorer launching C:\Program Files (x86)\TurboVPN\TurboVPN.exe at high integrity
+  - TurboVPN.exe spawning route.exe with a route-delete command and twice spawning installtapx64.exe with -removeCalloutDriver
+  - Removal of the running PiaWFPCallout kernel-driver registration during first launch while the bundled and System32 driver files remain
+  - TurboVPN.exe spawning Edge WebView2 with --webview-exe-name=TurboVPN.exe and --user-data-dir=%USERPROFILE%\.TurboVPN\EBWebView
+  - TurboVPN.exe creating or updating hosts_bk, payurl.dat, plans.dat, proxyIp.dat, remote_config.dat, sdata.dat, turbo.cfg, uactive.dat, and ustatus.dat
+  - TurboVPN.exe removing the installation-time data\welcome_page.dat file during first launch
+- Type: Network
+  Description: Detect installer and untouched first-launch traffic observed before any login or VPN connection
+  Indicators:
+  - First-launch DNS queries included turbovpn.com and winturbo.turboitems.com
+  - turbovpn-setup.exe made installer telemetry and configuration requests over HTTP and HTTPS
+  - TurboVPN.exe queried turbovpn.com and product-owned service endpoints over TCP 443
+  - This phase did not include authentication, server selection, or VPN tunnel establishment
+- Type: Network
+  Description: Detect the observed successful TurboVPN 3.5.1.0 free-server connection on Windows 11
+  Indicators:
+  - TurboVPN.exe spawning ssrxray.exe and tun2socks.exe, with ssrxray.exe spawning xray.exe
+  - ssrxray.exe launching with xray.json and ssr.xray configuration arguments, followed by xray.exe reading xray.json
+  - tun2socks.exe configured the TAP interface, public DNS servers, and a local SOCKS proxy for xray.exe
+  - xray.exe accepted loopback proxy traffic and established TCP 443 connections to a selected remote server endpoint
+  - The TAP-Windows Adapter V9 changed from disconnected to up and received a tunnel interface address
+  - TurboVPN created an IPv4 default route through the TAP adapter and a host route to the selected remote endpoint through the physical gateway
+  - TurboVPN.exe creating xray.json, ssr.xray, and vscore.dat when the Canadian free-server connection was initiated
+  - The successful connection did not require authentication; no browsing or deliberate post-connection activity was performed
+- Type: Endpoint
+  Description: Detect the observed TurboVPN 3.5.1.0 uninstall sequence and incomplete cleanup on Windows 11
+  Indicators:
+  - Explorer launching C:\Program Files (x86)\TurboVPN\uninst.exe, which copied the same signed binary to %LOCALAPPDATA%\Temp\~nsu.tmp\Au_.exe and %LOCALAPPDATA%\Temp\TurboVPNUninst.exe
+  - The normal no-argument temporary uninstaller stalled without changing product state; the bounded recovery launched uninst.exe with /S and Au_.exe with /S plus the NSIS _? install-directory parameter
+  - The silent Au_.exe removed 85 product files or shortcuts and deleted the TurboVPN uninstall registration, HKLM\SOFTWARE\WOW6432Node\TurboVPN, HKCU\Software\TurboVPN, and the HKCR\TurboVPN protocol handler
+  - Au_.exe queried TurboVPN telemetry and uninstall service endpoints over HTTP and HTTPS during the successful uninstall
+  - TurboVPNService remained automatic and running as LocalSystem after its C:\Program Files (x86)\TurboVPN\turbo_vpn-service.exe image was deleted, leaving the product directory empty
+  - The TAP-Windows Adapter V9, running tap0901 service, oem#.inf Driver Store package, System32 tap0901.sys, and System32 PiaWFPCallout.sys remained after uninstall
+  - Temporary uninstaller copies and nsj*.tmp helper components remained after uninstall
+  - Earlier first-launch %USERPROFILE%\.TurboVPN data and the WinSparkle registry key were outside the observed uninstall deletion set and require residual verification
+References:
+  Official:
+  - https://turbovpn.com/
+  ThreatIntelligence:
+  - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/turbo-vpn-review/
+  - https://vpnpro.com/vpn-reviews/turbo-vpn-review/
+LastModified: '2026-09-01'

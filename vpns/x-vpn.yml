@@ -1,0 +1,260 @@
+Name: X-Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - xvpn.exe
+    - X-VPN.exe
+    - X-VPN_root.exe
+    - X-VPN_notification.exe
+  - Platform: macOS
+    Name:
+    - X-VPN
+    - X-VPN_root
+    - com.macroot.xvpn.transparentProxy
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - X-VPN - Best VPN Proxy master Installer (1).exe
+    - X-VPN - Best VPN Proxy master Installer.exe
+    - WireGuardClient.exe
+    - openvpn-windows-x86.exe
+    - tapctl64.exe
+    - Uninstall X-VPN.exe
+    - Un.exe
+    - uninstall.exe
+    Drivers:
+    - tap0901
+    Attribution: >-
+      Require an X-VPN path, Free Connected Limited signature, product-specific
+      argument, service or driver registration, or direct X-VPN process ancestry;
+      these are installer, bundled tunnel, TAP, and uninstaller components.
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - nettunnel
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - 'C:\Program Files\X-VPN\'
+    - '%USERPROFILE%\X-VPN\'
+    - '%WINDIR%\System32\drivers\tap0901.sys'
+    - '%WINDIR%\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\'
+    - 'C:\Program Files\X-VPN\nettunnel\'
+    - '%PROGRAMDATA%\Microsoft\Windows\Start Menu\Programs\X-VPN.lnk'
+    - '%PUBLIC%\Desktop\X-VPN.lnk'
+    - '%WINDIR%\Prefetch\X-VPN.EXE-*.pf'
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: X-VPN
+    Publisher: Free Connected Limited
+    ExecutableName: X-VPN.exe
+    Version: 77.5.2_5365_229f00fb
+    InstallLocation: 'C:\Program Files\X-VPN'
+    UninstallKey: HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\X-VPN
+    UninstallCommand: '"C:\Program Files\X-VPN\Uninstall X-VPN.exe"'
+    AdditionalComponents:
+    - X-VPN_root.exe helper binary
+    - X-VPN_notification.exe notification helper
+    - WireGuardClient.exe, wireguard.dll, and wintun.dll
+    - Chromium Embedded Framework runtime under lib1
+    - OpenVPN 2.6.5 executable and tapctl utilities materialized under lib1 during first launch
+    - TAP-Windows Adapter V9 driver package oem#.inf, version 9.26.0.0, and x-ovpn-tap adapter created during first launch
+    - Connection-time nettunnel64.dll and Free Connected Limited-signed nettunnel64.sys kernel driver
+  - Platform: macOS
+    AppName: X-VPN.app
+    BundleIdentifier: com.macroot.xvpn
+    ExecutableName: X-VPN
+    Version: 1.0
+    BuildVersion: 1
+    InstallLocation: /Applications/X-VPN.app
+    SystemExtensions:
+    - Name: com.macroot.xvpn.transparentProxy.systemextension
+      BundleIdentifier: com.macroot.xvpn.transparentProxy
+      Version: 77.5.2
+      BuildVersion: 5434
+      Type: NetworkExtension (Transparent Proxy)
+      Description: App-proxy network extension for transparent proxying
+    AdditionalComponents:
+    - X-VPN_root (privileged helper)
+    - com.macroot.xvpn.transparentProxy (system extension)
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\X-VPN'
+    - '%APPDATA%\X-VPN'
+    - '%USERPROFILE%\X-VPN\cache\'
+    - 'C:\Program Files\X-VPN\bypassConfig\splitTunnel.config'
+    - '%APPDATA%\fh8yen892r\data'
+    - '%APPDATA%\kmg\fh97xm8zmf\*'
+    - '%APPDATA%\files\e8vecdvdd6\*'
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/X-VPN
+    - ~/Library/Preferences/com.xvpn.xvpn.plist
+  RegistryPersistence:
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\X-VPN
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Run\X-VPN
+  - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+  - HKLM\SYSTEM\CurrentControlSet\Services\nettunnel
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\nettunnel
+  - HKLM\SYSTEM\CurrentControlSet\Services\Tcpip\Parameters\Interfaces\*\NameServer
+  - HKCR\X-VPN
+  - HKCU\Software\Classes\x-vpn-client
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\*\x-vpn.exe
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Program Files\X-VPN\X-VPN.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\*\x-vpn.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files\X-VPN\X-VPN.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\C:\Program Files\X-VPN\Uninstall X-VPN.exe
+  - HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache\*\x-vpn.exe.FriendlyAppName
+  - HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\PendingFileRenameOperations
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Users\*\AppData\Local\Temp\~nsu*.tmp\Un.exe
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\Temp\x-vpn.log'
+    - '%USERPROFILE%\X-VPN\log.log'
+  CodeSigning:
+  - Platform: Windows
+    Publisher: Free Connected Limited
+    Status: Valid installer, SensorMonitor.dll, uninstall.exe, WireGuardClient.exe, X-VPN.exe, X-VPN_notification.exe, X-VPN_root.exe, and connection-time nettunnel64.sys signatures
+  - Platform: Windows
+    Publisher: WireGuard LLC
+    Status: Valid bundled wintun.dll and wireguard.dll signatures
+  - Platform: Windows
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+    Status: Valid TAP-Windows tap0901.sys and tap0901.cat signatures
+  - Platform: Windows
+    Publisher: Not signed
+    Status: The registered Uninstall X-VPN.exe bootstrap, first-launch OpenVPN and tapctl executables, connection-time nettunnel64.dll, and several bundled CEF or graphics libraries were unsigned
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"x-vpn.exe"'
+    - '"C:\Program Files\X-VPN\Uninstall X-VPN.exe"'
+    - '"%LOCALAPPDATA%\Temp\~nsu1.tmp\Un.exe" _?=C:\Program Files\X-VPN\'
+    - '"C:\Program Files\X-VPN\uninstall.exe" -uninstall'
+    - sc.exe stop nettunnel
+    - sc.exe delete nettunnel
+    - '"C:\Program Files\X-VPN\X-VPN.exe"'
+    - '"C:\Program Files\X-VPN\X-VPN_root.exe"'
+    - '"C:\Program Files\X-VPN\lib1\openvpn-windows-x86.exe" --version'
+    - 'pnputil.exe /add-driver "C:\Program Files\X-VPN\lib1\oemvista.inf" /install'
+    - '"C:\Program Files\X-VPN\lib1\tapctl64.exe" create --name x-ovpn-tap'
+    - 'netsh.exe interface set interface name="Local Area Connection" newname="x-ovpn-tap"'
+    - ipconfig.exe /flushdns
+    - 'X-VPN.exe --type=<gpu-process|utility|renderer> --user-data-dir="%USERPROFILE%\X-VPN\cache" ...'
+    - -ServerName:App.AppXdjbcrdd2v3vc751z0ctaw2t49fre26j6.mca
+  - Platform: macOS
+    Args:
+    - -AppleLanguages ("en-US")
+  NetworkArtifacts:
+    Domains:
+    - xvpn.io
+    - app.xvpncdn.com
+    - premium.xvpn.io
+    - xvpnsecurity.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - DNS during first launch
+  - HTTPS or TLS over TCP during first launch
+  - QUIC over UDP during first launch
+  - Sustained bidirectional UDP tunnel traffic over destination port 53 during the successful first connection
+  - UDP server probing over destination ports 53 and 1278 during connection setup
+  Ports:
+  - UDP 53 (DNS during first launch)
+  - TCP 443 (application and server-fleet traffic during first launch)
+  - UDP 443 (application QUIC during first launch)
+  - TCP 20005, 20025, 20027, and 20028 (application and server-fleet traffic during first launch)
+  - TCP 50001 (local loopback communication among X-VPN processes)
+  - UDP 53 (connection-time server probing, selected tunnel channel, and configured DNS)
+  - UDP 1278 (connection-time server probing)
+  TunnelInterfaces:
+  - x-ovpn-tap (TAP-Windows Adapter V9; created during first launch but remained disconnected during the successful first connection)
+  - No new adapter was created; the successful connection loaded the nettunnel kernel driver while retaining the existing Ethernet route
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+- Type: Endpoint
+  Description: Detect the observed X-VPN 77.5.2 Windows installation
+  Indicators:
+  - Explorer launched the Free Connected Limited-signed x-vpn.exe installer at high integrity from the staged installer directory
+  - The installer directly wrote the application and bundled CEF and WireGuard components under C:\Program Files\X-VPN\
+  - The installer completed without launching X-VPN.exe or any installed helper executable
+  - No service, driver, scheduled task, or startup command was added during the installation-only phase
+- Type: Forensic
+  Description: Detect artifacts created by the observed X-VPN 77.5.2 installation on Windows 11
+  Indicators:
+  - HKLM\SOFTWARE\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall\X-VPN registered Free Connected Limited, version 77.5.2_5365_229f00fb, and the Uninstall X-VPN.exe command
+  - C:\Program Files\X-VPN\ contained X-VPN.exe, X-VPN_root.exe, X-VPN_notification.exe, WireGuardClient.exe, wireguard.dll, wintun.dll, uninstallers, and a bundled CEF runtime
+  - The installer created all-users Start Menu and Public Desktop shortcuts
+  - Installation produced product-specific execution-history records for the staged installer
+  - No persistent service, driver, network adapter, route, DNS-server change, firewall rule, scheduled task, or startup command was observed
+- Type: Network
+  Description: Bound the network activity observed during the installation-only phase
+  Indicators:
+  - No DNS, TCP, or UDP activity was attributed to x-vpn.exe or any installed X-VPN component
+  - The bundled WireGuard executables and libraries were written but not executed, and no VPN tunnel traffic or network-configuration change occurred
+- Type: Endpoint
+  Description: Detect the observed X-VPN 77.5.2 first-launch process, persistence, and TAP-adapter setup
+  Indicators:
+  - Double-clicking X-VPN started X-VPN.exe and produced a tray icon immediately; the GUI appeared after approximately one minute
+  - X-VPN.exe spawned X-VPN_root.exe, followed by Chromium-style X-VPN.exe GPU, utility, and renderer child processes using %USERPROFILE%\X-VPN\cache
+  - X-VPN_root.exe materialized OpenVPN 2.6.5 and TAP utilities, ran openvpn-windows-x86.exe --version, and invoked pnputil.exe to install oemvista.inf as oem9.inf
+  - X-VPN_root.exe launched tapctl64.exe to create x-ovpn-tap, which netsh.exe renamed from Local Area Connection
+  - First launch created the tap0901 kernel-driver service, the disconnected x-ovpn-tap adapter, the \XVpn_ScheduledTaskRootPath scheduled task, and the HKLM Run value X-VPN
+  - First launch registered the X-VPN and x-vpn-client URL protocol handlers and created %USERPROFILE%\X-VPN\cache, x-vpn.log, splitTunnel.config, and obfuscated per-user data paths
+- Type: Network
+  Description: Bound X-VPN first-launch traffic before any authentication or VPN connection
+  Indicators:
+  - X-VPN.exe and X-VPN_root.exe queried app.xvpncdn.com, premium.xvpn.io, and xvpnsecurity.com
+  - The processes used TCP 443 and UDP 443 and made repeated connections to a broad dynamic server fleet over TCP 443, 20005, 20025, 20027, and 20028
+  - X-VPN.exe listened on loopback TCP 50001 for local application communication
+  - The TAP adapter remained disconnected, and this phase did not include authentication, server selection, or VPN tunnel establishment
+- Type: Endpoint
+  Description: Detect the observed successful X-VPN 77.5.2 connection setup on Windows 11
+  Indicators:
+  - Clicking Connect required no authentication or payment prompt, and the application reported connected
+  - X-VPN_root.exe wrote nettunnel64.dll and nettunnel64.sys under C:\Program Files\X-VPN\nettunnel\ and registered the nettunnel kernel-driver service
+  - System event 7045 recorded nettunnel as a demand-start kernel driver, and Sysmon recorded the valid Free Connected Limited-signed nettunnel64.sys image load
+  - The nettunnel service was marked for deletion and disabled after loading but remained running in the post-connection snapshot
+  - X-VPN_root.exe launched ipconfig.exe /flushdns during setup
+  - The existing x-ovpn-tap adapter remained disconnected; no new adapter, route, address, firewall rule, or persistent startup entry appeared
+- Type: Network
+  Description: Bound the observed successful X-VPN 77.5.2 connection and its unresolved disconnect cleanup
+  Indicators:
+  - X-VPN_root.exe probed a broad server fleet over UDP destination ports 53 and 1278 before selecting a sustained bidirectional UDP tunnel channel over destination port 53
+  - X-VPN changed the Ethernet IPv4 DNS configuration to product-selected DNS servers, and X-VPN.exe sent DNS traffic through the updated configuration
+  - X-VPN_root.exe also used TCP 443 for control domains and TCP 20028 for server-fleet traffic during connection setup
+  - The capture ended while X-VPN remained connected, so restoration of DNS settings and removal or unloading of the pending-delete nettunnel driver require separate disconnect or uninstall verification
+- Type: Endpoint
+  Description: Detect the observed X-VPN 77.5.2 normal uninstall on Windows 11
+  Indicators:
+  - Explorer launched the registered Uninstall X-VPN.exe bootstrap, which copied itself to %LOCALAPPDATA%\Temp\~nsu1.tmp\Un.exe and started uninstall.exe -uninstall
+  - uninstall.exe launched sc.exe stop nettunnel and sc.exe delete nettunnel; the nettunnel driver stopped, its service key was deleted, and nettunnel64.dll and nettunnel64.sys were removed
+  - The NSIS uninstaller deleted most of C:\Program Files\X-VPN\, the Public Desktop and all-users Start Menu shortcuts, the X-VPN uninstall record, and the \XVpn_ScheduledTaskRootPath task
+  - X-VPN_root.exe exited during the uninstall window, but one Chromium utility-mode X-VPN.exe process remained running in the post-uninstall snapshot
+  - Ethernet DNS was restored before uninstall and did not change; no firewall-rule, adapter, or route delta occurred during uninstall
+  - The uninstaller appended entries to PendingFileRenameOperations after locked application files returned STATUS_CANNOT_DELETE, but it did not request a reboot
+- Type: Forensic
+  Description: Identify residual state after the observed X-VPN 77.5.2 uninstall
+  Indicators:
+  - The running X-VPN.exe utility process retained X-VPN.exe, chrome_elf.dll, dxcompiler.dll, dxil.dll, icudtl.dat, libcef.dll, and v8_context_snapshot.bin under C:\Program Files\X-VPN\
+  - The x-ovpn-tap adapter, running tap0901 service, generated TAP driver package, tap0901.sys, and Driver Store directory remained installed
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\nettunnel remained and referenced the removed C:\Program Files\X-VPN\nettunnel\nettunnel64.sys path
+  - Per-user data remained under %USERPROFILE%\X-VPN\, %APPDATA%\fh8yen892r\, %APPDATA%\kmg\fh97xm8zmf\, and %APPDATA%\files\e8vecdvdd6\
+  - x-vpn.log and first-launch ZIP payloads remained in %LOCALAPPDATA%\Temp
+  - Product-specific execution-history and URL-protocol records from installation, launch, connection, and uninstall remained forensic cleanup targets
+References:
+  Official:
+  - https://www.xvpn.io/
+  ThreatIntelligence:
+  - https://www.top10vpn.com/research/free-vpn-investigations/ownership/
+  Research:
+  - https://vpnpro.com/vpn-reviews/x-vpn-review/
+  - https://www.comparitech.com/blog/vpn-privacy/x-vpn-review/
+LastModified: '2026-09-01'

@@ -1,0 +1,30 @@
+Name: Hexa Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: macOS
+    Name:
+    - tech.hexa
+  ConfigFiles:
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - hexatech.io
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://hexatech.io/
+  Research:
+  - https://vpnpro.com/vpn-reviews/hexatech-vpn-review/
+  - https://www.vpnmentor.com/reviews/hexatech/
+LastModified: '2026-07-16'

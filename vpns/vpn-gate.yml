@@ -1,0 +1,52 @@
+Name: Vpn Gate
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%APPDATA%\SoftEther VPN Client\*.ovpn'
+    - C:\Program Files\SoftEther VPN Client\vpn_client.config
+  - Platform: Linux
+    Path:
+    - /usr/vpnclient/vpn_client.config
+    - ~/*.ovpn
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - vpngate.net
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - OpenVPN
+  - L2TP/IPsec
+  - MS-SSTP
+  Ports:
+  - TCP 1194
+  - UDP 1194
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors:
+- Name: Various threat actors
+  Reference: https://www.secureworks.com/blog/vpn-gate-servers-abused-by-threat-actors
+UseCases:
+- Title: Anonymization for malicious activity
+  Description: Threat actors use VPN Gate's free volunteer-run servers to anonymize malicious network traffic including reconnaissance, exploitation attempts, and data exfiltration. The volunteer nature and frequent IP rotation make attribution difficult.
+  Date: 2020-01-01
+  Source: https://www.secureworks.com/blog/vpn-gate-servers-abused-by-threat-actors
+- Title: Circumvention of geolocation-based security controls
+  Description: Attackers leverage VPN Gate to bypass security controls that block or flag traffic from specific geographic regions or known VPN providers.
+  Date: 2018-01-01
+  Source: Security research observations
+Detection: []
+References:
+  Official:
+  - https://www.vpngate.net/
+  ThreatIntelligence:
+  - https://www.secureworks.com/blog/vpn-gate-servers-abused-by-threat-actors
+  Research:
+  - https://www.researchgate.net/publication/282441463_VPN_Gate_A_Volunteer-Organized_Public_VPN_Relay_System
+  - https://www.usenix.org/conference/foci15/workshop-program/presentation/nobori
+LastModified: '2026-07-16'

@@ -1,0 +1,274 @@
+Name: OpenVPN
+VendorInfo:
+  Company: OpenVPN, Inc.
+  Website: https://openvpn.net/community/
+  BusinessModel: Open source
+ForensicAttributes:
+  ProcessNames:
+    - Platform: Windows
+      Name:
+        - openvpn-gui.exe
+        - openvpn.exe
+        - openvpnserv.exe
+        - openvpnserv2.exe
+  ServiceNames:
+    - Platform: Windows
+      Name:
+        - OpenVPNService
+        - OpenVPNServiceInteractive
+  SupportingComponents:
+    - Platform: Windows
+      Processes:
+        - msiexec.exe
+        - netsh.exe
+        - DrvInst.exe
+      Services:
+        - wintun
+        - tap0901
+        - ovpn-dco
+      Drivers:
+        - wintun.sys
+        - tap0901.sys
+        - ovpn-dco.sys
+      Attribution: >-
+        Require an OpenVPN installation path, driver registration, product-specific
+        interface name, or direct MSI process ancestry; these shared installer
+        utilities and driver components are not standalone OpenVPN identifiers.
+  ApplicationInfo:
+    - Platform: Windows
+      AppName: OpenVPN
+      ExecutableName: openvpn-gui.exe
+      Version: 2.6.10-I001 amd64 (DisplayVersion 2.6.1001)
+      Publisher: OpenVPN, Inc.
+      InstallLocation: C:\Program Files\OpenVPN
+      InstallerType: Windows Installer (MSI)
+      ProductCode: '{B0168D30-5FDB-49B3-BD29-8F6D87543786}'
+      UninstallCommand: MsiExec.exe /X{B0168D30-5FDB-49B3-BD29-8F6D87543786}
+      AdditionalComponents:
+        - OpenVPNService and OpenVPNServiceInteractive auto-start LocalSystem services
+        - Wintun 0.8.0.0 adapter and wintun kernel driver
+        - TAP-Windows Adapter V9 9.27.0.0 and tap0901 kernel driver
+        - OpenVPN Data Channel Offload 1.3.3.0 adapter and ovpn-dco kernel driver
+  InstallationPaths:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\OpenVPN\
+        - C:\Program Files\Common Files\ovpn-dco\Win11\
+        - C:\ProgramData\Microsoft\Windows\Start Menu\Programs\OpenVPN\
+        - C:\Windows\Installer\{B0168D30-5FDB-49B3-BD29-8F6D87543786}\
+        - '%USERPROFILE%\OpenVPN\'
+        - C:\Windows\System32\DriverStore\FileRepository\wintun.inf_amd64_*\
+        - C:\Windows\System32\DriverStore\FileRepository\oemvista.inf_amd64_*\
+        - C:\Windows\System32\DriverStore\FileRepository\ovpn-dco.inf_amd64_*\
+  ConfigFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\OpenVPN\config\
+        - C:\Program Files\OpenVPN\config-auto\
+        - C:\Program Files\OpenVPN\sample-config\client.ovpn
+        - C:\Program Files\OpenVPN\sample-config\server.ovpn
+        - '%USERPROFILE%\OpenVPN\config\'
+  RegistryPersistence:
+    - HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\OpenVPN-GUI
+    - HKCU\Software\OpenVPN
+    - HKCU\Software\OpenVPN-GUI
+    - HKCR\OpenVPNFile
+    - HKLM\SOFTWARE\OpenVPN
+    - HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\>OpenVPN_UserSetup
+    - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{B0168D30-5FDB-49B3-BD29-8F6D87543786}
+    - HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\openvpn-gui.exe
+    - HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\openvpn.exe
+    - HKLM\SOFTWARE\Microsoft\Windows\Windows Error Reporting\LocalDumps\openvpnserv.exe
+    - HKLM\SYSTEM\CurrentControlSet\Services\OpenVPNService
+    - HKLM\SYSTEM\CurrentControlSet\Services\OpenVPNServiceInteractive
+    - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\OpenVpnService
+    - >-
+      HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume3\Program
+      Files\OpenVPN\bin\openvpn-gui.exe
+    - HKLM\SYSTEM\CurrentControlSet\Services\wintun
+    - HKLM\SYSTEM\CurrentControlSet\Services\tap0901
+    - HKLM\SYSTEM\CurrentControlSet\Services\ovpn-dco
+  LogFiles:
+    - Platform: Windows
+      Path:
+        - C:\Program Files\OpenVPN\log\
+        - '%USERPROFILE%\OpenVPN\log\'
+  CommandLineArgs:
+    - Platform: Windows
+      Args:
+        - 'msiexec.exe /i "C:\vpn-installers\openvpn.msi"'
+        - 'netsh.exe interface set interface name="Local Area Connection" newname="OpenVPN Wintun"'
+        - 'netsh.exe interface set interface name="Local Area Connection" newname="OpenVPN TAP-Windows6"'
+        - >-
+          netsh.exe interface set interface name="Local Area Connection"
+          newname="OpenVPN Data Channel Offload"
+        - 'sc.exe config OpenVPNService start= auto'
+        - 'sc.exe start OpenVPNService'
+        - openvpn --version
+        - 'MsiExec.exe /X{B0168D30-5FDB-49B3-BD29-8F6D87543786}'
+  BrowserExtensions: []
+  CodeSigning:
+    - Platform: Windows MSI and OpenVPN application and service binaries
+      Publisher: OpenVPN Inc.
+    - Platform: Windows Wintun, TAP-Windows, and OpenVPN DCO driver packages
+      Publisher: Microsoft Windows Hardware Compatibility Publisher
+  NetworkArtifacts:
+    Domains: []
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+    - DNS (installer signature-status lookup)
+    - HTTP (installer signature-status traffic only)
+  Ports:
+    - TCP 80 (installer signature-status traffic; not VPN tunnel traffic)
+  TunnelInterfaces:
+    - OpenVPN Wintun
+    - OpenVPN TAP-Windows6
+    - OpenVPN Data Channel Offload
+  TLSFingerprint: []
+  MercuryFamilyName: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection:
+  - Type: Forensic
+    Description: >-
+      Detect the Windows installation of OpenVPN 2.6.10-I001 amd64. The signed MSI installed the OpenVPN
+      application tree, registered two auto-start LocalSystem services and a per-user Run value, created Wintun,
+      TAP-Windows6, and Data Channel Offload adapters, and automatically launched the GUI. The automatic launch is
+      bounded installation contamination, not a controlled first-launch or VPN-connection experiment.
+    Indicators:
+      - >-
+        The Explorer-launched MSI ran as msiexec.exe /i and registered product code
+        {B0168D30-5FDB-49B3-BD29-8F6D87543786}
+      - >-
+        The installer wrote C:\Program Files\OpenVPN\ and cached the original MSI under C:\Windows\Installer\
+      - >-
+        OpenVPNService and OpenVPNServiceInteractive were newly registered as auto-start LocalSystem services and
+        were running after installation
+      - >-
+        The installer added HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\OpenVPN-GUI and Active Setup
+        component >OpenVPN_UserSetup
+      - >-
+        Wintun and tap0901 were newly added manual-start kernel driver services; the pre-existing ovpn-dco driver
+        service changed from stopped to running
+      - >-
+        Three MSI-descendant netsh.exe processes renamed the new interfaces to OpenVPN Wintun, OpenVPN TAP-Windows6,
+        and OpenVPN Data Channel Offload
+      - >-
+        msiexec.exe launched openvpn-gui.exe, which created %USERPROFILE%\OpenVPN\config and log directories and ran
+        openvpn --version
+      - >-
+        No scheduled task or firewall rule was added; no default route or substantive DNS server was configured on
+        the new adapters
+      - >-
+        Installation completed without an error or reboot request; no profile import, login, server selection, or
+        VPN connection was attempted
+  - Type: Network
+    Description: >-
+      Installation network activity was limited to certificate-status resolution and an HTTP connection made by the
+      interactive msiexec.exe process. No OpenVPN application endpoint or VPN tunnel traffic was exercised.
+    Indicators:
+      - >-
+        The interactive MSI process generated certificate-status traffic over TCP 80; the certificate provider and
+        capture-specific endpoint are intentionally omitted from the public profile
+      - >-
+        No OpenVPN tunnel, provider endpoint, authentication flow, profile download, or application update traffic
+        was observed
+  - Type: Forensic
+    Description: >-
+      Detect the controlled first user-initiated launch of OpenVPN GUI 2.6.10-I001 amd64 on Windows. Explorer started
+      the installed GUI without arguments; it checked the OpenVPN engine version and enumerated the configured
+      machine-wide and per-user profile directories. The GUI reported that no readable connection profiles were
+      available and remained open. Because the MSI had already auto-started the GUI during installation, this capture
+      establishes subsequent user-initiated launch behavior rather than pristine first process execution. No profile
+      import, credential submission, VPN connection, or restart occurred.
+    Indicators:
+      - >-
+        Explorer launched C:\Program Files\OpenVPN\bin\openvpn-gui.exe with no command-line argument
+      - >-
+        openvpn-gui.exe launched C:\Program Files\OpenVPN\bin\openvpn.exe as openvpn --version; the child had file
+        version 2.6.10.0 and exited while the GUI remained running
+      - >-
+        openvpn-gui.exe read the installed HKLM\SOFTWARE\OpenVPN settings and enumerated
+        C:\Program Files\OpenVPN\config, C:\Program Files\OpenVPN\config-auto, and %USERPROFILE%\OpenVPN\config
+      - >-
+        The visible dialog stated "No readable connection profiles (config files) found." and displayed profile-import
+        instructions; it was left untouched
+      - >-
+        No OpenVPN-specific file or registry setting was added or modified; Windows updated existing OpenVPN GUI and
+        engine prefetch data plus BAM/AppCompat execution telemetry
+      - >-
+        No service, driver, scheduled task, startup command, installed application, network adapter, route, DNS-server
+        setting, or firewall rule was added during the controlled launch
+      - >-
+        The pre-existing OpenVPNService and OpenVPNServiceInteractive services and their openvpnserv.exe and
+        openvpnserv2.exe processes remained installed baseline state rather than first-launch persistence
+      - >-
+        No OpenVPN process produced a Procmon or Sysmon network event, and no VPN helper for a profile or tunnel was
+        started
+  - Type: Forensic
+    Description: >-
+      Detect the normal interactive uninstall of OpenVPN 2.6.10-I001 amd64 on Windows. The registered MSI removal
+      removed the application, product services, current driver packages, all three virtual adapters, startup entry,
+      and installed-application registration. Windows Installer reported successful completion; no error, reboot
+      request, configuration-preservation choice, restart, or manual residual cleanup occurred.
+    Indicators:
+      - >-
+        Explorer launched C:\Windows\System32\MsiExec.exe as
+        MsiExec.exe /X{B0168D30-5FDB-49B3-BD29-8F6D87543786} after the operator entered the registered command through
+        Win+R
+      - >-
+        Windows Installer event IDs 11724 and 1034 recorded successful removal of OpenVPN 2.6.10-I001 amd64
+        version 2.6.1001
+      - >-
+        openvpnserv.exe and openvpnserv2.exe exited during removal; the OpenVPNService and
+        OpenVPNServiceInteractive registrations and processes were absent from the post-state
+      - >-
+        MsiExec.exe directly renamed application and Start Menu files for deletion, and the post-state removed
+        C:\Program Files\OpenVPN\, C:\Program Files\Common Files\ovpn-dco\Win11\, and the OpenVPN Start Menu tree
+      - >-
+        MsiExec.exe deleted the OpenVPNFile association, HKLM\SOFTWARE\OpenVPN, the per-user OpenVPN-GUI Run value,
+        per-user OpenVPN shortcut metadata, the LocalDumps keys, and the product-code uninstall registration
+      - >-
+        The OpenVPN Wintun, TAP-Windows6, and Data Channel Offload adapters disappeared together with their 15
+        adapter-local routes and six DNS inventory rows; no firewall rule changed
+      - >-
+        DeviceInstall launched DrvInst.exe against the installed wintun, TAP-Windows, and ovpn-dco packages; wintun
+        0.8.0.0, tap0901 9.27.0.0, ovpn-dco 1.3.3.0, and their current driver binaries disappeared from the PnP
+        and active-driver inventories
+      - >-
+        No scheduled task or startup command remained, and no Procmon or Sysmon network event was attributed to the
+        uninstaller process set
+  - Type: Forensic
+    Description: >-
+      Residual registry state remained in the immediate pre-reboot snapshot after normal OpenVPN uninstallation.
+      The primary application, services, driver binaries, adapters, startup entry, MSI registration, and product
+      data files were absent, but disabled driver-deletion stubs, Active Setup state, event-log registration, and
+      Windows execution telemetry remained.
+    Indicators:
+      - >-
+        HKLM\SYSTEM\CurrentControlSet\Services\wintun, tap0901, and ovpn-dco remained with Start=4,
+        DriverDelete=1, DeleteFlag=1, and empty Enum state even though the active driver inventory no longer listed
+        them
+      - >-
+        MsiExec.exe wrote IsInstalled and StubPath beneath
+        HKLM\SOFTWARE\Microsoft\Active Setup\Installed Components\>OpenVPN_UserSetup and did not delete the
+        component before capture ended
+      - >-
+        HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\OpenVpnService remained after the two product
+        service registrations were removed
+      - >-
+        Windows BAM telemetry retained the openvpn-gui.exe image path beneath
+        HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\<SID>
+      - >-
+        OpenVPN ovpn-dco 1.0.1.0 package oem17.inf and
+        C:\Windows\System32\DriverStore\FileRepository\ovpn-dco.inf_amd64_bb6eb459a3183b01\ remained; this older
+        package predated the tested MSI and is recorded as OpenVPN-associated baseline residue, not as residue
+        created by this installation
+References:
+  Official:
+    - https://openvpn.net/community/
+    - https://openvpn.net/community-downloads/
+LastModified: '2026-09-01'

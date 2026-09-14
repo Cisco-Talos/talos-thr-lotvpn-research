@@ -1,0 +1,653 @@
+Name: Nordvpn
+VendorInfo:
+  Company: Nordvpn S.A.
+  Website: https://nordvpn.com/
+  Jurisdiction: Panama
+  BusinessModel: Paid
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - NordVPN.exe
+    - NordUpdateService.exe
+    - nordvpn-service.exe
+    - nordsec-threatprotection-service.exe
+    - openvpn-nordvpn.exe
+  - Platform: macOS
+    Name:
+    - NordVPN
+    - com.nordvpn.macos.helper
+    - NordLynx Extension Sideload
+    - OpenVPN Extension Sideload
+    - NordWhisper Extension Sideload
+  ServiceNames:
+  - Platform: Windows
+    Name:
+    - nordvpn-service
+    - nordsec-threatprotection-service
+    - NordUpdaterService
+  - Platform: macOS
+    Name:
+    - com.nordvpn.macos.helper (PrivilegedHelperTool)
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - dotnet.exe
+    - tapctl.exe
+    - RemoveWfpRegistration.exe
+    - pnputil.exe
+    - netsh.exe
+    - route.exe
+    - sc.exe
+    Services:
+    - NDivert
+    - WireGuard
+    - tapnordvpn
+    - ovpn-dco
+    Drivers:
+    - NDivert.sys
+    - wireguard.sys
+    - tapnordvpn.sys
+    - ovpn-dco.sys
+    Attribution: >-
+      Require a NordVPN installation path, service registration, product-specific
+      argument, signature, or direct NordVPN process ancestry; these shared
+      utilities and VPN drivers are not standalone NordVPN identifiers.
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: NordVPN
+    ExecutableName: NordVPN.exe
+    Version: 8.7.2.0
+    Publisher: Nord Security
+    InstallLocation: C:\Program Files\NordVPN
+    AdditionalComponents:
+    - NordUpdater 1.5.0.1028
+    - Microsoft Windows Desktop Runtime 8.0.23 (x64)
+    - NordSec Threat Protection service
+    - NDivert packet-filter driver
+    - NordLynx WireGuard adapter
+    - TAP-NordVPN adapter
+    - OpenVPN Data Channel Offload adapter
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - C:\Program Files\NordVPN\
+    - C:\Program Files\NordUpdater\
+    - '%PROGRAMDATA%\NordVPN\'
+    - '%PROGRAMDATA%\NordUpdater\'
+    - '%LOCALAPPDATA%\NordVPN\'
+  - Platform: macOS
+    Path:
+    - /Applications/NordVPN.app
+    - /Library/PrivilegedHelperTools/com.nordvpn.macos.helper
+    - ~/Library/Application Support/com.nordvpn.macos/
+    - ~/Library/HTTPStorages/com.nordvpn.macos/
+    - ~/Library/Caches/com.nordvpn.macos/
+    - /var/root/Library/Application Support/com.nordvpn.macos.helper/
+    - /var/root/Library/Caches/com.nordvpn.macos.helper/
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\NordVPN\NordVpn.exe_*\user.config'
+    - '%LOCALAPPDATA%\NordVPN\*\ovpn_udp\*.ovpn'
+    - '%LOCALAPPDATA%\NordVPN\*\ovpn_tcp\*.ovpn'
+    - '%PROGRAMDATA%\NordVPN\FeatureConfigs\*.json'
+    - '%PROGRAMDATA%\NordVPN\settings.db*'
+    - '%PROGRAMDATA%\NordVPN\settings\connection.db*'
+    - '%PROGRAMDATA%\NordVPN\connections\vpn_state_heartbeat.db'
+    - '%PROGRAMDATA%\NordVPN\Analytics\NordVPN.db*'
+    - '%PROGRAMDATA%\NordVPN\remote.json'
+    - '%PROGRAMDATA%\NordVPN\periodic-task-times.json'
+    - '%PROGRAMDATA%\NordVPN\configs\templates\*.xslt'
+    - '%PROGRAMDATA%\NordVPN\settings\*.json*'
+    - '%PROGRAMDATA%\NordVPN\ThreatProtection\Settings\settings.db*'
+    - '%LOCALAPPDATA%\NordVPN\settings.db*'
+    - '%LOCALAPPDATA%\NordVPN\pdp_cache.db*'
+    - '%LOCALAPPDATA%\NordVPN\servers_v2.json'
+    - '%LOCALAPPDATA%\NordVPN\mercatorClustersConfiguration.json'
+    - '%LOCALAPPDATA%\NordVPN\FeatureConfigs\*.json'
+    - '%LOCALAPPDATA%\NordVPN\inappnotifications*'
+    - '%LOCALAPPDATA%\NordVPN\notifications*'
+    - '%LOCALAPPDATA%\NordVPN\ProfileOptimization\Startup-*.profile'
+    - '%LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\NordVPN\Icon.png'
+    - C:\Windows\System32\drivers\ovpn-dco.sys
+    - C:\Windows\System32\drivers\wireguard.sys
+    - C:\Windows\System32\DriverStore\FileRepository\ovpn-dco.inf_amd64_*\
+    - C:\Windows\System32\DriverStore\FileRepository\wireguard.inf_amd64_*\
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/com.nordvpn.macos
+    - ~/Library/Preferences/com.nordvpn.macos.plist
+    - ~/Library/Preferences/group.com.nordvpn.macos.firebase.plist
+    - ~/Library/Containers/com.nordvpn.macos.NordLynx
+    - ~/Library/Containers/com.nordvpn.macos.NetworkTunnelExtension
+    - ~/Library/Containers/com.nordvpn.macos.NordWhisperTunnel
+    - /private/var/root/Library/Application Support/com.nordvpn.macos.helper
+    - /Library/PrivilegedHelperTools/com.nordvpn.macos.helper
+  - Platform: Linux
+    Path:
+    - /var/lib/nordvpn/data/settings.dat
+    - ~/.config/nordvpn/nordvpn.conf
+  RegistryPersistence:
+  - HKCR\NordVPN
+  - HKCR\NordVPN.Notification
+  - HKLM\SOFTWARE\NordSec\InstalledProducts\NordVPN
+  - HKLM\SOFTWARE\NordDivert
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{19465C24-3D5D-4327-B99F-3CC0A1D38151}_is1
+  - HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\{6E35DB82-3D19-4DD6-B8CB-F082815FDE18}_is1
+  - HKLM\SYSTEM\CurrentControlSet\Services\NordUpdaterService
+  - HKLM\SYSTEM\CurrentControlSet\Services\nordvpn-service
+  - HKLM\SYSTEM\CurrentControlSet\Services\nordsec-threatprotection-service
+  - HKLM\SYSTEM\CurrentControlSet\Services\NDivert
+  - HKLM\SYSTEM\CurrentControlSet\Services\WireGuard
+  - HKLM\SYSTEM\CurrentControlSet\Services\tapnordvpn
+  - HKLM\SYSTEM\CurrentControlSet\Services\ovpn-dco
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\NordVPN Service
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\nordsec-threatprotection-service
+  - HKLM\SYSTEM\CurrentControlSet\Services\EventLog\System\WireGuard
+  - HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run\NordVPN
+  - HKCU\Software\Classes\AppUserModelId\NordVPN
+  LogFiles:
+  - Platform: Windows
+    Path:
+    - '%PROGRAMDATA%\NordVPN\logs\*.log'
+    - '%PROGRAMDATA%\NordVPN\logs\*.nwl'
+    - '%PROGRAMDATA%\NordUpdater\logs\*.log'
+    - '%LOCALAPPDATA%\NordVPN\logs\*.log'
+    - '%LOCALAPPDATA%\Temp\Uninstall Log *.txt'
+  - Platform: macOS
+    Path:
+    - ~/Library/Logs/com.nordvpn.macos/
+    - /var/root/Library/Caches/com.crashlytics.data/com.nordvpn.macos.helper/
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - cmd.exe /c dotnet --list-runtimes
+    - <temporary-dotnet-installer>.exe /install /quiet /norestart
+    - <temporary-nordvpn-installer>.exe /SILENT /VERYSILENT /NORESTART
+    - >-
+      NordUpdaterSetup.exe /VERYSILENT /SUPPRESSMSGBOXES /NOCANCEL /NORESTART
+      /RESTARTEXITCODE=3010 /NOCLOSEAPPLICATIONS
+    - pnputil.exe /add-driver "<NordVPN path>\Drivers\Win11\ovpn-dco.inf" /install
+    - pnputil.exe /add-driver "<NordVPN path>\Drivers\OemVista.inf" /install
+    - tapctl.exe list --hwid tapnordvpn
+    - tapctl.exe list --hwid ovpn-dco
+    - tapctl.exe create --hwid tapnordvpn
+    - tapctl.exe create --name "OpenVPN Data Channel Offload for NordVPN" --hwid ovpn-dco
+    - netsh interface ip set address name="<NordLynx interface>" source=static address=<tunnel-address> mask=<tunnel-mask>
+    - '"nordvpn://login/?action=login&exchange_token=<redacted>&status=done"'
+    - >-
+      msedge.exe --single-argument
+      https://napps-1.com/v1/users/oauth/login-redirect?attempt=<redacted>
+    - '"C:\Program Files\NordVPN\unins000.exe" /LOG'
+    - >-
+      "C:\Program Files\NordUpdater\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES
+      /NORESTART /RESTARTEXITCODE=3010
+    - taskkill.exe /f /im NordVPN.exe
+    - >-
+      netcfg.exe -u NordLwf
+    - >-
+      pnputil.exe /uninstall /force -d <TAP-NordVPN OEM INF>
+    - >-
+      route.exe DELETE <default-route> MASK <default-route-mask> <product gateway> if
+      <NordLynx interface index>
+    - >-
+      netsh.exe interface <ipv4-or-ipv6> set dnsservers name=<NordLynx interface index>
+      source=static address=none validate=no register=both
+    - sc.exe <stop-or-delete> NDivert
+    - cmdkey.exe /delete:NordVPN/<credential-target>
+    - schtasks.exe /delete /tn "NordVPN scheduled start" /f
+    - --auto-start
+    - --config "<path>" --mute-replay-warnings --hand-window <num> --management-hold --management-query-passwords --suppress-timestamps --management <version> <num> stdin --register-dns --script-security <num> --service <file>
+    - --config "<path>" --mute-replay-warnings --hand-window <num> --management-hold --management-query-passwords --suppress-timestamps --management <version> <num> stdin --register-dns --script-security <num> --service <file> <num>
+    - --version <version>
+  - Platform: macOS
+    Args:
+    - /Applications/NordVPN.app/Contents/MacOS/NordVPN
+    - -AppleLanguages ("en-US")
+  BrowserExtensions: []
+  CodeSigning:
+  - Platform: Windows application, service, updater, and NDivert binaries
+    Publisher: nordvpn s.a.
+  - Platform: Windows WireGuard, TAP-NordVPN, and OpenVPN DCO drivers
+    Publisher: Microsoft Windows Hardware Compatibility Publisher
+  - Platform: macOS
+    Publisher: Developer ID Application Nordvpn S.A. (W5W395V82Y)
+    TeamID: W5W395V82Y
+    BundleID: com.nordvpn.macos
+    CertificateAuthority: Developer ID Certification Authority -> Apple Root CA
+    HelperToolBundleID: com.nordvpn.macos.helper
+  NetworkArtifacts:
+    Domains:
+    - nordvpn.com
+    - api.nordvpn.com
+    - applytics.nordvpn.com
+    - downloads.nordcdn.com
+    - downloads77-windows.nordcdn.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - HTTPS
+  - DNS
+  - NordLynx (WireGuard-based)
+  - OpenVPN
+  - IKEv2/IPsec
+  - NordWhisper (proprietary protocol)
+  Ports:
+  - TCP 80 (installation, update, and certificate-status traffic)
+  - UDP 1194 (OpenVPN)
+  - TCP 443 (OpenVPN, observed active connections)
+  - UDP 443 (observed active connections)
+  - UDP 51820 (WireGuard)
+  TunnelInterfaces:
+  - utun0, utun1, utun2, utun3 (macOS)
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256-GCM
+  - ChaCha20
+  NetworkExtensions:
+  - app-proxy-provider-systemextension (macOS)
+  ProtocolExtensions:
+  - NordLynx Extension (.nnex)
+  - OpenVPN Extension (.nnex)
+  - NordWhisper Extension (.nnex)
+ThreatActors: []
+UseCases: []
+ThirdPartyIntegrations:
+  Firebase:
+    Services:
+    - Firebase Analytics
+    - Firebase Crashlytics
+    - Firebase Remote Config
+    - Firebase A/B Testing
+    - Firebase Core
+    - Firebase Installations
+  GoogleAnalytics:
+  - GoogleAppMeasurement framework
+  - GoogleAppMeasurementIdentitySupport framework
+  CrashReporting:
+  - Firebase Crashlytics
+  AutoUpdates:
+  - Sparkle Framework
+  DatabaseFramework:
+  - Realm Swift
+  NetworkLibraries:
+  - Alamofire (HTTP networking)
+  - GTMSessionFetcher
+  - GoogleDataTransport
+  Logging:
+  - CocoaLumberjack
+  AnimationFramework:
+  - Lottie
+  MonitoringTools:
+  - Atlantis (network debugging)
+  CustomFFIFrameworks:
+  - firewallFFI (firewall functionality)
+  - norddropFFI (file sharing/transfer feature)
+  - telioFFI (mesh networking)
+  - quenchFFI (VPN protocol handling)
+  - workerFFI (background workers)
+  - vinisFFI (networking layer)
+  - nudlerFFI (push notifications)
+ApplicationVersion:
+  macOSLatestObserved: 10.0.4 (Build 357)
+  MinimumOSVersion: macOS 12.0
+  Architecture: Universal Binary (x86_64 + ARM64)
+  URLSchemes:
+  - nordvpn
+  AssociatedDomains:
+  - applinks:htmwk.test-app.link
+  - applinks:htmwk-alternate.test-app.link
+  Entitlements:
+  - com.apple.developer.networking.networkextension (app-proxy-provider-systemextension)
+  - com.apple.developer.system-extension.install
+  - com.apple.developer.associated-domains
+  - com.apple.developer.maps
+  - com.apple.security.application-groups (W5W395V82Y.com.nordvpn.macos.AppGroup)
+  - keychain-access-groups (W5W395V82Y.group.com.nordvpn.tunnel)
+  PluginsExtensions:
+  - Name: NordLynx Extension Sideload.nnex
+    Type: VPN Protocol Extension (WireGuard-based)
+    Purpose: NordLynx protocol implementation
+  - Name: OpenVPN Extension Sideload.nnex
+    Type: VPN Protocol Extension
+    Purpose: OpenVPN protocol implementation
+  - Name: NordWhisper Extension Sideload.nnex
+    Type: VPN Protocol Extension
+    Purpose: NordWhisper proprietary protocol
+  - Name: NordVPNLauncher Sideload.app
+    Type: Helper Application
+    Path: /Applications/NordVPN.app/Contents/Resources/NordVPNLauncher Sideload.app
+  PrivilegedHelperTool:
+    Path: /Library/PrivilegedHelperTools/com.nordvpn.macos.helper
+    Size: 3.6 MB
+    Architecture: Universal Binary (x86_64 + ARM64)
+    BundleID: com.nordvpn.macos.helper
+    RunsAsRoot: true
+    Purpose: System-level VPN operations and network configuration
+    DataLocations:
+    - /var/root/Library/Application Support/com.nordvpn.macos.helper/
+    - /var/root/Library/Preferences/com.nordvpn.macos.helper.plist
+    - /var/root/Library/Caches/com.nordvpn.macos.helper/
+Localization:
+  SupportedLanguages:
+  - English (en)
+  - German (de)
+  - Spanish (es)
+  - Italian (it)
+  - Japanese (ja)
+  - Chinese-Simplified (zh-Hans)
+  - Chinese-Traditional (zh-TW)
+  - French (fr)
+  - Polish (pl)
+  - Portuguese-Brazil (pt-BR)
+  - Russian (ru)
+  - Dutch (nl)
+  - Turkish (tr)
+  - Korean (ko)
+Detection:
+- Type: Endpoint
+  Description: Detect NordVPN installation, execution, and privileged helper tool
+  Indicators:
+  - Process execution /Applications/NordVPN.app/Contents/MacOS/NordVPN
+  - Privileged helper tool /Library/PrivilegedHelperTools/com.nordvpn.macos.helper running as root
+  - Network extension installation with bundle ID com.nordvpn.macos
+  - Creation of utun interfaces (utun0-utun3) associated with NordVPN process
+  - Realm database at ~/Library/Application Support/com.nordvpn.macos/default.encrypted_v2.realm
+  - Code signature verification - Team ID W5W395V82Y, Bundle ID com.nordvpn.macos
+  - Three protocol extension plugins (.nnex files)
+- Type: Network
+  Description: Network-based detection of NordVPN connections
+  Indicators:
+  - TCP/UDP connections to port 443 to NordVPN infrastructure
+  - DNS queries for nordvpn.com, api.nordvpn.com
+  - UDP traffic to port 51820 (WireGuard/NordLynx)
+  - OpenVPN connections to UDP 1194 or TCP 443
+  - Traffic through utun interfaces on macOS
+  - Multiple simultaneous connections to Cloudflare and Google infrastructure
+  - NordLynx protocol indicators
+- Type: Forensic
+  Description: File system and configuration artifacts from NordVPN installation
+  Indicators:
+  - Application bundle at /Applications/NordVPN.app (57MB executable, universal binary)
+  - Privileged helper tool in /Library/PrivilegedHelperTools/
+  - Encrypted Realm database (default.encrypted_v2.realm)
+  - Three VPN protocol extensions (NordLynx, OpenVPN, NordWhisper)
+  - Eight custom FFI frameworks (Rust-based, nordvpnappFFI, firewallFFI, etc.)
+  - Firebase configuration and analytics frameworks
+  - Sparkle framework for auto-updates
+  - NordVPNLauncher helper application
+  - GoogleService-Info-Helper.plist configuration
+  - Root-owned configuration at /var/root/Library/
+- Type: Forensic
+  Description: >-
+    Detect the Windows installation of NordVPN 8.7.2.0. The interactive bootstrapper
+    installed Microsoft .NET Desktop Runtime 8.0.23, an Inno Setup NordVPN package,
+    NordUpdater 1.5.0.1028, three automatic LocalSystem services, four network-driver
+    services, and three VPN adapter families. The operator disabled launch at completion;
+    no NordVPN GUI, login, server selection, or VPN connection occurred.
+  Indicators:
+  - >-
+    The Explorer-launched nordvpn.exe bootstrapper first queried dotnet --list-runtimes
+  - >-
+    The bootstrapper installed Microsoft Windows Desktop Runtime 8.0.23 with
+    /install /quiet /norestart before extracting its VPN payload
+  - >-
+    A temporary NordVPN 8.7.2.0 installer ran with /SILENT /VERYSILENT /NORESTART
+    and deployed 708 files beneath C:\Program Files\NordVPN\
+  - >-
+    The updater installer installed NordUpdater 1.5.0.1028 with a very-silent,
+    no-restart command line and deployed 51 files beneath C:\Program Files\NordUpdater\
+  - >-
+    NordUpdaterService, nordvpn-service, and nordsec-threatprotection-service were
+    registered as automatic LocalSystem services and were running in the post-state
+  - >-
+    nordvpn-service.exe and nordsec-threatprotection-service.exe were validly signed by Nord Security.
+  - >-
+    nordvpn-service.exe invoked pnputil for OpenVPN DCO and TAP-NordVPN packages,
+    then tapctl.exe created TAP-NordVPN and OpenVPN DCO adapters
+  - >-
+    The post-state contained running NDivert, WireGuard, tapnordvpn, and ovpn-dco
+    kernel-driver services plus NordLynx, TAP-NordVPN, and OpenVPN DCO adapters
+  - >-
+    wireguard.sys, tapnordvpn.sys, and ovpn-dco.sys were validly signed by the
+    Microsoft Windows Hardware Compatibility Publisher; NDivert.sys was signed by
+    nordvpn s.a.
+  - >-
+    The installer registered HKCR\NordVPN and HKCR\NordVPN.Notification URL schemes,
+    NordSec product metadata, NordVPN and NordUpdater uninstall entries, and two
+    Start Menu shortcuts
+  - >-
+    Forty-three initial configuration, feature, analytics, connection-state, and log
+    files were created under C:\ProgramData\NordVPN\; NordUpdater added two logs
+  - >-
+    No scheduled task, Run-key startup command, or firewall rule was added, and the
+    installation completed without an error or restart request
+- Type: Network
+  Description: >-
+    Installation, prerequisite, updater, service-initialization, configuration-download,
+    telemetry, and certificate-status traffic was observed. Adapter creation and service
+    initialization are not evidence of a VPN connection; no default route or product DNS
+    server was installed and NordVPN.exe was not launched.
+  Indicators:
+  - >-
+    The outer bootstrapper queried builds.dotnet.microsoft.com while obtaining the .NET
+    prerequisite
+  - >-
+    The VPN installer queried api.nordvpn.com, applytics.nordvpn.com,
+    downloads.nordcdn.com, and downloads77-windows.nordcdn.com over TCP 80 or 443
+  - >-
+    NordUpdateService.exe queried downloads77-windows.nordcdn.com and used TCP 443
+  - >-
+    nordvpn-service.exe queried applytics.nordvpn.com,
+    downloads77-windows.napps-1.com, and certificate-status or Microsoft endpoints
+    during automatic service initialization
+  - >-
+    The NordLynx adapter received a static tunnel address and adapter-local routes;
+    no default-route, product DNS-server, or firewall-rule change was observed
+  - >-
+    Capture-specific CDN addresses and ephemeral ports are not treated as stable product
+    indicators
+- Type: Forensic
+  Description: >-
+    Detect the controlled first launch of NordVPN 8.7.2.0 on Windows. Explorer started
+    the installed GUI without arguments; the application created per-user settings,
+    feature configuration, server-catalog, notification, optimization, and log artifacts
+    and enabled user-logon startup. The application remained open in its unauthenticated
+    state. No account creation, credential submission, or VPN connection was attempted.
+  Indicators:
+  - >-
+    Explorer launched C:\Program Files\NordVPN\NordVPN.exe with no command-line argument
+  - >-
+    NordVPN.exe directly set the per-user Run value NordVPN to
+    "C:\Program Files\NordVPN\NordVPN.exe" --auto-start
+  - >-
+    NordVPN.exe registered its per-user AppUserModelId and created a toast-notification
+    icon under %LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\NordVPN\
+  - >-
+    Nineteen per-user NordVPN files were created under %LOCALAPPDATA%\NordVPN\,
+    including settings.db, pdp_cache.db, servers_v2.json,
+    mercatorClustersConfiguration.json, feature configurations, notification stores,
+    startup profile data, and application logs
+  - >-
+    First-launch IPC with the already-running nordvpn-service updated shared settings,
+    analytics, connection-state, and service logs and created
+    %PROGRAMDATA%\NordVPN\settings\*.json and ThreatProtection\Settings\settings.db
+  - >-
+    Windows created a NORDVPN.EXE prefetch record during the controlled launch
+  - >-
+    No new service, driver, scheduled task, network adapter, route, DNS-server setting,
+    firewall rule, or installed application appeared during first launch
+  - >-
+    The pre-existing NordUpdaterService, nordvpn-service,
+    nordsec-threatprotection-service, and network drivers remained baseline state rather
+    than first-launch persistence
+  - >-
+    The operator stopped at the unauthenticated UI and left NordVPN.exe running for a
+    separately bounded authentication phase; no error or restart request was reported
+- Type: Network
+  Description: >-
+    The unauthenticated GUI performed DNS, certificate-status, configuration, server-list,
+    notification, and telemetry activity over TCP 80 and 443. This first-launch traffic
+    is not tunnel traffic: no login or connection was attempted and Windows networking
+    state did not change.
+  Indicators:
+  - >-
+    NordVPN.exe used DNS and made TCP 443 connections to CDN77-backed destinations while
+    creating servers_v2.json and other configuration artifacts
+  - >-
+    NordVPN.exe made TCP 80 connections to Akamai-backed destinations and queried
+    certificate-status and Microsoft connectivity endpoints
+  - >-
+    Capture-specific destination addresses, CDN hostnames, and ephemeral ports are not
+    treated as stable NordVPN indicators
+  - >-
+    No VPN helper or tunnel process was launched, and no adapter, default route,
+    DNS-server, or firewall-rule change occurred
+- Type: Forensic
+  Description: >-
+    Detect the controlled NordVPN 8.7.2.0 Windows login attempt. The already-running
+    NordVPN.exe launched Microsoft Edge for a single external-browser OAuth flow. The
+    operator completed exactly one synthetic attempt, but did not report the UI result,
+    and the capture did not establish successful authentication. No account creation,
+    retry, server selection, or VPN connection was attempted.
+  Indicators:
+  - >-
+    NordVPN.exe directly launched msedge.exe with --single-argument and the redacted URL
+    pattern https://napps-1.com/v1/users/oauth/login-redirect?attempt=<redacted>
+  - >-
+    The browser launch produced an Edge process tree while NordVPN.exe and the baseline
+    NordUpdaterService, nordvpn-service, and nordsec-threatprotection-service processes
+    remained running
+  - >-
+    NordVPN.exe and nordvpn-service.exe wrote existing per-user application logs and
+    shared analytics, settings, connection-heartbeat, and service-log artifacts; no new
+    NordVPN product file was added
+  - >-
+    No NordVPN URL-scheme callback command line, distinct authenticated-state artifact,
+    or independently confirmed success result was observed, so the login outcome
+    remains indeterminate
+  - >-
+    No service, driver, scheduled task, network adapter, route, DNS-server setting,
+    firewall rule, or installed application was added during the login attempt
+  - >-
+    Credentials, account identifiers, browser cookies, OAuth attempt identifiers, and
+    authentication secrets are excluded from the profile
+- Type: Network
+  Description: >-
+    The login attempt opened an external browser at the NordVPN-used napps-1.com
+    OAuth redirect endpoint and produced browser HTTPS traffic. Browser background and
+    shared-CDN traffic is not treated as a stable NordVPN indicator. No VPN tunnel or
+    Windows networking-state change was observed.
+  Indicators:
+  - >-
+    The NordVPN-launched Edge command line identified
+    https://napps-1.com/v1/users/oauth/login-redirect as the login-flow entry point
+  - >-
+    Edge made HTTPS connections during the attempt, but capture-specific IP addresses,
+    reverse-DNS names, Microsoft and Google browser services, and CDN endpoints are not
+    attributed to NordVPN authentication
+  - >-
+    No openvpn-nordvpn.exe or other VPN helper process was launched, and no default
+    route, product DNS server, adapter, or firewall-rule change occurred
+- Type: Forensic
+  Description: >-
+    Detect the normal interactive uninstall of NordVPN 8.7.2.0 and NordUpdater
+    1.5.0.1028 on Windows. The registered uninstaller removed the desktop application,
+    updater, active product services, application data, startup entry, TAP and NDivert
+    components, and all three VPN adapters. The workflow completed without an error,
+    reboot request, or manual residual cleanup.
+  Indicators:
+  - >-
+    Explorer launched C:\Program Files\NordVPN\unins000.exe /LOG; its temporary
+    _unins.tmp second phase performed the removal after operator confirmation
+  - >-
+    The uninstaller stopped the running NordUpdaterService, nordvpn-service, and
+    nordsec-threatprotection-service processes and removed all three automatic
+    LocalSystem service registrations
+  - >-
+    The state comparison removed the NordVPN 8.7.2.0 and NordUpdater 1.5.0.1028
+    installed-application entries, the per-user NordVPN Run value, and the NordSec
+    InstalledProducts registry hierarchy
+  - >-
+    The uninstaller launched the NordUpdater removal workflow silently with /NORESTART,
+    invoked RemoveWfpRegistration.exe, and requested NordLwf unregistration with
+    netcfg.exe
+  - >-
+    The uninstaller invoked cmdkey.exe for two NordVPN credential targets; credential
+    names, account identifiers, and secret values are excluded from the profile
+  - >-
+    A product cleanup helper directly deleted 48 files under %PROGRAMDATA%\NordVPN\,
+    two NordUpdater data files, and 19 files under %LOCALAPPDATA%\NordVPN\
+  - >-
+    The state comparison removed 708 files under C:\Program Files\NordVPN\, 51 files
+    under C:\Program Files\NordUpdater\, and two NordSec Start Menu shortcuts
+  - >-
+    pnputil removed the TAP-NordVPN device and oem14.inf package; the tapnordvpn and
+    NDivert drivers disappeared from the active driver inventory
+- Type: Network
+  Description: >-
+    Uninstall-related network activity was limited to local adapter, route, DNS,
+    filtering, and driver cleanup. No uninstaller or NordVPN-attributed external network
+    connection was observed.
+  Indicators:
+  - >-
+    Before nordvpn-service.exe exited, it issued repeated default-route deletion attempts
+    for private NordLynx gateways and cleared IPv4 and IPv6 DNS settings on interface 26
+  - >-
+    The pre/post state removed the NordLynx, OpenVPN Data Channel Offload, and TAP-NordVPN
+    adapters plus 18 adapter-local routes and six adapter DNS inventory rows
+  - >-
+    The Ethernet default route remained the host route; the deleted-route state records
+    contained no VPN default route, so route.exe commands are recorded as cleanup
+    attempts rather than proof of a previously active tunnel
+  - >-
+    No firewall rule was removed and no Sysmon or Procmon network event was attributed
+    to the uninstaller process tree
+- Type: Forensic
+  Description: >-
+    Residual state after normal uninstall of NordVPN 8.7.2.0 on Windows. The primary
+    applications, services, adapters, startup entry, and product data directories were
+    absent, but driver packages, registry traces, a toast icon, and temporary
+    uninstall artifacts remained.
+  Indicators:
+  - >-
+    The stopped ovpn-dco and WireGuard driver services remained registered, with their
+    binaries in C:\Windows\System32\drivers\ and packages in the Driver Store
+  - >-
+    The TAP-NordVPN driver and package were removed, but a residual
+    HKLM\SYSTEM\CurrentControlSet\Services\tapnordvpn registry hierarchy remained
+  - >-
+    Event-log registration keys remained for NordVPN Service,
+    nordsec-threatprotection-service, and WireGuard
+  - >-
+    %LOCALAPPDATA%\ToastNotificationManagerCompat\Apps\NordVPN\Icon.png remained after
+    the per-user %LOCALAPPDATA%\NordVPN\ directory was deleted
+  - >-
+    The post-state retained the generated uninstall log, temporary _unins.tmp helpers,
+    and signed Nord.Setup.dll payloads beneath %LOCALAPPDATA%\Temp\
+  - >-
+    Microsoft Windows Desktop Runtime 8.0.23 and its .NET runtime components remained
+    installed; this separately installed prerequisite was not removed
+References:
+  Official:
+  - https://nordvpn.com/
+  - https://support.nordvpn.com/
+  ThreatIntelligence:
+  - https://www.vpnmentor.com/blog/report-nordvpn-vulnerability/
+  - https://thehackernews.com/2019/10/nordvpn-server-breach.html
+  Research:
+  - https://research.nccgroup.com/2020/03/10/technical-advisory-nordvpn-linux-client-privilege-escalation/
+KnownVulnerabilities:
+- CVE: Historical server breach (2019)
+  Severity: High
+  Description: One NordVPN server in Finland was compromised due to poor datacenter security
+  Patched: true
+  Reference: https://thehackernews.com/2019/10/nordvpn-server-breach.html
+- CVE: Privilege escalation in Linux client
+  Severity: Medium
+  Description: Local privilege escalation vulnerability in Linux client
+  Patched: true
+  Reference: https://research.nccgroup.com/2020/03/10/technical-advisory-nordvpn-linux-client-privilege-escalation/
+LastModified: '2026-09-01'

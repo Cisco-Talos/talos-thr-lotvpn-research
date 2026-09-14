@@ -1,0 +1,248 @@
+Name: Tor
+VendorInfo:
+  Company: The Tor Project, Inc.
+  Website: https://www.torproject.org/
+  BusinessModel: Free
+  OpenSource: true
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - tor-browser.exe
+    - tor.exe
+  - Platform: macOS
+    Name:
+    - tor
+  SupportingComponents:
+  - Platform: Windows
+    Processes:
+    - firefox.exe
+    - lyrebird.exe
+    - conjure-client.exe
+    - plugin-container.exe
+    - nmhproxy.exe
+    - updater.exe
+    Attribution: >-
+      Require a Tor Browser installation path, Tor Project signature, product-specific
+      command line, or direct tor.exe ancestry; these are the bundled browser,
+      pluggable transports, and browser helper components.
+  ApplicationInfo:
+  - Platform: Windows
+    AppName: Tor Browser
+    ExecutableName: firefox.exe
+    Version: 15.0.14
+    Publisher: The Tor Project, Inc.
+    InstallScope: Per-user portable installation
+    InstallLocation: '%USERPROFILE%\Desktop\Tor Browser\'
+    InstallerType: Signed Tor Browser Portable Installer executable
+    UninstallCommand: No uninstall registration or product uninstall utility was observed; the tested portable distribution is removed by deleting its directory and shortcuts
+    AdditionalComponents:
+    - Bundled tor.exe client
+    - Bundled lyrebird.exe and conjure-client.exe pluggable transports
+    - Bundled Firefox-based browser, updater, native-messaging proxy, and plugin container
+  InstallationPaths:
+  - Platform: Windows
+    Path:
+    - '%USERPROFILE%\Desktop\Tor Browser\'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Tor\'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Tor\PluggableTransports\'
+    - '%USERPROFILE%\Desktop\Tor Browser\Tor Browser.lnk'
+    - '%USERPROFILE%\Desktop\Tor Browser.lnk'
+    - '%APPDATA%\Microsoft\Windows\Start Menu\Programs\Tor Browser.lnk'
+    - '%PROGRAMDATA%\Mozilla-*\UpdateLock-*'
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\torrc'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\torrc-defaults'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\control_auth_cookie'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\state'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\cached-certs'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\cached-microdesc-consensus'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\cached-microdescs.new'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profiles.ini'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\prefs.js'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\places.sqlite'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\cookies.sqlite'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\extensions.json'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\onion-aliases.json'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\AlternateServices.bin'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\profile.default\SiteSecurityServiceState.bin'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Browser\Caches\profile.default\'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\UpdateInfo\active-update.xml'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\UpdateInfo\updates\0\update.status'
+    - '%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\UpdateInfo\updates\downloading\update.mar'
+  - Platform: macOS
+    Path:
+    - ~/Library/Application Support/TorBrowser-Data/Tor/torrc
+    - /usr/local/etc/tor/torrc
+  - Platform: Linux
+    Path:
+    - /etc/tor/torrc
+    - ~/.tor/torrc
+  RegistryPersistence:
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\*\tor-browser.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\*\tor-browser.exe
+  - HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache\*\tor-browser.exe.FriendlyAppName
+  - HKCU\Software\Tor Project\Firefox\*
+  - HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings\*\Device\HarddiskVolume*\Users\*\Desktop\Tor Browser\Browser\firefox.exe
+  - HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Compatibility Assistant\Store\*\Tor Browser\Browser\firefox.exe
+  - HKCU\Software\Classes\Local Settings\Software\Microsoft\Windows\Shell\MuiCache\*\Tor Browser\Browser\firefox.exe.*
+  LogFiles: []
+  CommandLineArgs:
+  - Platform: Windows
+    Args:
+    - '"tor-browser.exe"'
+    - '"%USERPROFILE%\Desktop\Tor Browser\Browser\firefox.exe"'
+    - '"%USERPROFILE%\Desktop\Tor Browser\Browser\firefox.exe" -contentproc -parentBuildID <timestamp> -prefsHandle <handle> -prefMapHandle <handle> -ipcHandle <handle> -parentPid <pid> -appDir "%USERPROFILE%\Desktop\Tor Browser\Browser\browser" - <instance> <gpu|tab|rdd|utility>'
+    - '"%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Tor\tor.exe" -f "%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\torrc" DataDirectory "%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor" ClientOnionAuthDir "%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\onion-auth" --defaults-torrc "%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\torrc-defaults" GeoIPFile "%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\geoip" GeoIPv6File "%USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\geoip6" +__ControlPort <loopback>:9151 HashedControlPassword <redacted> +__SocksPort "<loopback>:9150 ExtendedErrors IPv6Traffic PreferIPv6 KeepAliveIsolateSOCKSAuth" __OwningControllerProcess <pid> DisableNetwork 1'
+  - Platform: macOS
+    Args:
+    - --act=normal
+    - --analytics-identifier <uuid> --logs-path <path>
+    - --daemon
+    - --list-apps
+    - --recovery-mode --session-identifier <id> --archive-path <path>
+    - --sentinel-mode --session-identifier <id> --analytics-identifier <uuid> --logs-path <path>
+    - --sentinel-mode --session-identifier <id> --analytics-identifier <uuid> --logs-path AIMonitor_29.<num>.1_8.log
+    - --sentinel-mode --session-identifier <id> --logs-path <path>
+    - --vscodeSessionId 26b9dc72-b8b0-<num>-a342-093e8b9a0a341771868024264 --vscodeTelemetryLevel all
+    - --vscodeSessionId 512cc83e-5de6-4b7d-<num>-701006a306ff1771868024302 --vscodeTelemetryLevel all
+    - --vscodeSessionId 83a8712c-b1d2-41ca-86da-04463c35163e1771868024313 --vscodeTelemetryLevel all
+    - --vscodeSessionId b05d39de-6cb2-4ee1-9f43-2f7b4b292adf1771858630361 --vscodeTelemetryLevel all
+    - -add <uuid> -md5 4643f52baabb0da9635319893d4b2cb4
+    - -add <uuid> -md5 fc538a44b828bf81099e7146b53beb45
+    - -add watchman_disk_i/o_errors -md5 7574e9b829d465c2525d7b9f629e8821
+    - -avd ET40 -netdelay none -netspeed full
+    - -dataDir=data -pclog.dev
+    - -httpRequestTimeoutSec=<num> -httpConnectTimeoutSec=<num> -httpResponseHeaderTimeoutSec=<num> -httpTlsHandshakeTimeoutSec=<num> -ticketPath=data/job-processor/print-job/ipp-ticket-<num> -printerURI=ipp://<version>/ipp -printerReadyTimeoutSec=<num> -printerReadyDelaySec=<num> -printerAttributeCacheEnabled=true -printerAttributeCachePath=data/job-processor/tmp -tmpDir=data/job-processor/tmp -ippPrintOperation="create-job-and-send-document" -ippMaxPrintJobSendDocumentRetryAttempts=<num> -pclog.dev -ippCommandTimeout=<num> print-job
+    - -netdelay none -netspeed full -avd ET40
+    - -netdelay none -netspeed full -avd KC50 -qt-hide-window -grpc-use-token -idle-grpc-timeout <num>
+    - -printerAttributeCacheEnabled=true -printerAttributeCachePath=data/job-processor/tmp -printerURI=<url> -pclog.dev -ippCommandTimeout=<num> -httpRequestTimeoutSec=<num> check-printer
+    - -printerAttributeCacheEnabled=true -printerAttributeCachePath=data/job-processor/tmp -printerURI=ipp://<version>/ipp -pclog.dev -ippCommandTimeout=<num> -httpRequestTimeoutSec=<num> check-printer
+    - <path>
+    - <path> Ads Editor Launcher
+    - '@Medium_Phone_API_36.<num>'
+    - chrome-extension://klicnoclcmhafeeepkpdedpojjlaaflf/
+    - migratecache<path>
+    - office-powerpoint-postprocess<path>
+  CodeSigning:
+  - Platform: Windows installer
+    Publisher: The Tor Project, Inc.
+    SignatureStatus: Valid
+  - Platform: Windows installed Tor Browser executables
+    Publisher: Not signed in the collected Authenticode inventory
+  NetworkArtifacts:
+    Domains: []
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - Tor (The Onion Router)
+  - SOCKS proxy
+  Ports:
+  - TCP 443 (Tor relay connections)
+  - TCP 9001 (observed Tor relay connection attempt)
+  - TCP 9030 (directory port; not observed in the controlled Windows connection)
+  - TCP 9050 (default Tor SOCKS proxy; not observed because Tor Browser used 9150)
+  - TCP 9150 (observed local Tor Browser SOCKS listener and browser proxy traffic)
+  - TCP 9151 (observed local Tor control listener and browser control traffic)
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-128-CTR
+  - Curve25519
+ThreatActors:
+- Name: Various APT groups
+  Reference: Multiple public intelligence reports
+- Name: Ransomware operators
+  Reference: https://www.europol.europa.eu/media-press/newsroom/news/tor-investigation- leads-to-arrest-and-seizure-of-dark-web-marketplaces
+- Name: Dark web marketplace operators
+  Reference: https://www.justice.gov/usao-sdny/pr/former-fbi-agent-sentenced-48- months-prison-stealing-bitcoin-silk-road-investigation
+UseCases:
+- Title: Command and Control (C2) communication
+  Description: Threat actors use Tor to hide C2 infrastructure for malware and botnets, making it difficult to trace the origin of commands and data exfiltration.
+  Date: 2010-01-01
+  Source: Multiple threat intelligence reports
+- Title: Dark web marketplace operations
+  Description: Cybercriminals operate illegal marketplaces on Tor hidden services to sell stolen data, malware, drugs, and other illicit goods while maintaining anonymity.
+  Date: 2011-02-01
+  Source: https://www.justice.gov/usao-sdny/pr/former-fbi-agent-sentenced-48- months-prison-stealing-bitcoin-silk-road-investigation
+- Title: Ransomware payment and leak sites
+  Description: Ransomware groups host payment portals and data leak sites on Tor hidden services to protect their infrastructure from takedown attempts.
+  Date: 2019-01-01
+  Source: Multiple ransomware incident reports
+Detection:
+- Type: Forensic
+  Description: Detect the controlled per-user installation of Tor Browser 15.0.14 on Windows 11. The signed portable installer directly extracted the browser, Tor client, and pluggable transports beneath the operator-selected default Desktop destination, then created the selected internal, Desktop, and Start Menu shortcuts. The operator disabled Run Tor Browser, so no installed Tor component executed.
+  Indicators:
+  - The Tor Project, Inc.-signed portable tor-browser.exe installer had version 15.0.14 and directly extracted the browser, Tor client, and pluggable transports beneath the selected Desktop destination
+  - Explorer launched the installer without arguments in the interactive user session; no child process was attributed to the installation
+  - The installer created the portable Tor Browser tree plus internal, Desktop, and Start Menu shortcuts
+  - The tested installer added no installed-application or uninstall registration, service, driver, scheduled task, startup command, network adapter, route, DNS-server setting, or firewall rule
+  - Installation completed without an error or reboot request; no Tor Browser launch, Tor connection, authentication, or browsing occurred
+- Type: Network
+  Description: No network activity was attributed to the Tor Browser installer or an installed Tor component during this installation-only capture. The existing protocol and port entries were not validated by this phase because Run Tor Browser was disabled.
+  Indicators:
+  - No Tor-related Sysmon or Procmon network event was observed
+  - No installed browser, tor.exe, or pluggable-transport process executed during installation
+  - No adapter, route, DNS-server, or firewall-rule change was observed
+- Type: Forensic
+  Description: Detect the controlled first launch of Tor Browser 15.0.14 on Windows 11. Explorer started the bundled Firefox-based browser, which created its portable profile state and launched the bundled Tor client with network access disabled while the UI remained at the untouched Connect prompt.
+  Indicators:
+  - Explorer launched %USERPROFILE%\Desktop\Tor Browser\Browser\firefox.exe; the initial high-integrity launcher handed off to a medium-integrity browser process, which created low-integrity content processes
+  - firefox.exe launched tor.exe from %USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Tor\ with the configured torrc, data, onion-auth, GeoIP, local control-port, and local SOCKS-port paths; the command line ended with DisableNetwork 1
+  - The first launch created the Tor control_auth_cookie and state files, populated torrc, and initialized Firefox profile artifacts including prefs.js, places.sqlite, cookies.sqlite, extensions.json, storage databases, and startup caches beneath the portable installation directory
+  - firefox.exe created HKCU\Software\Tor Project\Firefox launcher, installer, prefetch-experiment, and skeleton-UI state
+  - No service, driver, scheduled task, startup command, installed-application record, network adapter, route, DNS-server setting, or firewall rule was added or modified during first launch
+  - The operator did not click Connect, change connection settings, authenticate, or browse; Tor Browser remained running at the initial Connect prompt when capture ended
+- Type: Network
+  Description: First launch before the operator clicked Connect produced loopback-only browser-to-Tor control activity. tor.exe was explicitly started with DisableNetwork 1, so this phase did not establish a Tor circuit or validate external Tor relay traffic.
+  Indicators:
+  - tor.exe listened on the local control port 9151 and firefox.exe established the browser control connection
+  - The tor.exe command line configured the local SOCKS endpoint 9150, but no listener on that port was present while network access remained disabled
+  - Only local browser-to-Tor control activity was observed; no external destination, DNS query, Tor relay connection, adapter change, route change, or DNS-server change was attributed to the product
+- Type: Forensic
+  Description: Detect the controlled first Tor network connection from Tor Browser 15.0.14 on Windows 11. The already-running browser enabled its bundled Tor client, downloaded Tor directory state, initialized browser security state, and began a browser update download while the operator stopped at the Tor-branded landing page without browsing.
+  Indicators:
+  - The existing firefox.exe and tor.exe processes remained in place; the connection phase added only a low-integrity Firefox tab content process and did not start a new tor.exe process
+  - tor.exe created cached-certs, cached-microdesc-consensus, and cached-microdescs.new beneath %USERPROFILE%\Desktop\Tor Browser\Browser\TorBrowser\Data\Tor\
+  - firefox.exe created onion-aliases.json, AlternateServices.bin, and SiteSecurityServiceState.bin and modified prefs.js beneath the portable browser profile
+  - firefox.exe created active-update.xml and update.status and began writing UpdateInfo\updates\downloading\update.mar
+  - No service, driver, scheduled task, startup command, installed-application record, network adapter, route, DNS-server setting, or firewall rule was added or modified by the connection
+  - The operator clicked Connect once, reached the Tor-branded DuckDuckGo landing page, and did not search, browse to another site, authenticate, or change connection settings
+- Type: Network
+  Description: Detect the first successful Tor circuit from Tor Browser on Windows. tor.exe established direct TCP sessions with Tor relays while firefox.exe sent browser traffic through the local SOCKS listener; this was application-proxy behavior rather than a system-wide VPN tunnel.
+  Indicators:
+  - tor.exe established TCP sessions with multiple Tor relays, including relay connections over TCP 443 and the default ORPort 9001
+  - tor.exe listened on the local SOCKS port 9150 and accepted browser proxy connections while the browser control channel remained active on 9151
+  - No direct external firefox.exe connection was recorded; external relay traffic belonged to tor.exe
+  - No adapter, route, DNS-server, or firewall-rule change occurred, and the Windows host retained its original network configuration
+- Type: Forensic
+  Description: Detect removal of the tested portable Tor Browser 15.0.14 deployment on Windows 11. Because the distribution registered no uninstaller, the operator used an elevated PowerShell Remove-Item command to delete the portable installation tree and Desktop shortcut, then an elevated cmd.exe del command to remove the Start Menu shortcut.
+  Indicators:
+  - Sysmon recorded explorer.exe launching PowerShell.exe with Remove-Item -Recurse -Force for %USERPROFILE%\Desktop\Tor Browser\ and a separate Remove-Item for %USERPROFILE%\Desktop\Tor Browser.lnk
+  - The PowerShell process successfully removed the portable tree and Desktop shortcut; the post-removal inventory contained no path beneath %USERPROFILE%\Desktop\Tor Browser\ and no Desktop shortcut
+  - Sysmon recorded explorer.exe launching cmd.exe /d /c del /f /q for %APPDATA%\Microsoft\Windows\Start Menu\Programs\Tor Browser.lnk, and Procmon confirmed its successful deletion
+  - The snapshot diff contained only portable-tree and shortcut removals attributable to Tor Browser; an unrelated Windows cache database removal was not attributed to Tor
+  - No Tor Browser, firefox.exe, tor.exe, lyrebird.exe, or conjure-client.exe process was present in either the pre- or post-removal snapshot
+  - No installed-application record, service, driver, scheduled task, startup command, network adapter, route, DNS-server setting, or firewall rule was added or removed, and no reboot was required
+  - The first-launch-created %PROGRAMDATA%\Mozilla-*\UpdateLock-* file remained after removal; product execution-history records for the installer and deleted firefox.exe path also remained
+- Type: Network
+  Description: The portable-removal phase generated no Tor Browser traffic because the browser and bundled Tor client were closed before capture. File and shortcut deletion did not alter system networking state.
+  Indicators:
+  - No firefox.exe, tor.exe, pluggable-transport, or Tor-related network event was observed during removal
+  - No network adapter, route, DNS-server, or firewall-rule change occurred
+References:
+  Official:
+  - https://www.torproject.org/
+  - https://tb-manual.torproject.org/
+  - https://support.torproject.org/tor-browser/getting-started/uninstalling/
+  ThreatIntelligence:
+  - https://www.europol.europa.eu/media-press/newsroom/news/tor-investigation-leads-to-arrest-and-seizure-of-dark-web-marketplaces
+  - https://www.justice.gov/usao-sdny/pr/former-fbi-agent-sentenced-48-months-prison-stealing-bitcoin-silk-road-investigation
+  Research:
+  - https://www.usenix.org/conference/usenixsecurity21/presentation/jansen
+  - https://blog.torproject.org/tor-security-advisory-relay-early-traffic-confirmation-attack/
+LastModified: '2026-09-03'

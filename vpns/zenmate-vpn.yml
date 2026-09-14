@@ -1,0 +1,39 @@
+Name: Zenmate Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - zenmate.exe
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%LOCALAPPDATA%\ZenMate VPN'
+    - '%APPDATA%\ZenMate'
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - zenmate.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - OpenVPN
+  - IKEv2
+  Ports:
+  - TCP 443
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://zenmate.com/
+  - https://support.zenmate.com/
+  Research:
+  - https://www.comparitech.com/blog/vpn-privacy/zenmate-review/
+  - https://www.techradar.com/reviews/zenmate-vpn
+LastModified: '2026-07-16'

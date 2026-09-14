@@ -1,0 +1,38 @@
+Name: Avira Phantom Vpn
+ForensicAttributes:
+  ProcessNames:
+  - Platform: Windows
+    Name:
+    - avira.webapphost.exe
+  ConfigFiles:
+  - Platform: Windows
+    Path:
+    - '%PROGRAMDATA%\Avira\VPN'
+    - '%LOCALAPPDATA%\Avira\VPN'
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains:
+    - avira.com
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols:
+  - OpenVPN
+  Ports:
+  - TCP 443
+  TLSFingerprint: []
+  EncryptionStandards:
+  - AES-256
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.avira.com/en/avira-phantom-vpn
+  - https://support.avira.com/hc/en-us/categories/360003086899-Avira-Phantom-VPN
+  Research:
+  - https://www.vpnmentor.com/blog/avira-phantom-vpn-review/
+  - https://restoreprivacy.com/vpn/reviews/avira-phantom/
+LastModified: '2026-07-16'

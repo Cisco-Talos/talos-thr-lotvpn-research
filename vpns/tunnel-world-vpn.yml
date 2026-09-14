@@ -1,0 +1,25 @@
+Name: Tunnel World Vpn
+ForensicAttributes:
+  ProcessNames:
+  ConfigFiles:
+  RegistryPersistence: []
+  LogFiles: []
+  CommandLineArgs: []
+  NetworkArtifacts:
+    Domains: []
+    UserAgent: []
+    CDN: []
+NetworkBehavior:
+  Protocols: []
+  Ports: []
+  TLSFingerprint: []
+  EncryptionStandards: []
+ThreatActors: []
+UseCases: []
+Detection: []
+References:
+  Official:
+  - https://www.tunnelworld.net/
+  Research:
+  - https://vpnpro.com/vpn-reviews/tunnel-world-vpn-review/
+LastModified: '2026-07-16'

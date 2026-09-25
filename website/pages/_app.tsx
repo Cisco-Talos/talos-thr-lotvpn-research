@@ -1,4 +1,3 @@
-import '@elastic/eui/dist/eui_theme_dark.min.css'
 import '../styles/globals.css'
 import { EuiProvider } from '@elastic/eui'
 import type { AppProps } from 'next/app'

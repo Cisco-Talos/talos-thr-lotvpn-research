@@ -14,6 +14,7 @@ const nextConfig = {
   },
   transpilePackages: [
     '@elastic/eui',
+    '@elastic/eui-theme-borealis',
     '@elastic/datemath',
     'moment',
   ],

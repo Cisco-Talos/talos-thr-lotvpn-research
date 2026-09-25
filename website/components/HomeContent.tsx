@@ -1,6 +1,7 @@
 'use client'
 import React, { useState, useMemo, useCallback, type ReactNode } from 'react'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
 import {
   EuiBadge,
   EuiBasicTable,
@@ -106,6 +107,7 @@ export default function HomeContent({
   totalWithDetection,
   totalWithThreatActors,
 }: HomeContentProps) {
+  const router = useRouter()
   const [search, setSearch] = useState('')
   const [pageIndex, setPageIndex] = useState(0)
   const [sort, setSort] = useState<{ field: SortField; direction: SortDir }>({
@@ -335,7 +337,7 @@ export default function HomeContent({
           columns={columns}
           rowProps={vpn => ({
             style: { cursor: 'pointer' },
-            onClick: () => { window.location.href = `/vpns/${vpn.slug}` },
+            onClick: () => { router.push(`/vpns/${vpn.slug}`) },
           })}
           pagination={{
             pageIndex,

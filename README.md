@@ -1,6 +1,6 @@
-# Living Off the VPNs (LOTT)
+# Living Off the VPNs (LOTVPNs)
 
-**Living Off the VPNs (LOTT)** is a community reference for VPN
+**Living Off the VPNs (LOTVPNs)** is a community reference for VPN
 applications that are commonly abused to evade network controls, bypass
 content restrictions, or mask malicious activity — and the forensic
 artifacts defenders can use to detect them.
@@ -97,6 +97,8 @@ npm install
 npm run dev
 # Visit http://localhost:3000
 ```
+
+Or check it out live at https://cisco-talos.github.io/talos-thr-lotvpn-research/ 
 
 ## Contributing
 

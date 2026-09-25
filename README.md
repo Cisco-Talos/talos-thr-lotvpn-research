@@ -1,6 +1,6 @@
-# Living Off the Tunnel (LOTT)
+# Living Off the VPNs (LOTT)
 
-**Living Off the Tunnel (LOTT)** is a community reference for VPN
+**Living Off the VPNs (LOTT)** is a community reference for VPN
 applications that are commonly abused to evade network controls, bypass
 content restrictions, or mask malicious activity — and the forensic
 artifacts defenders can use to detect them.
